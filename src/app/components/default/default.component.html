@@ -1,0 +1,15 @@
+ <h2>Inicio --- {{title}}</h2>
+
+ <div class="contenido" *ngIf="identity">  
+ <br> 
+
+    <p>
+      Usuario tipo --> {{identity.role}}
+
+      <br>
+      Detalles del user <br>
+      <h1>	{{identity.name}} {{identity.surname}}</h1>
+      <br>
+      	
+      	Su token --> {{token}}
+  </div>

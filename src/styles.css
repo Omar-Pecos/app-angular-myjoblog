@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+body{
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.contenido {
+	background-color: #beff65;
+	color: #3e78b2 !important;
+}
+
