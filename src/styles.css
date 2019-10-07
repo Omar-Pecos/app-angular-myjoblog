@@ -1,12 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+/* try to import the styles of the signature pad !! ... */
 
+
+/* Body */
 body{
 	padding-left: 10%;
 	padding-right: 10%;
 }
-
+/* div general de contenido */
 .contenido {
-	background-color: #beff65;
+	/*background-color: #beff65;*/
+	background-color: #BFFF8E;
 	color: #3e78b2 !important;
+
+ 	/* text-shadow: 0 0 3px #00FF00;	/*#B7FE82;*/
+	padding: 20px 30px;
+}
+/* Div de cargando  */
+.cargando{
+	 position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: -webkit-translate(-50%, -50%);
+    transform: -moz-translate(-50%, -50%);
+    transform: -ms-translate(-50%, -50%);
+	background-color: rgba(255,255,255,0.3);
 }
 
+/* Canvas signature-pad */
+#signature-pad > canvas{
+	background-color: white;
+}
+
+/* Tablas */
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+th{
+	/* color asi como verde o algo que pegue con el azul o azulito !! */
+}
+th,td{
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/*  Imagenes de firmas */
+.firmas:hover{
+	width:250px;
+}
+
+/* buscador */
+.buscador{
+	width: 30%;
+}
+	 
+
+@media (max-width: 576px) {
+  body{
+	padding-left: 0;
+	padding-right: 0;
+}
+}

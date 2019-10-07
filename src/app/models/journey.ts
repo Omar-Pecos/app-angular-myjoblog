@@ -1,7 +1,9 @@
 export class Journey{
 
-constructor(
-		public active : string,
-){}
+	constructor(
+		public image,
+		public lat,
+		public lon
+	){}
 	
 }

@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit{
 	}
 
 	onSubmit(form){
-		console.log(this.user);
+					console.log("Al acceder el user ---->");
+					console.log(this.user);
 
 		this._userService.signup(this.user).subscribe(
 				response =>{
@@ -83,6 +84,11 @@ export class LoginComponent implements OnInit{
 
 				this.identity = null;
 				this.token = null;
+
+						//Limpiar el datajson que se genera al iniciar una jornada o terminarla !!
+						if (localStorage.getItem("datajson") != null) {
+						  	localStorage.removeItem("datajson");
+						}
 
 				//redireccion
 				this._router.navigate(['home']);

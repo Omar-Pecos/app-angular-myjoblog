@@ -1,0 +1,119 @@
+<div  class="cargando text-center" *ngIf="jornada_activa== undefined">
+  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+</div>
+
+<!-- Cuidado aver si cuando no hay jornada activa no te lo va a mostrar -->
+<div class="contenido" *ngIf="jornada_activa !== undefined">
+	<h2>{{title}} --> {{identity.name}} {{identity.surname}} </h2>
+	<br>
+  
+  <div *ngIf="firma == false" class="container-firma">
+
+   <signature-pad id="signature-pad" #signpad [options]="signaturePadOptions" ></signature-pad>
+   <!-- (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()" -->
+
+<div id="botones-firma">
+   <button type="button" class="button" (click)="clear()" >Limpiar</button>
+     <button type="button" class="button" (click)="change_color()" >Cambiar Color</button>
+      <button type="button" class="button" (click)="undo()" >Deshacer</button>
+      <br>
+      
+    <button type="button" class="button" (click)="clickconfirmar()" >Confirmar firma</button>
+</div>
+</div>
+      <!--  <div id="signaturepad" class="signature-pad">
+            <div class="signature-pad--body">
+                <canvas id="ficharcanvas"></canvas>
+            </div>
+            <div class="signature-pad--footer">
+
+              
+              <div class="signature-pad--actions mx-auto">
+                <div>
+                  <button type="button" id="clear" class="button clear" data-action="clear">Limpiar</button>
+                  <button type="button" id="change-color" class="button" data-action="change-color">Cambiar color</button>
+                  <button type="button" id="undo" data-action="undo">Deshacer</button>
+                  	<br>
+                  <button type="button" class="button" (click)="clickconfirmar()" >Confirmar firma</button>
+                </div>
+              </div> 
+                  <!-- de default sale el btn de confirmar la firma ---- SE DEBE HACER EL METODO /GETIMAGE QUE RECIBE POR POST LA IMAGEN O HACERLO TODO JUNTO EN EL INIT_JOURNEY PASANDOLE EL DATA DE LA IMAGEN Y CREANDOLA Y REFERENCIANDO SU IMAGEPATH 
+                    <form id="formpng" method="post" action="{{url('/getimage')}}">
+                        @csrf
+                        <input id="imagenpng"  type="hidden" name="imagen">
+                       <button type="button" id="confirmar" class="button"  >Confirmar firma</button>
+                  </form> 
+            </div>
+          </div>-->
+	
+
+	<br>
+  <div id="image-firma">
+     <img *ngIf="!jornada_activa" src="assets/images/red.png">
+     <img *ngIf="jornada_activa" src="assets/images/green.png">
+  </div>
+  
+      
+<div id="botones-firma">
+  <form id="forminit">
+     <input id="imagenpng"  type="hidden" name="image" #image="ngModel" [(ngModel)]="journey.image">
+     <input id="latini"  type="hidden"  name="lat"  #lat="ngModel" [(ngModel)]="journey.lat">
+     <input id="lonini"  type="hidden"  name="lon" #lon="ngModel" [(ngModel)]="journey.lon">
+     <button data-toggle="modal" data-target="#initModal" (click)="initModal()"  [disabled]="jornada_activa || !firma" >Iniciar</button>
+  </form>
+	<form id="formend">
+     <input id="latend"  type="hidden" name="latend">
+       <input id="lonend"  type="hidden" name="lonend">
+	 <button  data-toggle="modal" data-target="#endModal" (click)="endModal()"  [disabled]="!jornada_activa"  >Finalizar</button>
+  </form>
+</div>
+
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- init Modal -->
+<div class="modal fade" id="initModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Desea Iniciar la jornada?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se recogerá una referencia aproximada de su ubicación.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="iniciar_jornada()">Iniciar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- end Modal -->
+<div class="modal fade" id="endModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¿Desea Finalizar su jornada?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Se dará por concluida su jornada de trabajo
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="finalizar_jornada()">Finalizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

@@ -29,8 +29,8 @@ export class UserService {
 		let json = JSON.stringify(user);
 		let params = 'json='+json;
 
-		let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-		return this._http.post(this.url+'register',params,{headers : headers});
+			let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+			return this._http.post(this.url+'register',params,{headers : headers});
 	}
 
 	signup(user ,gettoken = null) : Observable<any>{
@@ -38,11 +38,11 @@ export class UserService {
 			user.gettoken = 'darmelodatos';
 		}
 
-	let json = JSON.stringify(user);
-		let params = 'json='+json;
+		let json = JSON.stringify(user);
+			let params = 'json='+json;
 
-		let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
-		return this._http.post(this.url+'login',params,{headers : headers});
+			let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+			return this._http.post(this.url+'login',params,{headers : headers});
 	}
 
 	getIdentity(){
@@ -66,6 +66,23 @@ export class UserService {
 		}
 
 		return this.token;
+	}
+
+	// Mas operaciones de usuarios editar,crear == registrar o casi , eliminar ....
+
+	getUser(id,token) : Observable<any>{
+
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'users/'+id,{headers : headers});
+	}
+
+	editUser(id,user,token) : Observable<any>{
+		let json = JSON.stringify(user);
+		let params = 'json='+json;
+
+		let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
+										.set('Authorization',this.token);
+		return this._http.put(this.url+'users/'+id,params,{headers : headers});
 	}
 
 }

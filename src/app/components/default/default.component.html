@@ -1,7 +1,10 @@
+
+
+ 
+<div class="contenido" *ngIf="identity">  
+ <br> 
  <h2>Inicio --- {{title}}</h2>
 
- <div class="contenido" *ngIf="identity">  
- <br> 
 
     <p>
       Usuario tipo --> {{identity.role}}
@@ -10,6 +13,39 @@
       Detalles del user <br>
       <h1>	{{identity.name}} {{identity.surname}}</h1>
       <br>
-      	
-      	Su token --> {{token}}
+      Su token --> <pre>{{token}}</pre> 
+
+      <br>
+      <br>
+
+      <div id="mainmenuuser">
+      	<a [routerLink]="['/fichar']" >Fichar</a><br>
+      	<a [routerLink]="['/perfil']">Perfil</a><br>
+      	<a [routerLink]="['/jornadas']">Mis jornadas</a><br>
+      	<a href="#">Gráficos/Estadística</a>
+      </div>
+
+<br><br>
+
+      <div id="mainmenuadmin" *ngIf="identity.role == 'admin'">
+      	<a href="#">Usuarios</a><br>
+      	<a href="#">Jornadas</a><br>
+      	<a href="#">Vacaciones</a><br>
+      	<a href="#">Exportar</a><br>
+      </div>
+  </div>
+
+  <div class="contenido" *ngIf="!identity">  
+		 <br> 
+		 <h1>WebTime App</h1>
+
+
+		 	En dos partes una la img y la otra columna Login /Inicio de momento aunque este en la barra
+		 	<!-- <img src="https://loading.io/spinners/clock/lg.walking-clock-preloader.gif">
+		 	<img src="https://loading.io/spinners/hourglass/lg.sandglass-time-loading-gif.gif"> -->
+
+		 	<img width="400" src="https://www.pngrepo.com/download/211763/sand-clock.png">
+		 	
+		 	<a  class="nav-link" [routerLink]="['registro']">Registrarse</a>
+		     <a  class="nav-link"  [routerLink]="['login']">Entrar</a>
   </div>

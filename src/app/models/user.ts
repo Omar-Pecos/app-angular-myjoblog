@@ -6,6 +6,7 @@ export class User {
 		public dni : string;
 		public email: string;
 		public password: string;
+		public password_confirmation;
 
 		constructor (id: number,role: string,
 			name: string,surname: string,email: string,password: string)

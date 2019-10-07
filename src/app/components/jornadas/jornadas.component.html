@@ -1,0 +1,37 @@
+<div class="contenido" >
+	<h2>{{title}}</h2>
+	<br>
+
+<div class="buscador">
+	<h3>Buscador</h3>
+	<select class="form-control">
+		<option value="fecha" selected>Fecha</option>
+		<option value="hora">Hora</option>
+	</select>
+	<input class="form-control" type="text" placeholder="Value">
+	<input type="button" value="Buscar" class="btn btn-success">
+</div>
+ <div style="overflow-x:auto;">
+	<table class="table table-light table-hover responsive">
+		<tr>
+			<th>Fecha</th>
+			<th>Firma</th>
+			<th>Duración (s)</th>
+			<th>Inicio</th>
+			<th>Final</th>
+			
+			<!-- <th>User #</th> si es admin pues operaciones -->
+		</tr>
+		<tr *ngFor="let jornada of journeys">
+			<td>{{jornada.date}}</td>
+			<td>
+				<img class="firmas" width="100" src="{{url}}/storage/images/{{jornada.signature}}"/>
+			</td>
+			<td>{{jornada.time}}</td>
+			<td>{{jornada.initial_time}}</td>
+			<td>{{jornada.final_time}}</td>
+			
+		</tr>
+	</table>
+ </div>
+</div>

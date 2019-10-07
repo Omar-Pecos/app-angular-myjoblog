@@ -1,3 +1,5 @@
+
+<br> 
 <div class="col-md-12">
 	<h2>{{title}}</h2>
 
@@ -8,8 +10,7 @@
 <div class="alert alert-danger" *ngIf="status == 'error'">
 	El registro no se ha completado correctamente
 </div>
- <br> 
-	<form #registerform="ngForm" (ngSubmit)="onSubmit(registerform);" class="col-md-5">
+	<form #registerform="ngForm" (ngSubmit)="onSubmit(registerform)" class="col-md-5">
 		<p>
 			<label for="name">Nombre</label>
 			<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
@@ -42,7 +43,7 @@
 		</p>
 		<p>
 			<label for="password">Confirmación contraseña</label>
-			<input type="password" name="password_confirmation"  class="form-control" required>
+			<input type="password" name="password_confirmation" #password="ngModel" [(ngModel)]="user.password_confirmation"  class="form-control" required>
 		</p>
 
 		<input type="submit" value="Registrarme" class="btn btn-success">
