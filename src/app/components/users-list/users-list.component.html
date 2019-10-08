@@ -1,0 +1,53 @@
+<div  class="cargando text-center" *ngIf="users == undefined">
+  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+</div>
+
+<div class="contenido" *ngIf="users != undefined">
+	<h2>{{title}}</h2>
+	<div class="container">
+		<div class="buscador row justify-content-center">
+			<h3>Buscador</h3>
+			<select class="form-control">
+				<option value="id" selected>ID</option>
+				<option value="name" >Nombre</option>
+				<option value="surname">Apellidos</option>
+				<option value="email">Email</option>
+				<option value="dni">DNI</option>
+			</select>
+			<input class="form-control" type="text" placeholder="Value">
+			<input type="button" value="Buscar" class="btn btn-success">
+		</div>
+	</div>	
+	 <div style="overflow-x:auto;">
+		<table class="table table-light table-hover responsive">
+			<tr>
+				<th>ID #</th>
+				<th>Nombre completo</th>
+				<th>Email</th>
+				<th>DNI</th>
+				<th>Teléfono</th>
+				<th>Operaciones</th>
+				
+				<!-- <th>User #</th> si es admin pues operaciones -->
+			</tr>
+			<tr *ngFor="let user of users">
+				<td>
+					{{user.id}} - {{user.role}}
+				</td>
+				<td>{{user.name}} {{user.surname}}</td>
+				<td>
+					<a href="mailto:{{user.email}}">{{user.email}}</a>
+				</td>
+				<td>{{user.dni}}</td>
+				<td>
+					<a *ngIf="user.number != undefined" href="tel:{{user.number}}">{{user.number}}</a>
+				</td>
+				<td>
+					<a href="#">Perfil #{{user.id}}</a><br>
+					<a href="#">Jornadas #{{user.id}}</a><br>
+					<a href="#">Hacer admin ?¿ #{{user.id}}</a>
+				</td>
+			</tr>
+		</table>
+	 </div>
+</div>

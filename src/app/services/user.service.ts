@@ -76,6 +76,11 @@ export class UserService {
 			return this._http.get(this.url+'users/'+id,{headers : headers});
 	}
 
+	getUsers(token): Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'users',{headers : headers});
+	}
+
 	editUser(id,user,token) : Observable<any>{
 		let json = JSON.stringify(user);
 		let params = 'json='+json;

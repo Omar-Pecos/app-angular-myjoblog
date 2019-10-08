@@ -1,5 +1,4 @@
 
-
  
 <div class="contenido" *ngIf="identity">  
  <br> 
@@ -28,8 +27,8 @@
 <br><br>
 
       <div id="mainmenuadmin" *ngIf="identity.role == 'admin'">
-      	<a href="#">Usuarios</a><br>
-      	<a href="#">Jornadas</a><br>
+      	<a [routerLink]="['/usuarios']">Usuarios</a><br>
+      	<a [routerLink]="['/todas_jornadas']">Jornadas</a><br>
       	<a href="#">Vacaciones</a><br>
       	<a href="#">Exportar</a><br>
       </div>

@@ -52,7 +52,13 @@ th,td{
 
 /* buscador */
 .buscador{
-	width: 30%;
+	width: 300px;
+	margin: 30px ;
+}
+#buscadores {
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
 }
 	 
 
@@ -61,4 +67,9 @@ th,td{
 	padding-left: 0;
 	padding-right: 0;
 }
+.buscador{
+	width: 240px;
+	margin: 10px ;
+}
+
 }

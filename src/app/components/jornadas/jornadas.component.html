@@ -1,4 +1,8 @@
-<div class="contenido" >
+<div  class="cargando text-center" *ngIf="journeys == undefined">
+  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+</div>
+
+<div class="contenido" *ngIf="journeys != undefined">
 	<h2>{{title}}</h2>
 	<br>
 

@@ -56,8 +56,9 @@ export class JourneyService {
 		return this._http.get(this.url+'journeys/'+id,{headers : headers});
 	}
 
-	getJourneys(){
-
+	getAllJourneys(token):Observable<any>{
+		let headers = new HttpHeaders().set('Authorization',token);
+		return this._http.get(this.url+'journeys',{headers : headers});
 	}
 
 	// dame getImage 

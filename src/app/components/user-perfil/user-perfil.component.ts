@@ -26,6 +26,8 @@ export class UserPerfilComponent implements OnInit {
   		this.token = this._userService.getToken();
   		this.identity = this._userService.getIdentity();
 
+// si es admin y quiere editar a otro user de esta manera solo se podria editar el mismo 
+// var -> id perfil = ver si se puede cojer con un parametro de url o algo asi
   		this._userService.getUser(this.identity.sub,this.token).subscribe(
   				response =>{
   					if (response.status = 'success'){
@@ -49,6 +51,9 @@ export class UserPerfilComponent implements OnInit {
   }
 
   onSubmit(form){
+
+    /// si es un user admin y edita el perfil de otros el perfil a editar sería el de user.id y si es el de cada uno en verdad tmb por que en user 
+    // se recogen los datos de ese usuario que se ha pasado en getUser();
   		this._userService.editUser(this.identity.sub,this.user,this.token).subscribe(
   				response =>{
   					if (response.status == 'success'){

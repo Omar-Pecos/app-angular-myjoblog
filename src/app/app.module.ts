@@ -12,6 +12,8 @@ import {FirmaComponent } from './components/firma/firma.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { UserPerfilComponent } from './components/user-perfil/user-perfil.component';
 import { JornadasComponent } from './components/jornadas/jornadas.component';
+import { AllJornadasComponent } from './components/all-jornadas/all-jornadas.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { JornadasComponent } from './components/jornadas/jornadas.component';
     DefaultComponent,
     FirmaComponent,
     UserPerfilComponent,
-    JornadasComponent
+    JornadasComponent,
+    AllJornadasComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,
