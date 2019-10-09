@@ -3,58 +3,74 @@
   <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
 </div>
 
+
 <div class="contenido" *ngIf="journeys != undefined">
 	<h2>{{title}}</h2>
 	<br>
-<div id="buscadores" class="container  text-center">
-	<div class="buscador">
-		<h3>Buscador de ID</h3>
-		<select class="form-control" [(ngModel)]="selecteduser">
-			<option value="Identificador" >...</option>
-			<option value="1">Omar Pecos Paisa</option>
-			<option value="2">Luis Ruiz</option>
-		</select>
-		<input class="form-control" type="text" value="{{selecteduser}}" disabled>
-	</div>
-		<br>
-	<div class="buscador row justify-content-center">
-		<h3>Buscador de jornadas</h3>
-		<select class="form-control">
-			<option value="fecha" >Fecha</option>
-			<option value="hora">Hora</option>
-			<option value="id" selected>Id</option>
-		</select>
-		<input class="form-control" type="text" placeholder="Value">
-		<input type="button" value="Buscar" class="btn btn-success">
-	</div>
-</div>	
- <div style="overflow-x:auto;">
-	<table class="table table-light table-hover responsive">
-		<tr>
-			<th>Fecha</th>
-			<th>ID #</th>
-			<th>Firma</th>
-			<th>Duración (s)</th>
-			<th>Inicio</th>
-			<th>Final</th>
-			
-			<!-- <th>User #</th> si es admin pues operaciones -->
-		</tr>
-		<tr *ngFor="let jornada of journeys">
-			<td>{{jornada.date}}</td>
-			<td>
-				<a href="#">Perfil de {{jornada.user_id}}</a>
-					<br>
-				<a href="#">Jornadas de {{jornada.user_id}}</a>
-			</td>
-			<td>
-				<img class="firmas" width="100" src="{{url}}/storage/images/{{jornada.signature}}"/>
-			</td>
-			<td>{{jornada.time}}</td>
-			<td>{{jornada.initial_time}}</td>
-			<td>{{jornada.final_time}}</td>
-			
-		</tr>
-	</table>
- </div>
+	<!-- BUSCADORES  -->
+		<div id="buscadores" class="container  text-center">
+			<div class="buscador">
+				<h3>Buscador de ID</h3>
+				<select class="form-control" [(ngModel)]="selecteduser">
+					<option value="Identificador" >...</option>
+					<option value="1">Omar Pecos Paisa</option>
+					<option value="2">Luis Ruiz</option>
+				</select>
+				<input class="form-control" type="text" value="{{selecteduser}}" disabled>
+			</div>
+				<br>
+			<div class="buscador row justify-content-center">
+				<h3>Buscador de jornadas</h3>
+				<select class="form-control">
+					<option value="fecha" >Fecha</option>
+					<option value="hora">Hora</option>
+					<option value="id" selected>Id</option>
+				</select>
+				<input class="form-control" type="text" placeholder="Value">
+				<input type="button" value="Buscar" class="btn btn-success">
+			</div>
+		</div>	
+
+		<!-- TABLA TODAS LAS JORNADAS  -->
+		 <div style="overflow-x:auto;">
+			<table class="table table-light table-hover responsive">
+				<tr>
+					<th>Fecha</th>
+					<th>ID #</th>
+					<th>Firma</th>
+					<th>Duración (s)</th>
+					<th>Inicio</th>
+					<th>Final</th>
+					
+					<!-- <th>User #</th> si es admin pues operaciones -->
+				</tr>
+				<tr *ngFor="let jornada of journeys">
+					<td>{{jornada.date}}</td>
+					<td>
+						<a href="#">Perfil de {{jornada.user_id}}</a>
+							<br>
+						<a href="#">Jornadas de {{jornada.user_id}}</a>
+					</td>
+					<td>
+						<img class="firmas" width="100" src="{{url}}/storage/images/{{jornada.signature}}"/>
+					</td>
+					<td>{{jornada.time}}</td>
+					<td>{{jornada.initial_time}}</td>
+					<td>{{jornada.final_time}}</td>
+					
+				</tr>
+			</table>
+		 </div>
+
+<!-- PAGINACIÓN -->
+ <div class="row justify-content-center align-items-center paginacion">
+ 	<button class="botonpaginas" [disabled]="pageInfo.previous == null" (click)="addgetParams(pageInfo.previous)">
+ 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png">
+ 	</button>
+ 	<span id="numpag"><b>{{pageInfo.page}} de {{pageInfo.lastpage}}</b></span>
+ 	<button class="botonpaginas" [disabled]="pageInfo.next == null" (click)="addgetParams(pageInfo.next)">
+ 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png">
+ 	</button>
+</div>
+	<p class="text-center"> <b >Mostrando {{pageInfo.from}}-{{pageInfo.to}} de {{pageInfo.total}} totales</b></p>
 </div>

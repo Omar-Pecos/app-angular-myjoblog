@@ -17,6 +17,9 @@ export class JornadasComponent implements DoCheck {
 	public identity;
 	public journeys: any[];
 
+  public getParams:string = '';
+  public pageInfo:any;
+
   constructor(
   			private _route : ActivatedRoute,
 			private _router : Router,
@@ -26,18 +29,27 @@ export class JornadasComponent implements DoCheck {
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity();
 
-  			this._journeyService.getMyJourneys(this.identity.sub,this.token).subscribe(
-  						response =>{
-  							if (response.status == 'success'){
-  								//console.log("MyJourneys response ->"+response);
-  								this.journeys = response.journeys;
-  							}
-  						},
-  						error =>{
-  							console.log(<any>error);
-  						}
-  					);
+  			this.getJourneysofOne();
   	}
+
+  getJourneysofOne(){
+    this._journeyService.getMyJourneys(this.identity.sub,this.token,this.getParams).subscribe(
+              response =>{
+                if (response.status == 'success'){
+                  //console.log("MyJourneys response ->"+response);
+                  this.journeys = response.journeys.data;
+
+                   let pageInfo = {'page':response.journeys.current_page,'lastpage':response.journeys.last_page,
+                  'previous':response.journeys.prev_page_url,'next':response.journeys.next_page_url,
+                  'from':response.journeys.from,'to':response.journeys.to,'total':response.journeys.total};
+                  this.pageInfo = pageInfo;
+                }
+              },
+              error =>{
+                console.log(<any>error);
+              }
+            );
+  } 
 
   ngOnInit() {
   		console.log("jornada component de user "+this.identity.name+" cargadas ok");
@@ -48,6 +60,21 @@ export class JornadasComponent implements DoCheck {
 	   this.token = this._userService.getToken(); 
   }
 
+  addgetParams(value){
+
+     /* if (this.getParams !=''){
+        this.getParams = '';
+      }*/
+      console.log("getParams -- lo recibido ->" + value);
+
+          var n = value.indexOf("?");
+          var result = value.slice(n+1,value.length);
+
+           console.log(" getParams --lo transformado ->" + result);
+           this.getParams = result;
+
+            this.getJourneysofOne();
+  }
 
 
 //  A ESTO NO LE ECHES CUENTA !!!!!!!!!!!!!!!!!!

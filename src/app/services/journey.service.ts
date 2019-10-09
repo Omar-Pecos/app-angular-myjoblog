@@ -50,15 +50,24 @@ export class JourneyService {
 
 	}
 
-	getMyJourneys(id,token):Observable<any>{
+	getMyJourneys(id,token,getParams):Observable<any>{
+		var urlparams = '';
+		if (getParams != undefined){
+			var urlparams = '?'+getParams;
+		}
 
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'journeys/'+id,{headers : headers});
+		return this._http.get(this.url+'journeys/'+id+urlparams,{headers : headers});
 	}
 
-	getAllJourneys(token):Observable<any>{
+	getAllJourneys(token,getParams):Observable<any>{
+		var urlparams = '';
+		if (getParams != undefined){
+			var urlparams = '?'+getParams;
+		}
+
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'journeys',{headers : headers});
+		return this._http.get(this.url+'journeys'+urlparams,{headers : headers});
 	}
 
 	// dame getImage 

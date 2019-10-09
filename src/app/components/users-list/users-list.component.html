@@ -50,4 +50,16 @@
 			</tr>
 		</table>
 	 </div>
+
+	 <!-- PAGINACIÓN -->
+ <div class="row justify-content-center align-items-center paginacion">
+ 	<button class="botonpaginas" [disabled]="pageInfo.previous == null" (click)="addgetParams(pageInfo.previous)">
+ 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png">
+ 	</button>
+ 	<span id="numpag"><b>{{pageInfo.page}} de {{pageInfo.lastpage}}</b></span>
+ 	<button class="botonpaginas" [disabled]="pageInfo.next == null" (click)="addgetParams(pageInfo.next)">
+ 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png">
+ 	</button>
+</div>
+	<p class="text-center"> <b >Mostrando {{pageInfo.from}}-{{pageInfo.to}} de {{pageInfo.total}} totales</b></p>
 </div>

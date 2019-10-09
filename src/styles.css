@@ -60,6 +60,23 @@ th,td{
 	justify-content: center;
 	flex-flow: row wrap;
 }
+
+/* Botones */
+.botonpaginas{
+	background-color: #25B7D3;
+	border : 0;
+	border-radius: 50%;
+}
+.botonpaginas:disabled{
+	opacity: 0.5;
+}
+/* Paginación */
+.paginacion > *{
+	margin: 5px 10px;
+}
+#numpag{
+	font-size: 24px;
+}
 	 
 
 @media (max-width: 576px) {
