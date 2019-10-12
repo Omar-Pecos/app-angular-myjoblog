@@ -3,6 +3,8 @@ import { Router , ActivatedRoute , Params} from '@angular/router';
 import { User} from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { JourneyService } from '../../services/journey.service';
+// for scroll top
+import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-users-list',
@@ -16,17 +18,21 @@ export class UsersListComponent implements DoCheck {
 	public token;
 	public identity;
 	public users: any[];
+  public myapp: AppComponent;
 
   public getParams:string = '';
   public pageInfo:any;
-
+  public order = 'desc';
+  public order_now = 'asc';
+  public sort_by = 'id';
 
   constructor(
   			private _route : ActivatedRoute,
 			private _router : Router,
-			private _userService: UserService,
-			public _journeyService : JourneyService
+       private _userService: UserService,
+      public _journeyService : JourneyService
   	) { 
+     
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity(); 
 
@@ -44,6 +50,17 @@ export class UsersListComponent implements DoCheck {
                   'previous':response.users.prev_page_url,'next':response.users.next_page_url,
                   'from':response.users.from,'to':response.users.to,'total':response.users.total};
                   this.pageInfo = pageInfo;
+
+                  //sacar el order 
+                  if (response.order == 'asc'){
+                      this.order = 'desc';
+                  }
+                  if (response.order == 'desc'){
+                      this.order = 'asc';
+                  }
+                  this.order_now = response.order;
+                  this.sort_by = response.sort_by;
+                  
                 }
               },
               error =>{
@@ -59,20 +76,53 @@ export class UsersListComponent implements DoCheck {
 	   this.token = this._userService.getToken(); 
   }
 
-  addgetParams(value){
-
-     /* if (this.getParams !=''){
-        this.getParams = '';
-      }*/
+  //
+  addgetParams(value, operacion){
+    var result;
       console.log("getParams -- lo recibido ->" + value);
 
-          var n = value.indexOf("?");
-          var result = value.slice(n+1,value.length);
+            //no se necesita cortar las url - lo que se pasa se añade a la url
+           if (operacion == 'add'){
+                  result = value;
+              }
+            //sse corta la url desde el ? y se añade
+           if (operacion == 'slice'){
+                  var n = value.indexOf("?");
+                  result = value.slice(n+1,value.length); 
+            }
 
-           console.log(" getParams --lo transformado ->" + result);
-           this.getParams = result;
+            //se recogen los parametros de el form de busqueda
+           if (operacion == 'search'){
+                  var inputsearch = $("#inputsearch").val();
+                  var selectsearch = $("#selectsearch").val();
 
-            this.getUsersAll();
-  }
+                  result = 'search='+inputsearch+'&field='+selectsearch;
+            }
+
+            if (operacion == 'sorted_search'){
+              var selectfield = $("#selectfield").val();
+              var selectorder = $("#selectorder").val();
+
+               result = this.getParams+'&sort_by='+selectfield+'&order='+selectorder;
+            }
+
+      console.log(" getParams --lo transformado ->" + result);
+
+        if (operacion == 'search'){
+             this.getParams = result;
+             console.log("this.getParams _>"+this.getParams);
+        }
+        else{
+          this.getParams = result;
+          console.log("this.getParams _>"+this.getParams);
+           
+             // si es la pag sig o anteroir que haga ElScrollTop
+                if (operacion == 'slice'){
+                    AppComponent.myapp.scrollToTop();
+                }
+
+           this.getUsersAll();     
+        }
+    }
 
 }

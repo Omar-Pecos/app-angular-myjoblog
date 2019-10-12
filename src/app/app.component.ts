@@ -1,7 +1,8 @@
-import { Component ,OnInit, DoCheck } from '@angular/core';
+import { Component ,OnInit,Inject,HostListener, DoCheck } from '@angular/core';
 import { Router , ActivatedRoute , Params} from '@angular/router';
 import * as $ from 'jquery';
 import {UserService} from './services/user.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,11 @@ import {UserService} from './services/user.service';
   providers: [UserService]
 })
 export class AppComponent implements OnInit{
-  title = 'WebTime App';
+
+    static myapp;
+
+    public title = 'WebTime App';
+    public windowScrolled: boolean;
     public identity;
   	public token;
 
@@ -18,7 +23,32 @@ export class AppComponent implements OnInit{
   			private _route : ActivatedRoute,
 			private _router : Router,
 			private _userService: UserService,
+
+      @Inject(DOCUMENT) private document: Document
   			){}
+
+    @HostListener("window:scroll", [])
+    
+    /// Funciones de ScrollTop
+    onWindowScroll() {
+        if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+            this.windowScrolled = true;
+        } 
+       else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+            this.windowScrolled = false;
+        }
+    }
+    scrollToTop() {
+        (function smoothscroll() {
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(smoothscroll);
+                window.scrollTo(0, currentScroll - (currentScroll / 8));
+            }
+        })();
+
+        console.log("Se ha hecho el scrollTop");
+    }
 
   ngOnInit()
   {
@@ -29,6 +59,7 @@ export class AppComponent implements OnInit{
 	    });*/
 
 	    console.log("1º -> APPComponent cargado !");
+      AppComponent.myapp = this;
 	}
 
 	 ngDoCheck(){
