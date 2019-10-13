@@ -40,6 +40,16 @@ export class JourneyService {
 		return this._http.post(this.url+'init_journey',params, {headers : headers});
 	}
 
+	pause_journey(token):Observable<any>{
+		let headers = new HttpHeaders().set('Authorization',token);
+		return this._http.get(this.url+'pause_journey',{headers : headers});
+	}
+
+	continue_journey(token):Observable<any>{
+		let headers = new HttpHeaders().set('Authorization',token);
+		return this._http.get(this.url+'continue_journey',{headers : headers});
+	}
+
 	end_journey(data,token):Observable<any>{
 
 		let params = 'json='+data;

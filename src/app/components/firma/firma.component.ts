@@ -19,14 +19,16 @@ export class FirmaComponent implements AfterViewInit{
 	public title: string = 'Jornada sin iniciar';
 	public jornada_activa : boolean;
 	public firma : boolean;
+	public _canvas;
 	public token;
 	public identity;
 	public journey;
+	public paused ;
 
 	@ViewChild('signpad', {static: false}) signaturePad : SignaturePad;
  	private signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
 		    'minWidth': 5,
-		    'canvasWidth': 500,
+		    'canvasWidth': 340,
 		    'canvasHeight': 300
 		  	};
 
@@ -43,6 +45,11 @@ export class FirmaComponent implements AfterViewInit{
 						//console.log(this.jsondata);
 						//this.jornada_activa = this._journeyService.getActiveJourney();
 
+						// chapuza pero va cuando se recarga la pag
+						if (window.innerWidth > 700){
+							this.signaturePadOptions.canvasWidth = 500;
+						}
+							
 						this._journeyService.hasactiveJourney(this.token).subscribe(
 							
 							response => {
@@ -51,8 +58,14 @@ export class FirmaComponent implements AfterViewInit{
 									// vaciar el form
 									this.jornada_activa = response.journey;
 									this.firma = response.journey;
+									this.paused = response.paused;
+
 									if (response.journey == true){
 										this.title = "Jornada Iniciada";
+
+										if (response.paused == true){
+											this.title = "Jornada Pausada";
+										}
 									}
 									
 									console.log("hasactiveJourney _>"+response);
@@ -70,9 +83,7 @@ export class FirmaComponent implements AfterViewInit{
 				}
 
 			ngOnInit(){	
-					$(function() {
-						 		
-						});
+						
 				}
 
 
@@ -82,22 +93,9 @@ export class FirmaComponent implements AfterViewInit{
 			    console.log("signaturePad   --> "+this.signaturePad);
 			    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
 			    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API*/
+
 		  }
-
-
-		 /*
-		  drawComplete() {
-		    // will be notified of szimek/signature_pad's onEnd event
-		    console.log(this.signaturePad.toDataURL());
-		  }
-		 
-		  drawStart() {
-		    // will be notified of szimek/signature_pad's onBegin event
-		    console.log('begin drawing');
-		  }*/
-
-		  /// FUNCIONES DEL SIGNPAD CLEAR/UNDO/CHANGE_COLOR/CONFIRMAR FIRMA
-
+		
 		   clear(){
 		  		this.signaturePad.clear();
 		  }
@@ -119,7 +117,10 @@ export class FirmaComponent implements AfterViewInit{
 
 	            this.signaturePad.set('penColor',color);
 		  }
+
+
 		 
+		 // confirma la imagen la saca del canvas y guarda la firma en en el campo hidden
 		clickconfirmar(){
 
 			//let canvas = document.getElementById('ficharcanvas') as HTMLCanvasElement;
@@ -133,6 +134,7 @@ export class FirmaComponent implements AfterViewInit{
 	  		this.title = "Firma Guardada . Inicie la jornada"
 		}
 
+		// muestra el modal de InitJornada
 		initModal(){
 					 function getLocation() {
 		                      if (navigator.geolocation) {
@@ -171,7 +173,7 @@ export class FirmaComponent implements AfterViewInit{
 		          	getLocation();
 
 		}
-
+	// Comienza la jornada desde rl modal de InitJornada
 	iniciar_jornada(){ 
 
 		
@@ -200,7 +202,7 @@ export class FirmaComponent implements AfterViewInit{
 					);
 
 	}
-
+	// Muestra el modal de EndJornada
 	endModal(){
 				 function cogerLocation() {
 		                      if (navigator.geolocation) {
@@ -225,7 +227,7 @@ export class FirmaComponent implements AfterViewInit{
 
 		          	cogerLocation();
 	}
-
+	// Finaliza la jornada desde el modal de EndJornada
 	finalizar_jornada(){		
           //	let datajson = localStorage.getItem("datajson");
 
@@ -255,6 +257,42 @@ export class FirmaComponent implements AfterViewInit{
 					);
 
 	}
+
+
+	// Pausa la jornada 
+	Pause_journey(){
+		this._journeyService.pause_journey(this.token).subscribe
+				(	
+						response =>{
+							console.log(response);
+							// jornada == true
+							this.jornada_activa = true;
+							this.title = "Jornada Pausada";
+							this.paused = true;
+						},
+						error =>{
+							console.log(<any>error);
+						}
+
+					);
+	}
+	Continue_journey(){
+		this._journeyService.continue_journey(this.token).subscribe
+				(	
+						response =>{
+							console.log(response);
+							// jornada == true
+							this.jornada_activa = true;
+							this.title = "Jornada Iniciada";
+							this.paused = false;
+						},
+						error =>{
+							console.log(<any>error);
+						}
+
+					);
+	}
+	// Reanuda la jornada
 
 	 ngDoCheck(){
 

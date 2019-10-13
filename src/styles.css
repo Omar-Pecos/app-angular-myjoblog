@@ -3,14 +3,16 @@
 
 
 /* Body */
-html,body{
-	height: 100% !important;
+html{
+	height: 100vh;
 }
 body{
 	padding-left: 10%;
-	padding-right: 10%;
-	/*width: 100%;
+	padding-right: 10%;/*width: 100%;
 	height: 100%;*/
+   
+    height: 100vh;
+     
 }
 
 /* HOME */
@@ -41,9 +43,36 @@ body{
 
  	/* text-shadow: 0 0 3px #00FF00;	/*#B7FE82;*/
 	padding: 20px 30px;
-
-	/*height: 100%;*/
+	min-height: 100vh;
 }
+
+/* contenedor de la caj div_left y div_rigth que tienen el canvas y el semaforo respectivamente*/
+.contenedor{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
+.div_left,.div_right{
+	width: 600px;
+}
+
+#image-firma{
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+}
+#image-firma img{
+	max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+}
+
+
+
 /* Div de cargando  */
 .cargando{
 	 position: fixed;
@@ -118,6 +147,13 @@ th,td{
 }
 
 /* Botones */
+.botones-firma{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	margin: 30px auto;
+	align-items: center;
+}
 .botonpaginas{
 	background-color: #25B7D3;
 	border : 0;
