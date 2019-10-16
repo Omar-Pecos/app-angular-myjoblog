@@ -50,4 +50,20 @@ export class PdfService {
 									   .set('Authorization',token);
 		return this._http.post(this.url+'set_trigger',params, {headers : headers});
 	}
+
+
+	get_files(token):Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'get_files',{headers : headers});
+	}
+
+	/*see_pdf(name):Observable<any>{
+			//let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'see_file?name='+name);
+	}*/
+
+	delete_pdf(token,name):Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'delete_file?name='+name,{headers : headers});
+	}
 }

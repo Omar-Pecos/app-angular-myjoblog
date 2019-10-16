@@ -11,6 +11,7 @@ import { AllJornadasComponent } from './components/all-jornadas/all-jornadas.com
 
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { UserPerfilComponent } from './components/user-perfil/user-perfil.component';
+import { ArchivosComponent } from './components/archivos/archivos.component';
 
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
 	{path : 'todas_jornadas', component : AllJornadasComponent},
 	{path : 'usuarios', component : UsersListComponent},
 	{path : 'perfil', component : UserPerfilComponent},
+	{path : 'archivos', component : ArchivosComponent},
 	{path: '**', component: DefaultComponent}
 ];
 
