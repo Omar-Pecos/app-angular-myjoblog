@@ -18,6 +18,7 @@ export class AppComponent implements OnInit{
     public windowScrolled: boolean;
     public identity;
   	public token;
+    //public infomsg : string = "infopdf";
 
   	constructor(
   			private _route : ActivatedRoute,

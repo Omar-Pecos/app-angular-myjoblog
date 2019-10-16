@@ -1,8 +1,15 @@
 
  
 <div class="contenido" *ngIf="identity">  
- <br> 
- <h2>Inicio --- {{title}}</h2>
+  <!-- Infomsg -->
+      <div *ngIf="infomsg != ''" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>¡Antención!</strong> {{infomsg}}
+        <button type="button" (click)="setinfomsg('')" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+ <h2>{{title}}</h2>
 
 
     <p>
@@ -17,7 +24,7 @@
       <br>
       <br>
 
-     <div class="container">
+    <!-- <div class="container">
         <div class="row">
           <a class="col-sm divhome" [routerLink]="['/fichar']" >
                   <img  src="https://img.icons8.com/color/96/000000/autograph.png">
@@ -37,10 +44,40 @@
                   <img src="https://img.icons8.com/color/96/000000/rebalance-portfolio--v2.png">
                   <button class="btn btn-info">Gráficos</button>
           </a>
-        </div>
+          <a class="col-sm divhome" href="#">
+                  <img src="https://img.icons8.com/officel/96/000000/pdf.png">
+                  <button class="btn btn-info">Mis Pdf</button>
+          </a>
+        </div>  
+    </div> -->
+
+    <div class="containerhome">
+       
+          <a class="divhome" [routerLink]="['/fichar']" >
+               <img  src="https://img.icons8.com/color/96/000000/autograph.png">
+                <button class="btn btn-info">Fichar</button>   
+          </a>
+          <a  class="divhome" [routerLink]="['/perfil']">
+                  <img src="https://img.icons8.com/color/96/000000/edit-user-female.png">
+                  <button class="btn btn-info">Mi Perfil</button> 
+          </a>
+           <a class="divhome" [routerLink]="['/jornadas']">
+                    <img src="https://img.icons8.com/color/96/000000/overview-pages-3.png">
+                    <button class="btn btn-info">Mis Jornadas</button>
+          </a> 
+             <a class="divhome" href="#">
+                  <img src="https://img.icons8.com/color/96/000000/rebalance-portfolio--v2.png">
+                  <button class="btn btn-info">Gráficos</button>
+          </a>
+            <a class="divhome" href="#">
+                  <img src="https://img.icons8.com/officel/96/000000/pdf.png">
+                  <button class="btn btn-info">Mis Pdf</button>
+          </a>
     </div>
 
-<br><hr><br>
+<br>
+  <hr><hr><hr>
+<br>
 
   <div class="container" *ngIf="identity.role == 'admin'">
         <div class="row">

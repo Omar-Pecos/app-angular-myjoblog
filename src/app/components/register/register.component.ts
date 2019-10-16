@@ -46,12 +46,11 @@ export class RegisterComponent implements OnInit{
 						// vaciar el form
 						this.user =  new User(1, 'ROLE_USER','','','','');
 						form.reset();
-					}else{
-						this.status = 'error';
 					}
 				},
 				error =>{
 					console.log(<any>error);
+					this.status = 'error';
 				}
 			);
 	}

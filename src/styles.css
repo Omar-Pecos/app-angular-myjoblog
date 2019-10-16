@@ -17,11 +17,19 @@ body{
 
 /* HOME */
 
+.containerhome{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
 .divhome{
+	margin: 10px;
+	width: 350px;
 	height: 250px;
-	background-color: #beff65;;
+
+	background-color: #beff65;
 	border-radius: 10px;
-	margin: 5px 10px;
 
 	display: flex;
 	flex-flow: column wrap;
@@ -55,7 +63,7 @@ body{
 	justify-content: space-around;
 }
 .div_left,.div_right{
-	width: 600px;
+	width: 500px;
 }
 
 #image-firma{
@@ -197,21 +205,26 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 /*html{
 	height: inherit;
 }*/
-  body{
-	padding-left: 0;
-	padding-right: 0;
-}
-.contenido {
-	/*height: 100%;*/
-}
-.buscador{
-	width: 240px;
-	margin: 10px ;
-}
-.modal-dialog {
-	min-width: 340px !important;
-	width: 450px !important;
+	  body{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.contenido {
+		/*height: 100%;*/
+	}
+	.buscador{
+		width: 240px;
+		margin: 10px ;
+	}
+	.modal-dialog {
+		min-width: 340px !important;
+		width: 450px !important;
 
-	margin: 0 auto !important;
-}
+		margin: 0 auto !important;
+	}
+
+	#giffirma img{
+		margin-left: 10px;
+		width: 90%;
+	}
 }

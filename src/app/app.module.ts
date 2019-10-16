@@ -8,12 +8,15 @@ import { LoginComponent} from './components/login/login.component';
 import { RegisterComponent} from './components/register/register.component';
 import { DefaultComponent} from './components/default/default.component';
 
-import {FirmaComponent } from './components/firma/firma.component';
+import { Globals } from './globals';
+
+import { FirmaComponent } from './components/firma/firma.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { UserPerfilComponent } from './components/user-perfil/user-perfil.component';
 import { JornadasComponent } from './components/jornadas/jornadas.component';
 import { AllJornadasComponent } from './components/all-jornadas/all-jornadas.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { ArchivosComponent } from './components/archivos/archivos.component';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
     UserPerfilComponent,
     JornadasComponent,
     AllJornadasComponent,
-    UsersListComponent
+    UsersListComponent,
+    ArchivosComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
     routing,
     SignaturePadModule
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders , Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

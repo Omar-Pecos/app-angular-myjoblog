@@ -2,6 +2,9 @@ import {Component, OnInit ,DoCheck} from '@angular/core';
 import { Router , ActivatedRoute , Params} from '@angular/router';
 import { User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+//import {PdfService} from '../../services/pdf.service';
+
+import {Globals} from './../../globals'
 
 
 @Component({
@@ -11,22 +14,33 @@ import {UserService} from '../../services/user.service';
 })
 
 export class DefaultComponent implements OnInit{
+	globals: Globals;
+
 	public title: string = 'Inicio';
 	public user: User;
 	public status : string;
 	public token;
 	public identity;
 
+	public infomsg;
+
 	/*private _route : ActivatedRoute;
 	private _router : Router;
 	private _userService: UserService;*/
 
 	constructor(
+			globals: Globals,
 			private _route : ActivatedRoute,
 			private _router : Router,
 			private _userService: UserService,
+			//private _pdfService : PdfService
 		){
-			this.token = this._userService.getToken();
+				this.globals = globals;
+				this.infomsg = globals.infomsg;
+
+				this.token = this._userService.getToken();
+				this.identity = this._userService.getIdentity();
+
 	}
 
 	ngOnInit(){
@@ -74,5 +88,12 @@ export class DefaultComponent implements OnInit{
 
 	   this.identity = this._userService.getIdentity();
 	    this.token = this._userService.getToken();
-  }
+  	}
+
+  	setinfomsg(value){
+
+    	this.globals.infomsg = value;
+    	// igual no hace falta que cambie la local
+ 
+	}
 }

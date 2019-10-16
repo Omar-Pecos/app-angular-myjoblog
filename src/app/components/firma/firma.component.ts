@@ -1,9 +1,13 @@
 import {Component,DoCheck, ViewChild,OnInit,AfterViewInit} from '@angular/core';
 import { Router , ActivatedRoute , Params} from '@angular/router';
+
+import {Globals} from './../../globals'
+
 //import { User} from '../../models/user';
 import { Journey} from '../../models/journey';
 import { UserService } from '../../services/user.service';
 import { JourneyService } from '../../services/journey.service';
+import {PdfService} from '../../services/pdf.service';
 
 // signature pad
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
@@ -12,44 +16,55 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 @Component({
 	selector: 'default',
 	templateUrl : './firma.component.html',
-	providers: [UserService, JourneyService]
+	providers: [UserService, JourneyService,PdfService]
 })
 
-export class FirmaComponent implements AfterViewInit{
+export class FirmaComponent implements OnInit,DoCheck{
+	globals: Globals;
+
 	public title: string = 'Jornada sin iniciar';
 	public jornada_activa : boolean;
 	public firma : boolean;
-	public _canvas;
 	public token;
 	public identity;
 	public journey;
-	public paused ;
+	public paused;
+
+	public pdfjourneys: any[] = [];
+	public quantity:number;
+	public week = false;
+
+	public infomsg;
 
 	@ViewChild('signpad', {static: false}) signaturePad : SignaturePad;
- 	private signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
+	//set el canvas width
+	canvaswidth = window.innerWidth > 700 ? 500 : 340;
+
+ 	public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
 		    'minWidth': 5,
-		    'canvasWidth': 340,
+		    'canvasWidth': this.canvaswidth,
 		    'canvasHeight': 300
 		  	};
 
 			constructor(
+						globals: Globals,
 						private _route : ActivatedRoute,
 						private _router : Router,
 						private _userService: UserService,
 						public _journeyService : JourneyService,
+						private _pdfService : PdfService
 
 					){
+						this.globals = globals;
+						this.infomsg = globals.infomsg;
+
 						this.token = this._userService.getToken();
 						this.journey = new Journey('nadadeimagen','nada','nada');
 						//this.jsondata = this._journeyService.getData();
 						//console.log(this.jsondata);
 						//this.jornada_activa = this._journeyService.getActiveJourney();
 
-						// chapuza pero va cuando se recarga la pag
-						if (window.innerWidth > 700){
-							this.signaturePadOptions.canvasWidth = 500;
-						}
-							
+	
 						this._journeyService.hasactiveJourney(this.token).subscribe(
 							
 							response => {
@@ -69,6 +84,7 @@ export class FirmaComponent implements AfterViewInit{
 									}
 									
 									console.log("hasactiveJourney _>"+response);
+
 								}else{
 									//this.status = 'error';
 								}
@@ -77,25 +93,119 @@ export class FirmaComponent implements AfterViewInit{
 								console.log(<any>error);
 							}
 						);	
-
-
-
 				}
 
-			ngOnInit(){	
-						
-				}
+ngOnInit(){	
+
+	/*// call to get triggerpdf DATA					
+			*/
+
+			
+
+			this.getTrigger(this.token);		
+	}
 
 
-		  	ngAfterViewInit() {	/// esto por lo menos el set no me lo hace aunque despues en el runtime si !!! 
-			    // this.signaturePad is now available
-			  /*  console.log("AfterViewInit ():");
-			    console.log("signaturePad   --> "+this.signaturePad);
-			    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
-			    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API*/
+	ngAfterViewInit() {	/// esto por lo menos el set no me lo hace aunque despues en el runtime si !!! 
+    // this.signaturePad is now available
+  /*  console.log("AfterViewInit ():");
+    console.log("signaturePad   --> "+this.signaturePad);
+    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
+    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API*/
+
+}
+
+
+		  getTrigger(token){
+
+		  	this._pdfService.get_trigger(token).subscribe(	
+
+						response =>{
+							console.log(response);
+							
+							this.quantity = response.trigger.quantity;
+							var data = response.trigger.id_journeys;
+
+							if (data == "0"){
+								this.pdfjourneys = [];
+							}else{
+								this.pdfjourneys = data; 		// o JSON parse();
+							}
+
+
+							/* EN END FIRMA !!! */
+							console.log("BEFORE firma -- this.pdfjourneys --> ",this.pdfjourneys);
+							console.log("BEFORE  firma -- this.quantity --> ",this.quantity);
+
+
+							/* SI ES LA CANTIDAD ESPERADA DE DIAS HACE EL TRIGRERR DEL PDF  */	
+								if (this.quantity >= 2){
+									console.log("----------------trigereeeddddd !!!!!!!!!!!!!!!");
+									/* TRIGGER EL PDF */ 
+												this._pdfService.generate_pdf(this.token,this.pdfjourneys).subscribe(
+										              response =>{ 
+										    			console.log(<any>response);
+
+										    				this.infomsg = "Un pdf ha sido generado para ti . Acude a la sección de Mis Pdf para visualizarlo,guardarlo";
+										    				this.globals.infomsg = this.infomsg;
+
+										    				this.setTrigger(this.token,0,'0');
+															this.pdfjourneys = [];
+															this.quantity = 0;
+										              },
+										              error =>{
+										                console.log(<any>error);
+										              }
+								            );
+
+							
+					}
+							
+	
+						},
+						error =>{
+							console.log(<any>error);
+						}
+
+					);
+
+
+
 
 		  }
-		
+
+		/* callpdf(){
+		 	console.log("dsfhskdjfsdflakdsfhsdjkfhsdj");
+		 	
+				this._pdfService.generate_pdf(this.pdfjourneys).subscribe(
+	              response =>{
+	               
+	    			console.log(<any>response);
+	              },
+	              error =>{
+	                console.log(<any>error);
+	              }
+	            );
+		 }*/
+
+		  setTrigger(token,quantity,id_journeys){
+
+				this._pdfService.set_trigger(token,quantity,id_journeys).subscribe(	
+
+							response =>{
+								console.log(response);
+							},
+							error =>{
+								console.log(<any>error);
+							}
+
+						);
+		  }
+			
+
+
+
+			// funciones del SignaturePad
 		   clear(){
 		  		this.signaturePad.clear();
 		  }
@@ -132,6 +242,7 @@ export class FirmaComponent implements AfterViewInit{
 
 	  		this.firma = true;
 	  		this.title = "Firma Guardada . Inicie la jornada"
+				
 		}
 
 		// muestra el modal de InitJornada
@@ -201,6 +312,10 @@ export class FirmaComponent implements AfterViewInit{
 
 					);
 
+
+			
+	
+
 	}
 	// Muestra el modal de EndJornada
 	endModal(){
@@ -249,6 +364,28 @@ export class FirmaComponent implements AfterViewInit{
 							this.jornada_activa = false;
 							this.title = "Jornada sin Iniciar";
 							this.firma = false;
+
+							this.pdfjourneys.push(response.journey.id);	
+
+							/* SACA LA INFO DE LA WEEK */								
+
+								var date = new Date(response.journey.date);
+								var ifmonday = date.getDay();
+
+								if (ifmonday == 3){
+									this.week = true;
+								}
+
+								if (this.week == true){
+									this.quantity++;
+								}
+
+								console.log("AFTER firma -- this.pdfjourneys --> ",this.pdfjourneys);
+								console.log("AFTER firma -- this.quantity --> ",this.quantity);
+
+								this.setTrigger(this.token,this.quantity,this.pdfjourneys);
+
+
 						},
 						error =>{
 							console.log(<any>error);
@@ -276,6 +413,7 @@ export class FirmaComponent implements AfterViewInit{
 
 					);
 	}
+	// Reanuda la jornada
 	Continue_journey(){
 		this._journeyService.continue_journey(this.token).subscribe
 				(	
@@ -292,11 +430,18 @@ export class FirmaComponent implements AfterViewInit{
 
 					);
 	}
-	// Reanuda la jornada
+
+	setinfomsg(value){
+
+    	this.globals.infomsg = value;
+    	// igual no hace falta que cambie la local
+ 
+	}
 
 	 ngDoCheck(){
 
 	   this.identity = this._userService.getIdentity();
 	   this.token = this._userService.getToken();
-  }
+
+  	}
 }

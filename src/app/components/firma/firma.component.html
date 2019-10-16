@@ -1,12 +1,23 @@
+
 <div  class="cargando" *ngIf="jornada_activa== undefined">
   <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
 </div>
 
+
 <!-- Cuidado aver si cuando no hay jornada activa no te lo va a mostrar -->
 <div class="contenido" *ngIf="jornada_activa !== undefined">
+  <!-- Infomsg -->
+      <div *ngIf="infomsg != ''" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>¡Antención!</strong> {{infomsg}}
+        <button type="button" (click)="setinfomsg('')" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+
 	<h2>{{title}} --> {{identity.name}} {{identity.surname}} </h2>
 	<br>
- 
+
 <div class="contenedor">
   <div class="div_left">
     <div *ngIf="firma == false" class="container-firma">
@@ -25,7 +36,7 @@
         </div>
     </div>
 
-    <div *ngIf="firma == true" style="width:100%;height:0;padding-bottom:100%;position:relative;">
+    <div id="giffirma" *ngIf="firma == true" style="width:100%;height:0;padding-bottom:100%;position:relative;">
         <img src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif">
     </div>
   </div>
