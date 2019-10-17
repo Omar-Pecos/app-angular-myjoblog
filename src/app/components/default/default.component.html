@@ -105,17 +105,37 @@
   <!-- spuesta,emte falta un div close pero me peta  -->
 
 
-  <div class="contenido" *ngIf="!identity">  
-		 <br> 
-		 <h1>WebTime App</h1>
+    <div class="background" *ngIf="!identity">
+		  <div class="water">
+		  </div>
+    
+		 
+      <div class="card text-center cardhome">
+                <div class="card-header cardhometitulo">
+                    <h1>WebTime Log</h1>
+                </div>
+                <div class="card-body cardhomebody">
+                          <!-- <img src="https://loading.io/spinners/clock/lg.walking-clock-preloader.gif">
+                          <img src="https://loading.io/spinners/hourglass/lg.sandglass-time-loading-gif.gif"> -->
 
+                         <img width="150" src="https://www.pngrepo.com/download/211763/sand-clock.png">
+                        
+                        <br><br>
+                        <button  class="btn btn-info btn-lg btn-block" [routerLink]="['/registro']">Registrarse</button>
+                        <button  class="btn btn-info btn-lg btn-block"  [routerLink]="['/login']">Entrar</button>
+                </div>
+                <div class="card-footer cardhometitulo">   
+                   <h4><b> 2019</b></h4>
+                </div>
+            </div>
 
-		 	En dos partes una la img y la otra columna Login /Inicio de momento aunque este en la barra
-		 	<!-- <img src="https://loading.io/spinners/clock/lg.walking-clock-preloader.gif">
-		 	<img src="https://loading.io/spinners/hourglass/lg.sandglass-time-loading-gif.gif"> -->
+ </div>
 
-		 	<img width="400" src="https://www.pngrepo.com/download/211763/sand-clock.png">
-		 	
-		 	<a  class="nav-link" [routerLink]="['/registro']">Registrarse</a>
-		     <a  class="nav-link"  [routerLink]="['/login']">Entrar</a>
-  </div>
+  <svg>
+        <filter id="turbulence" x="0" y="0" width="100%" height="100%">
+          <feTurbulence id="sea-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>
+          <feDisplacementMap scale="20" in="SourceGraphic"></feDisplacementMap>
+          <animate xlink:href="#sea-filter" attributeName="baseFrequency" dur="60s" 
+          keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
+        </filter>
+    </svg>
