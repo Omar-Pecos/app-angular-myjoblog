@@ -51,6 +51,12 @@
         </div>  
     </div> -->
 
+ <a [routerLink]="['/bar-chart']">Bar Chart</a>
+  <a  [routerLink]="['/doughnut-chart']">Doughnut Chart</a>
+   <a  [routerLink]="['/radar-chart']">Radar Chart</a>
+   <a [routerLink]="['/pie-chart']">Pie Chart</a>
+   
+      
     <div class="containerhome">
        
           <a class="divhome" [routerLink]="['/fichar']" >
@@ -65,7 +71,7 @@
                     <img src="https://img.icons8.com/color/96/000000/overview-pages-3.png">
                     <button class="btn btn-info">Mis Jornadas</button>
           </a> 
-             <a class="divhome" href="#">
+             <a class="divhome"[routerLink]="['/graficos']">
                   <img src="https://img.icons8.com/color/96/000000/rebalance-portfolio--v2.png">
                   <button class="btn btn-info">Gráficos</button>
           </a>

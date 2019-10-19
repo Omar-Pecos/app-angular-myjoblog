@@ -239,6 +239,21 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	max-width: inherit !important;
 	width: 550px !important;
 }
+
+/* GRAFICOS */
+.canvasholder{
+	display: flex;
+	flex-flow: row wrap;
+	height: 300px;
+}
+.canvasholder div{
+	width: 50%;
+}
+.canvas-container div {
+	display: block;
+	width: 90%;
+	margin: 50px auto;
+}
 	 
 
 @media (max-width: 576px) {
@@ -270,4 +285,17 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		margin-left: 10px;
 		width: 90%;
 	}
+
+	.canvasholder{
+		height: 150px;
+	}
+	.canvasholder div{
+	width: 90%;
+	margin: 40px auto;
+	}
+	.canvas-container {
+		width: 100%;
+		height: 100%;
+	}
+
 }

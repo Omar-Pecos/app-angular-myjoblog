@@ -13,6 +13,9 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UserPerfilComponent } from './components/user-perfil/user-perfil.component';
 import { ArchivosComponent } from './components/archivos/archivos.component';
 
+import { GraficosComponent } from './components/graficos/graficos.component';
+import { BarChartComponent } from './components/graficos/bar-chart/bar-chart.component';
+
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},
 	{path : 'inicio', component: DefaultComponent},
@@ -25,6 +28,7 @@ const appRoutes: Routes = [
 	{path : 'usuarios', component : UsersListComponent},
 	{path : 'perfil', component : UserPerfilComponent},
 	{path : 'archivos', component : ArchivosComponent},
+	{path : 'graficos', component : GraficosComponent},
 	{path: '**', component: DefaultComponent}
 ];
 
