@@ -1,9 +1,14 @@
-<h3>Cantidad de horas por mes</h3>
-  <div>
+ <div  *ngIf="loading == true">
+  <img src="assets/images/131.gif">
+</div>
+
+  <div *ngIf="loading == false">
+  	<h3>Horas por mes</h3>
     <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
+            [colors]="barChartColors"
             [legend]="barChartLegend"
             [chartType]="barChartType">
     </canvas>

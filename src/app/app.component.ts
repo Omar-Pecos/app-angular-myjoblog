@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
 
     static myapp;
 
-    public title = 'WebTime App';
+    public title = 'MyJob Log';
     public windowScrolled: boolean;
     public identity;
   	public token;

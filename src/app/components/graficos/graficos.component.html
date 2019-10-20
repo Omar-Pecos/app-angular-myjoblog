@@ -2,30 +2,19 @@
 <div class="contenido">
 		<h1>{{title}}</h1>
 	
+		<!-- grafico numero de horas por mes en este año -->
 		<div class="canvasholder">
-			<div class="canvas-container">
 				<app-bar-chart></app-bar-chart>
-			</div>
-			<div class="canvas-container">
-				<app-doughnut-chart></app-doughnut-chart>
-			</div>
 		</div>
-
-			<br>
-			<br>
-			<br>
-			<br>
-
+		<!-- grafico mishoras/horas totales -->
 		<div class="canvasholder">
-			<div class="canvas-container">
 				<app-doughnut-chart></app-doughnut-chart>
-			</div>
-			<div class="canvas-container">
-				<app-doughnut-chart></app-doughnut-chart>
-			</div>
 		</div>
 
-		<div style="width: 70%;margin:100px auto;">
+		<!-- grafico dia / mes / año -->
+		<div class="canvasholder dosgraficos">
+				<app-doughnut-chart></app-doughnut-chart>
+				<app-doughnut-chart></app-doughnut-chart>
 				<app-doughnut-chart></app-doughnut-chart>
 		</div>
 
