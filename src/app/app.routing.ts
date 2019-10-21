@@ -14,7 +14,6 @@ import { UserPerfilComponent } from './components/user-perfil/user-perfil.compon
 import { ArchivosComponent } from './components/archivos/archivos.component';
 
 import { GraficosComponent } from './components/graficos/graficos.component';
-import { BarChartComponent } from './components/graficos/bar-chart/bar-chart.component';
 
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},

@@ -146,7 +146,8 @@ tr:nth-child(even) {
 	background-color: #fff3bd
 }
 th{
-	border: 1px solid #3e78b2 !important;
+	/*border: 1px solid #3e78b2 !important;*/
+	border: 1px solid black !important;
 }
 
 th,td{
@@ -156,7 +157,9 @@ th,td{
  border: 1px solid #51D1F6;
 }
 .cabecera-tabla{
-	background-color: #51d1f6;
+	/*background-color: #51d1f6;*/
+	background-color:#28A745;
+	color: white;
 }
 
 /*  Imagenes de firmas */
@@ -266,7 +269,7 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	width: 100%;
 }
 .dosgraficos  > *{
-	width: 340px;
+	width: 500px;
 }
 	 
 
@@ -300,6 +303,9 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		width: 90%;
 	}
 
+	.dosgraficos  > *{
+		width: 340px;
+	}
 	/*.canvasholder{
 		height: 150px;
 	}

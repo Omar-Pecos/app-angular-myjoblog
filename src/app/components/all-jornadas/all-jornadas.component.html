@@ -54,7 +54,7 @@
 		 <div style="overflow-x:auto;">
 			<table class="table table-light table-hover responsive">
 				<tr class="cabecera-tabla">
-					<th [ngStyle]="{'background-color':sort_by === 'date' ? 'yellow' : ''}" 
+					<th [ngStyle]="{'background-color':sort_by === 'date' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=date&order='+order,'add')">
 						Fecha
 							<span *ngIf="sort_by == 'date'">({{ order_now | uppercase }})</span>
@@ -63,21 +63,21 @@
 					</th>
 					<th>ID #</th>
 					<th>Firma</th>
-					<th [ngStyle]="{'background-color':sort_by === 'time' ? 'yellow' : ''}" 
+					<th [ngStyle]="{'background-color':sort_by === 'time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=time&order='+order,'add')">
 						Duración (s)
 							<span *ngIf="sort_by == 'time'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th [ngStyle]="{'background-color':sort_by === 'initial_time' ? 'yellow' : ''}" 
+					<th [ngStyle]="{'background-color':sort_by === 'initial_time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=initial_time&order='+order,'add')">
 						Inicio
 							<span *ngIf="sort_by == 'initial_time'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th [ngStyle]="{'background-color':sort_by === 'final_time' ? 'yellow' : ''}" 
+					<th [ngStyle]="{'background-color':sort_by === 'final_time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=final_time&order='+order,'add')">
 						Final
 							<span *ngIf="sort_by == 'final_time'">({{ order_now | uppercase }})</span>

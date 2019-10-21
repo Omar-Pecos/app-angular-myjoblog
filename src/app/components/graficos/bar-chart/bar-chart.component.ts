@@ -1,4 +1,4 @@
-/* GRAFICO LÍNEA CANTIDADHORAS/MES EN AÑO EN CURSO */
+ /* GRAFICO LÍNEA CANTIDADHORAS/MES EN AÑO EN CURSO */
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { GraphService } from '../../../services/graph.service';

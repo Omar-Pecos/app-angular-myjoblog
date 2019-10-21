@@ -33,5 +33,20 @@ export class GraphService {
 		return this._http.get(this.url+'data_donut_porcentage',{headers : headers});
 	}
 
+	data_donut_dia(token):Observable<any>{
+		let headers = new HttpHeaders().set('Authorization',token);
+		return this._http.get(this.url+'data_donut_today',{headers : headers});
+	}
+
+	data_donut_mes(token):Observable<any>{
+		let headers = new HttpHeaders().set('Authorization',token);
+		return this._http.get(this.url+'data_donut_month',{headers : headers});
+	}
+
+	data_donut_anio(token):Observable<any>{
+		let headers = new HttpHeaders().set('Authorization',token);
+		return this._http.get(this.url+'data_donut_year',{headers : headers});
+	}
+
 
 }

@@ -23,32 +23,32 @@
 			<tr class="cabecera-tabla">
 				<!-- CABECERA DE TABLA --- CON EL FILTRADO  -->
 
-					<th [ngStyle]="{'background-color':sort_by === 'id' ? 'yellow' : ''}" 
+					<th [ngStyle]="{'background-color':sort_by === 'id' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=id&order='+order,'add')">
 						ID #
 							<span *ngIf="sort_by == 'id'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th [ngStyle]="{'background-color':sort_by === 'name' ? 'yellow' : ''}" (click)="addgetParams('sort_by=name&order='+order,'add')">
+					<th [ngStyle]="{'background-color':sort_by === 'name' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=name&order='+order,'add')">
 						Nombre
 							<span *ngIf="sort_by == 'name'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th [ngStyle]="{'background-color':sort_by === 'surname' ? 'yellow' : ''}" (click)="addgetParams('sort_by=surname&order='+order,'add')">
+					<th [ngStyle]="{'background-color':sort_by === 'surname' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=surname&order='+order,'add')">
 						Apellidos
 							<span *ngIf="sort_by == 'surname'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th [ngStyle]="{'background-color':sort_by === 'email' ? 'yellow' : ''}"(click)="addgetParams('sort_by=email&order='+order,'add')">
+					<th [ngStyle]="{'background-color':sort_by === 'email' ? '#F39C12' : ''}"(click)="addgetParams('sort_by=email&order='+order,'add')">
 						Email
 							<span *ngIf="sort_by == 'email'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th [ngStyle]="{'background-color':sort_by === 'dni' ? 'yellow' : ''}"(click)="addgetParams('sort_by=dni&order='+order,'add')">
+					<th [ngStyle]="{'background-color':sort_by === 'dni' ? '#F39C12' : ''}"(click)="addgetParams('sort_by=dni&order='+order,'add')">
 						DNI
 							<span *ngIf="sort_by == 'dni'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">

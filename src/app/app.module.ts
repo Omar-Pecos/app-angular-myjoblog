@@ -21,10 +21,13 @@ import { JornadasComponent } from './components/jornadas/jornadas.component';
 import { AllJornadasComponent } from './components/all-jornadas/all-jornadas.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { ArchivosComponent } from './components/archivos/archivos.component';
+
+import { GraficosComponent } from './components/graficos/graficos.component';
 import { BarChartComponent } from './components/graficos/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './components/graficos/doughnut-chart/doughnut-chart.component';
-import { GraficosComponent } from './components/graficos/graficos.component';
-
+import { DonutDiaComponent } from './components/graficos/donut-dia/donut-dia.component';
+import { DonutMesComponent } from './components/graficos/donut-mes/donut-mes.component';
+import { DonutAnioComponent } from './components/graficos/donut-anio/donut-anio.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { GraficosComponent } from './components/graficos/graficos.component';
     ArchivosComponent,
      GraficosComponent,
     BarChartComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    DonutDiaComponent,
+    DonutMesComponent,
+    DonutAnioComponent
   ],
   imports: [
     BrowserModule,

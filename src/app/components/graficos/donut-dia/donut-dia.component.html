@@ -1,0 +1,12 @@
+ <div  *ngIf="loading == true">
+  <img src="assets/images/131.gif">
+</div>
+<div *ngIf="loading == false">
+	<h3>Mis Horas/ 8 horas (hoy)</h3>
+  <canvas baseChart
+              [data]="donutChartData"
+              [labels]="donutChartLabels"
+              [colors]="donutChartColors"
+              [chartType]="donutChartType">
+  </canvas>
+</div>
