@@ -63,7 +63,6 @@ export class FirmaComponent implements OnInit,DoCheck{
 						//this.jsondata = this._journeyService.getData();
 						//console.log(this.jsondata);
 						//this.jornada_activa = this._journeyService.getActiveJourney();
-
 	
 						this._journeyService.hasactiveJourney(this.token).subscribe(
 							
@@ -78,12 +77,53 @@ export class FirmaComponent implements OnInit,DoCheck{
 									if (response.journey == true){
 										this.title = "Jornada Iniciada";
 
-										if (response.paused == true){
-											this.title = "Jornada Pausada";
+									$(document).ready(function(){  
+												   $("#giffirma").html('<img width="70" src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif"><br><br>'+
+													'<div class="alert alert-info"><img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;<h6><b>Inicio de la jornada</b></h6><br><p>'+ response.init +'</p></div>');
+												});  
+										
+										
+										if (response.time_lost != 0){
+											var stops = response.stops;
+											var num = stops.length;
+											console.log(num + '--'+response.stops);
+											var i,date,hours,minutes,seconds,cadena = '';
+
+											for (i=0;i<num;i++){
+												
+													 date = new Date(stops[i]*1000);
+													 console.log('num -> '+i+'---'+date);
+													 hours = date.getHours();
+													 minutes = "0" + date.getMinutes();
+													 seconds = "0" + date.getSeconds();
+
+													 cadena +='<hr><div class="alert alert-secondary"><img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;<h6><b>'+(i+1)+'º Pausa</b></h6><br> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</div>';
+												
+														if (i == (num-1)){
+															cadena +='<div class="alert alert-danger"><h6>Total tiempo no trabajado : '+response.time_lost+' minutos </h6></div>';
+														}
+											}
+											 $(document).ready(function(){  
+											 	console.log("se debe añadir esto"+cadena);
+												   		$("#giffirma").append(cadena);
+													});  
 										}
+										
+
+										if (this.paused != 0){
+											this.title = "Jornada Pausada";
+											$(document).ready(function(){  
+												  $("#giffirma").append('<hr>'+
+												'<div class="alert alert-warning"><img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;<h6><b>Pausa</b></h6><br> Tiempo en parada : '+ response.paused +'min </div>');
+												}); 
+											
+										}
+
+										
+
+										
+										
 									}
-									
-									console.log("hasactiveJourney _>"+response);
 
 								}else{
 									//this.status = 'error';
@@ -99,7 +139,9 @@ ngOnInit(){
 
 	/*// call to get triggerpdf DATA					
 			*/
-
+			 $(document).ready(function(){  
+				console.log("document.ready");						 	
+			}); 
 			
 
 			this.getTrigger(this.token);		

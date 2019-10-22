@@ -36,16 +36,21 @@
         </div>
     </div>
 
-    <div id="giffirma" *ngIf="firma == true" style="width:100%;height:0;padding-bottom:100%;position:relative;">
+   <!-- <div id="giffirma" *ngIf="firma == true" style="width:100%;height:0;padding-bottom:100%;position:relative;">
         <img src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif">
+    </div> -->
+
+    <div style="text-align: center;" id="giffirma" *ngIf="firma == true">
+       <img  src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif">
     </div>
+
   </div>
 
   <div class="div_right">
    <div id="image-firma">
        <img *ngIf="!jornada_activa" src="assets/images/red.png">
-       <img *ngIf="jornada_activa && paused" src="assets/images/yellow.png">
-       <img *ngIf="jornada_activa && !paused" src="assets/images/green.png">
+       <img *ngIf="jornada_activa && paused != 0" src="assets/images/yellow.png">
+       <img *ngIf="jornada_activa && paused == 0" src="assets/images/green.png">
     </div>
   </div>
 </div>
@@ -85,11 +90,11 @@
         Iniciar&nbsp;
     </button>
   </form>
-  <button (click)="Pause_journey()"  [disabled]="!jornada_activa || paused" >
+  <button (click)="Pause_journey()"  [disabled]="!jornada_activa || paused != 0" >
         <img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;
         Pausar &nbsp;
   </button>
-   <button  (click)="Continue_journey()" [disabled]="!jornada_activa || !paused" >
+   <button  (click)="Continue_journey()" [disabled]="!jornada_activa || paused == 0" >
         <img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;
         Reanudar&nbsp;
     </button>

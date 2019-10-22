@@ -75,7 +75,7 @@ export class DefaultComponent implements OnInit{
   					 	'linear-gradient(225deg, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 30%,rgba(215,222,227,1) 31%,rgba(245,247,249,1) 100%)');*/
  					// esto al 0 del actual ! ! ---> rgba(246,248,249,1) 0%,
   					 	cajas.eq(i).css('background',
-  					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')20%, rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 31%,rgba(245,247,249,1) 100%)');
+  					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')10%, rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 31%,rgba(245,247,249,0.7) 50%,rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 69%,rgba('+color.r+','+color.g +','+color.b +','+color.a+')90%)');
 
   				}
   			}

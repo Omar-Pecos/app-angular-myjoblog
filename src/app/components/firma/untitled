@@ -60,3 +60,10 @@ los import antiguos de signature pad
 			      <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 
 			      declare var SignaturePad: any;
+
+
+			      rgba(245,247,249,1) 50%,rgba('color.g + 40)+','+(color.b +40)+','+color.a+') 69%,rgba('+color.r+','+color.g +','+color.b +','+color.a+')100%
+
+/* como estaba !!!*/
+			      cajas.eq(i).css('background',
+  					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')20%, rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 31%,rgba(245,247,249,1) 100%)');
