@@ -1,0 +1,11 @@
+ <div  *ngIf="loading == true">
+  <img src="assets/images/131.gif">
+</div>
+<div *ngIf="loading == false">
+	<h3>Horas de trabajador / Totales</h3>
+  <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [colors]="pieChartColors"
+              [chartType]="pieChartType"></canvas>
+</div>

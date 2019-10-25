@@ -79,36 +79,46 @@
   <hr><hr><hr>
 <br>
 
-  <div class="container" *ngIf="identity.role == 'admin'">
-        <div class="row">
-          <a class="col-sm divhome" [routerLink]="['/usuarios']" >
+  <div class="containerhome" *ngIf="identity.role == 'admin'">
+      
+          <a class="divhome" [routerLink]="['/usuarios']" >
                   <img src="https://img.icons8.com/color/96/000000/user-group-man-woman.png">
                   <button class="btn btn-info">Usuarios</button>
              
           </a>
-          <a  class="col-sm divhome" [routerLink]="['/todas_jornadas']">
+          <a  class="divhome" [routerLink]="['/todas_jornadas']">
                   <img src="https://img.icons8.com/color/96/000000/edit-property.png">
                   <button class="btn btn-info">Jornadas</button>
                   <!-- Tmb puede ser timesheet o time card -->
           </a>
-          <a class="col-sm divhome"  href="#">
+          <a class="divhome" [routerLink]="['/graficos_administrador']">
+                  <img src="https://img.icons8.com/color/96/000000/doughnut-chart--v2.png">
+                  <button class="btn btn-info">Graficos de trabajadores</button>
+          </a>
+          <a class="divhome"  href="#">
                     <img src="https://img.icons8.com/color/96/000000/calendar.png">
                     <button class="btn btn-info">Vacaciones</button>
           </a>
-          <a class="col-sm divhome" href="#">
+          <a class="divhome" href="#">
                   <img src="https://img.icons8.com/color/96/000000/pdf-2.png">
                   <button class="btn btn-info">Exportar</button>
           </a>
-        </div>
-    </div>
+    </div> 
 </div>
   <!-- spuesta,emte falta un div close pero me peta  -->
-
+ <svg *ngIf="!identity">
+        <filter id="turbulence" x="0" y="0" width="100%" height="100%">
+          <feTurbulence id="sea-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>
+          <feDisplacementMap scale="20" in="SourceGraphic"></feDisplacementMap>
+          <animate xlink:href="#sea-filter" attributeName="baseFrequency" dur="60s" 
+          keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
+        </filter>
+    </svg>
 
     <div class="background" *ngIf="!identity">
 		  <div class="water">
 		  </div>
-    
+   
 		 
       <div class="card text-center cardhome">
                 <div class="card-header cardhometitulo">
@@ -116,9 +126,10 @@
                 </div>
                 <div class="card-body cardhomebody">
                           <!-- <img src="https://loading.io/spinners/clock/lg.walking-clock-preloader.gif">
-                          <img src="https://loading.io/spinners/hourglass/lg.sandglass-time-loading-gif.gif"> -->
-
-                         <img width="150" src="https://www.pngrepo.com/download/211763/sand-clock.png">
+                          <img src="https://loading.io/spinners/hourglass/lg.sandglass-time-loading-gif.gif"> 
+                         <img width="150" src="https://www.pngrepo.com/download/211763/sand-clock.png">-->
+                         
+                         <img width="150" src="assets/images/reloj.gif">
                         
                         <br><br>
                         <button  class="btn btn-info btn-lg btn-block" [routerLink]="['/registro']">Registrarse</button>
@@ -131,11 +142,4 @@
 
  </div>
 
-  <svg>
-        <filter id="turbulence" x="0" y="0" width="100%" height="100%">
-          <feTurbulence id="sea-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>
-          <feDisplacementMap scale="20" in="SourceGraphic"></feDisplacementMap>
-          <animate xlink:href="#sea-filter" attributeName="baseFrequency" dur="60s" 
-          keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
-        </filter>
-    </svg>
+  

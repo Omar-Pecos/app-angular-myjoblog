@@ -14,6 +14,7 @@ import { UserPerfilComponent } from './components/user-perfil/user-perfil.compon
 import { ArchivosComponent } from './components/archivos/archivos.component';
 
 import { GraficosComponent } from './components/graficos/graficos.component';
+import { GraficosAdminComponent } from './components/graficos-admin/graficos-admin.component';
 
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
 	{path : 'perfil', component : UserPerfilComponent},
 	{path : 'archivos', component : ArchivosComponent},
 	{path : 'graficos', component : GraficosComponent},
+	{path : 'graficos_administrador', component : GraficosAdminComponent},
 	{path: '**', component: DefaultComponent}
 ];
 

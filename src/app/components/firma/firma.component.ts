@@ -59,80 +59,9 @@ export class FirmaComponent implements OnInit,DoCheck{
 						this.infomsg = globals.infomsg;
 
 						this.token = this._userService.getToken();
-						this.journey = new Journey('nadadeimagen','nada','nada');
-						//this.jsondata = this._journeyService.getData();
-						//console.log(this.jsondata);
-						//this.jornada_activa = this._journeyService.getActiveJourney();
-	
-						this._journeyService.hasactiveJourney(this.token).subscribe(
-							
-							response => {
-								if (response.status == 'success'){
-									//this.status = response.status;
-									// vaciar el form
-									this.jornada_activa = response.journey;
-									this.firma = response.journey;
-									this.paused = response.paused;
+						this.journey = new Journey('nadadeimagen','nada','nada');	
 
-									if (response.journey == true){
-										this.title = "Jornada Iniciada";
-
-									$(document).ready(function(){  
-												   $("#giffirma").html('<img width="70" src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif"><br><br>'+
-													'<div class="alert alert-info"><img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;<h6><b>Inicio de la jornada</b></h6><br><p>'+ response.init +'</p></div>');
-												});  
-										
-										
-										if (response.time_lost != 0){
-											var stops = response.stops;
-											var num = stops.length;
-											console.log(num + '--'+response.stops);
-											var i,date,hours,minutes,seconds,cadena = '';
-
-											for (i=0;i<num;i++){
-												
-													 date = new Date(stops[i]*1000);
-													 console.log('num -> '+i+'---'+date);
-													 hours = date.getHours();
-													 minutes = "0" + date.getMinutes();
-													 seconds = "0" + date.getSeconds();
-
-													 cadena +='<hr><div class="alert alert-secondary"><img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;<h6><b>'+(i+1)+'º Pausa</b></h6><br> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</div>';
-												
-														if (i == (num-1)){
-															cadena +='<div class="alert alert-danger"><h6>Total tiempo no trabajado : '+response.time_lost+' minutos </h6></div>';
-														}
-											}
-											 $(document).ready(function(){  
-											 	console.log("se debe añadir esto"+cadena);
-												   		$("#giffirma").append(cadena);
-													});  
-										}
-										
-
-										if (this.paused != 0){
-											this.title = "Jornada Pausada";
-											$(document).ready(function(){  
-												  $("#giffirma").append('<hr>'+
-												'<div class="alert alert-warning"><img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;<h6><b>Pausa</b></h6><br> Tiempo en parada : '+ response.paused +'min </div>');
-												}); 
-											
-										}
-
-										
-
-										
-										
-									}
-
-								}else{
-									//this.status = 'error';
-								}
-							},
-							error =>{
-								console.log(<any>error);
-							}
-						);	
+						this.HasActiveJourney(this.token);
 				}
 
 ngOnInit(){	
@@ -156,6 +85,71 @@ ngOnInit(){
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API*/
 
 }
+
+		HasActiveJourney(token){
+			this._journeyService.hasactiveJourney(token).subscribe(
+							
+							response => {
+								if (response.status == 'success'){
+									//this.status = response.status;
+									// vaciar el form
+									this.jornada_activa = response.journey;
+									this.firma = response.journey;
+									this.paused = response.paused;
+
+									if (response.journey == true){
+										this.title = "Jornada Iniciada";
+
+										// JORNADA INICIADA ALERT
+										$(document).ready(function(){  
+													   $("#giffirma").html('<img width="70" src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif"><br><br>'+
+														'<div class="alert alert-info"><img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;<h6><b>Inicio de la jornada</b></h6><br><p>'+ response.init +'</p></div>');
+													});  
+											
+											// PARADAS DE LA JORNADA ALERT
+											if (response.time_lost != 0){
+												var stops = response.stops;
+												var num = stops.length;
+												console.log(num + '--'+response.stops);
+												var i,date,hours,minutes,seconds,cadena = '';
+
+												for (i=0;i<num;i++){
+													
+														 date = new Date(stops[i]*1000);
+														 console.log('num -> '+i+'---'+date);
+														 hours = date.getHours();
+														 minutes = "0" + date.getMinutes();
+														 seconds = "0" + date.getSeconds();
+
+														 cadena +='<hr><div class="alert alert-secondary"><img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;<h6>'+(i+1)+'º Pausa</h6><br> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</div>';
+													
+															if (i == (num-1)){
+																cadena +='<div class="alert alert-danger"><h6><b>Total tiempo no trabajado : </b>'+response.time_lost+' minutos </h6></div>';
+															}
+												}
+												 $(document).ready(function(){  
+												 	console.log("se debe añadir esto"+cadena);
+													   		$("#giffirma").append(cadena);
+														});  
+											}
+											
+											// PAUSA DE LA JORNADA ALERT
+											if (this.paused != 0){
+												this.title = "Jornada Pausada";
+												$(document).ready(function(){  
+													  $("#giffirma").append('<hr>'+
+													'<div class="alert alert-warning"><img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;<h6><b>Pausa</b></h6><br> Tiempo en parada : '+ response.paused +'min </div>');
+													}); 
+												
+											}	
+									}
+								}
+						},
+							error =>{
+								console.log(<any>error);
+							}
+						);
+		}
 
 
 		  getTrigger(token){
@@ -181,7 +175,7 @@ ngOnInit(){
 
 
 							/* SI ES LA CANTIDAD ESPERADA DE DIAS HACE EL TRIGRERR DEL PDF  */	
-								if (this.quantity >= 2){
+								if (this.quantity >= 3){
 									console.log("----------------trigereeeddddd !!!!!!!!!!!!!!!");
 									/* TRIGGER EL PDF */ 
 												this._pdfService.generate_pdf(this.token,this.pdfjourneys).subscribe(
@@ -347,6 +341,9 @@ ngOnInit(){
 							// jornada == true
 							this.jornada_activa = true;
 							this.title = "Jornada Iniciada";
+
+									// se actualiza la info
+									this.HasActiveJourney(this.token);
 						},
 						error =>{
 							console.log(<any>error);
@@ -354,9 +351,6 @@ ngOnInit(){
 
 					);
 
-
-			
-	
 
 	}
 	// Muestra el modal de EndJornada
@@ -414,7 +408,7 @@ ngOnInit(){
 								var date = new Date(response.journey.date);
 								var ifmonday = date.getDay();
 
-								if (ifmonday == 3){
+								if (ifmonday == 3 || this.quantity > 0){
 									this.week = true;
 								}
 
@@ -447,13 +441,18 @@ ngOnInit(){
 							// jornada == true
 							this.jornada_activa = true;
 							this.title = "Jornada Pausada";
-							this.paused = true;
+							//this.paused = true;
+									this.paused = 999;
+									// se actualiza la info
+									this.HasActiveJourney(this.token);
 						},
 						error =>{
 							console.log(<any>error);
 						}
 
 					);
+
+			
 	}
 	// Reanuda la jornada
 	Continue_journey(){
@@ -464,13 +463,17 @@ ngOnInit(){
 							// jornada == true
 							this.jornada_activa = true;
 							this.title = "Jornada Iniciada";
-							this.paused = false;
+							//this.paused = false;
+								this.paused = 0;
+									// se actualiza la info
+									this.HasActiveJourney(this.token);
 						},
 						error =>{
 							console.log(<any>error);
 						}
 
 					);
+
 	}
 
 	setinfomsg(value){

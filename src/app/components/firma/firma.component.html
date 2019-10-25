@@ -101,7 +101,8 @@
 	<form id="formend">
      <input id="latend"  type="hidden" name="latend">
        <input id="lonend"  type="hidden" name="lonend">
-	 <button  data-toggle="modal" data-target="#endModal" (click)="endModal()"  [disabled]="!jornada_activa" >
+       <!-- desactivar tmb si paused != 0 -->
+	 <button  data-toggle="modal" data-target="#endModal" (click)="endModal()"  [disabled]="!jornada_activa || paused != 0">
           <img src="https://img.icons8.com/color/48/000000/stop.png">&nbsp;
           Finalizar&nbsp;
   </button>

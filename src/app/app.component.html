@@ -5,16 +5,38 @@
     <span class="navbar-toggler-icon"></span>
   </button>
    <a class="navbar-brand navbar-left" [routerLink]="['home']" >{{title}}</a>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01" *ngIf="identity">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li *ngIf="identity.role =='admin'" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administrador
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/usuarios']">Usuarios</a>
+          <a class="dropdown-item" [routerLink]="['/todas_jornadas']">Jornadas</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/graficos_administrador']">Gráficos</a>
+          <a class="dropdown-item" href="#">Vacaciones</a>
+           <a class="dropdown-item" href="#">Exportar</a>
+        </div>
+      </li>
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="['home']" >Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" [routerLink]="['home']" >Inicio<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" [routerLink]="['fichar']">Fichar</a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link" [routerLink]="['jornadas']">Mis jornadas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link" [routerLink]="['perfil']">Perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['graficos']">Gráficos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['archivos']">Mis Pdf</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

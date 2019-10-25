@@ -1,0 +1,15 @@
+ <div  *ngIf="loading == true">
+  <img src="assets/images/131.gif">
+</div>
+
+  <div *ngIf="loading == false">
+  	<h3>Horas por mes y trabajador</h3>
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType">
+    </canvas>
+  </div>

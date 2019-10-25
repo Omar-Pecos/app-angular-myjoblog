@@ -29,6 +29,13 @@ import { DonutDiaComponent } from './components/graficos/donut-dia/donut-dia.com
 import { DonutMesComponent } from './components/graficos/donut-mes/donut-mes.component';
 import { DonutAnioComponent } from './components/graficos/donut-anio/donut-anio.component';
 
+import { GraficosAdminComponent } from './components/graficos-admin/graficos-admin.component';
+import { LineChartComponent } from './components/graficos-admin/line-chart/line-chart.component';
+import { PieChartComponent } from './components/graficos-admin/pie-chart/pie-chart.component';
+import { AdminDonutDiaComponent } from './components/graficos-admin/admin-donut-dia/admin-donut-dia.component';
+import { AdminDonutMesComponent } from './components/graficos-admin/admin-donut-mes/admin-donut-mes.component';
+import { AdminDonutAnioComponent } from './components/graficos-admin/admin-donut-anio/admin-donut-anio.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +53,13 @@ import { DonutAnioComponent } from './components/graficos/donut-anio/donut-anio.
     DoughnutChartComponent,
     DonutDiaComponent,
     DonutMesComponent,
-    DonutAnioComponent
+    DonutAnioComponent,
+    GraficosAdminComponent,
+    LineChartComponent,
+    PieChartComponent,
+    AdminDonutDiaComponent,
+    AdminDonutMesComponent,
+    AdminDonutAnioComponent
   ],
   imports: [
     BrowserModule,

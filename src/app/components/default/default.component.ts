@@ -56,7 +56,7 @@ export class DefaultComponent implements OnInit{
 				var b;
 
 				r = Math.floor(Math.random() * 255);
-				g = Math.floor(Math.random() * 180);
+				g = Math.floor(Math.random() * 255);
 				b = Math.floor(Math.random() * 255);
 
 				color = {'r':r,'g':g,'b':b,'a':0.7};
@@ -70,13 +70,12 @@ export class DefaultComponent implements OnInit{
   				for (i=0;i<cajas.length;i++){
   					//var color = {'r':0,'g':128,'b':0,'a':0.5};
   					  var color = getcolor();
-  					 // cajas.eq(i).css('background','linear-gradient(135deg, rgba(252,236,252,1) 0%,rgba('+(color.r+20)+','+(color.g + 20)+','+(color.b +20)+','+0.9+') 84%,rgba('+color.r+','+color.g+','+color.b+','+1+') 100%');
-  					/* cajas.eq(i).css('background',
-  					 	'linear-gradient(225deg, rgba(246,248,249,1) 0%,rgba(229,235,238,1) 30%,rgba(215,222,227,1) 31%,rgba(245,247,249,1) 100%)');*/
- 					// esto al 0 del actual ! ! ---> rgba(246,248,249,1) 0%,
-  					 	cajas.eq(i).css('background',
+  					
+  					 /*	cajas.eq(i).css('background',
   					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')10%, rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 31%,rgba(245,247,249,0.7) 50%,rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 69%,rgba('+color.r+','+color.g +','+color.b +','+color.a+')90%)');
-
+					*/
+					cajas.eq(i).css('background',
+  					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')15%,rgba(245,247,249,0.7) 50%,rgba('+color.r+','+color.g +','+color.b +','+color.a+') 85%)');
   				}
   			}
 

@@ -1,7 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { UserService } from './../../services/user.service';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
-import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 
 @Component({
   selector: 'app-graficos',

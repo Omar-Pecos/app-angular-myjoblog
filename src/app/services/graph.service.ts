@@ -23,29 +23,29 @@ export class GraphService {
 		console.log('Hola mundo desde el graph service!');
 	}
 
-	data_line_pormes(token):Observable<any>{
+	data_line_pormes(token,id):Observable<any>{
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'data_line',{headers : headers});
+		return this._http.get(this.url+'data_line/'+id,{headers : headers});
 	}
 
-	data_donut_porcentaje(token):Observable<any>{
+	data_donut_porcentaje(token,id):Observable<any>{
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'data_donut_porcentage',{headers : headers});
+		return this._http.get(this.url+'data_donut_porcentage/'+id,{headers : headers});
 	}
 
-	data_donut_dia(token):Observable<any>{
+	data_donut_dia(token,id):Observable<any>{
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'data_donut_today',{headers : headers});
+		return this._http.get(this.url+'data_donut_today/'+id,{headers : headers});
 	}
 
-	data_donut_mes(token):Observable<any>{
+	data_donut_mes(token,id):Observable<any>{
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'data_donut_month',{headers : headers});
+		return this._http.get(this.url+'data_donut_month/'+id,{headers : headers});
 	}
 
-	data_donut_anio(token):Observable<any>{
+	data_donut_anio(token,id):Observable<any>{
 		let headers = new HttpHeaders().set('Authorization',token);
-		return this._http.get(this.url+'data_donut_year',{headers : headers});
+		return this._http.get(this.url+'data_donut_year/'+id,{headers : headers});
 	}
 
 

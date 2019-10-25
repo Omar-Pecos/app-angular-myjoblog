@@ -1,0 +1,36 @@
+<div class="contenido">
+		<h1>{{title}}</h1>
+
+		<!-- BUSCADORES  -->
+		<div id="buscadores" class="container  text-center">
+			<div class="buscador">
+				<h3>Usuarios</h3>
+				<select  class="form-control" [(ngModel)]="id">
+					<option *ngFor="let user of users" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
+				</select>
+			</div>
+				<br>
+			<div class="buscador row justify-content-center">
+				<h3>Añadir</h3>
+				<input class="form-control" type="text" value="{{id}}" disabled>
+				<input type="button" value="Añadir" (click)="passID()" class="btn btn-success">
+			</div>
+		</div>	
+	
+		<!-- grafico numero de horas por mes en este año PARA UNOS TRABAJADORES -->
+		<div class="canvasholder">
+				<line-chart [simpleText]="idselected" ></line-chart>
+		</div>
+		<!-- grafico mishoras/horas totales PARA VARIOS TRABAJADORES-->
+		<div class="canvasholder">
+				<pie-chart [simpleText]="idselected" ></pie-chart>
+		</div>
+
+		<!-- PARA VARIOS TRABAJADORES grafico dia / mes / año -->
+		<div class="canvasholder dosgraficos">
+				<admin-donut-dia [simpleText]="idselected"></admin-donut-dia>
+				<admin-donut-mes [simpleText]="idselected"></admin-donut-mes>
+				<admin-donut-anio [simpleText]="idselected"></admin-donut-anio> 
+		</div>
+
+</div>

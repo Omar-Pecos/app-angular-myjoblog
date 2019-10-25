@@ -15,14 +15,12 @@ export class DonutMesComponent implements OnInit {
 
 
  public donutChartLabels = ['Mis horas', '160 horas'];
- public donutChartData = [120, 150];
+ public donutChartData = [160];
  
    public donutChartColors: any[] = [
     {
       backgroundColor: [
-        'rgba(43, 218, 227, 1)',
-        //meter otro color een vez del naranja como gris o tal 
-        'rgba(128, 128, 128, 0.4)'
+        'rgb(145,187,137)'
     ]
     }
   ];
@@ -35,10 +33,11 @@ export class DonutMesComponent implements OnInit {
          this.identity = this._userService.getIdentity();
          this.token = this._userService.getToken(); 
 
-        this._graphService.data_donut_mes(this.token).subscribe(
+        this._graphService.data_donut_mes(this.token,this.identity.sub).subscribe(
               response => {
 
-                      this.donutChartData = response.data_donut;
+                     this.donutChartData.unshift(response.data_donut);
+                      this.donutChartColors[0].backgroundColor.unshift('rgba(43, 218, 227, 1)');
                        
                       this.loading = false;
                       console.log(this.loading);
