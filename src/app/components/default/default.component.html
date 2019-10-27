@@ -9,47 +9,16 @@
         </button>
     </div>
 
- <h2>{{title}}</h2>
-
-
-    <p>
-      Usuario tipo --> {{identity.role}}
-
-      <br>
-      Detalles del user <br>
-      <h1>	{{identity.name}} {{identity.surname}}</h1>
-      <br>
-      Su token --> <pre>{{token}}</pre> 
-
-      <br>
-      <br>
-
-    <!-- <div class="container">
-        <div class="row">
-          <a class="col-sm divhome" [routerLink]="['/fichar']" >
-                  <img  src="https://img.icons8.com/color/96/000000/autograph.png">
-                  <button class="btn btn-info">Fichar</button>
-             
-          </a>
-          <a  class="col-sm divhome" [routerLink]="['/perfil']">
-                  <img src="https://img.icons8.com/color/96/000000/edit-user-female.png">
-                  <button class="btn btn-info">Mi Perfil</button>
-            
-          </a>
-          <a class="col-sm divhome" [routerLink]="['/jornadas']">
-                    <img src="https://img.icons8.com/color/96/000000/overview-pages-3.png">
-                    <button class="btn btn-info">Mis Jornadas</button>
-          </a>
-          <a class="col-sm divhome" href="#">
-                  <img src="https://img.icons8.com/color/96/000000/rebalance-portfolio--v2.png">
-                  <button class="btn btn-info">Gráficos</button>
-          </a>
-          <a class="col-sm divhome" href="#">
-                  <img src="https://img.icons8.com/officel/96/000000/pdf.png">
-                  <button class="btn btn-info">Mis Pdf</button>
-          </a>
-        </div>  
-    </div> -->
+      <div class="heroimage">
+        <div>
+          <img width="100" src="https://cpb-us-w2.wpmucdn.com/u.osu.edu/dist/8/41046/files/2016/12/binoculars-2leccg7.gif">
+        </div>
+        <div id="titulohome">
+           <h1>  {{identity.name}} {{identity.surname}}</h1>
+           <h2>  {{title}}</h2>
+        </div>
+      </div>
+      <!-- el otro div girado que parezcaa que mira a el menú o un gif o tal -->
       
     <div class="containerhome">
        
@@ -75,12 +44,13 @@
           </a>
     </div>
 
-<br>
-  <hr><hr><hr>
-<br>
-
+<span *ngIf="identity.role == 'admin'" >
+    <br>
+    <br>
+      <hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;">
+    <br>
+</span>
   <div class="containerhome" *ngIf="identity.role == 'admin'">
-      
           <a class="divhome" [routerLink]="['/usuarios']" >
                   <img src="https://img.icons8.com/color/96/000000/user-group-man-woman.png">
                   <button class="btn btn-info">Usuarios</button>
@@ -104,6 +74,9 @@
                   <button class="btn btn-info">Exportar</button>
           </a>
     </div> 
+
+    <br>
+    <br>
 </div>
   <!-- spuesta,emte falta un div close pero me peta  -->
  <svg *ngIf="!identity">
@@ -122,21 +95,25 @@
 		 
       <div class="card text-center cardhome">
                 <div class="card-header cardhometitulo">
-                    <h1>MyJob Log</h1>
+                    <div class="titulo-grafico">
+                        <h1>MyJob Log</h1>
+                    </div>
                 </div>
                 <div class="card-body cardhomebody">
                           <!-- <img src="https://loading.io/spinners/clock/lg.walking-clock-preloader.gif">
                           <img src="https://loading.io/spinners/hourglass/lg.sandglass-time-loading-gif.gif"> 
                          <img width="150" src="https://www.pngrepo.com/download/211763/sand-clock.png">-->
                          
-                         <img width="150" src="assets/images/reloj.gif">
+                         <img id="gifhome" width="150" src="assets/images/reloj.gif">
                         
                         <br><br>
-                        <button  class="btn btn-info btn-lg btn-block" [routerLink]="['/registro']">Registrarse</button>
-                        <button  class="btn btn-info btn-lg btn-block"  [routerLink]="['/login']">Entrar</button>
+                        <button id="btnregistro"  class="btn btn-info btn-lg btn-block" [routerLink]="['/registro']">Registrarse</button>
+                        <button id="btnlogin" class="btn btn-info btn-lg btn-block" [routerLink]="['/login']" >Entrar</button>
                 </div>
                 <div class="card-footer cardhometitulo">   
-                   <h4><b> 2019</b></h4>
+                    <div class="titulo-grafico">
+                      <h4><b>2019</b></h4>
+                    </div>
                 </div>
             </div>
 

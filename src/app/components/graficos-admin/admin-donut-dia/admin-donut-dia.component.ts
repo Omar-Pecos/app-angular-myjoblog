@@ -1,6 +1,5 @@
 /* GRAFICO DONUT DE Horas trabajadores / 8 horas (Hoy) */
 import { Component, OnInit ,OnChanges, SimpleChanges,Input} from '@angular/core';
-import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import { GraphService } from '../../../services/graph.service';
 
@@ -53,13 +52,7 @@ export class AdminDonutDiaComponent implements OnChanges{
           // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
          this._userService.get2First(this.token).subscribe(
               response =>{
-                   let users: User[] = response.users.data;
-
-                  for(var i=0 ; i<users.length;i++){
-                      this.oldusers.push(users[i].id);
-                  }
-
-                  console.log('oldusers ids -> '+this.oldusers);
+                    this.oldusers = response.users;
 
                              //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
 
@@ -108,9 +101,10 @@ export class AdminDonutDiaComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges){
 
-      if (this._privProp != '-1' && this._privProp != this.oldusers[0] && this._privProp != this.oldusers[1]){
-            this.loading = true;
+     if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
 
+            this.oldusers.push(parseInt(this._privProp));
+            this.loading = true;
             this.AddAdminDonutDiadata(this._privProp);
       }
     

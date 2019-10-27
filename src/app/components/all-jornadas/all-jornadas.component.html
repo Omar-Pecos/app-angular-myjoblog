@@ -5,7 +5,9 @@
 
 
 <div class="contenido" *ngIf="journeys != undefined">
-	<h2>{{title}}</h2>
+	<div class="titulo">
+			<h2>{{title}}</h2>
+	</div>
 	<br>
 	<!-- BUSCADORES  -->
 		<div id="buscadores" class="container  text-center">
@@ -61,7 +63,6 @@
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
-					<th>ID #</th>
 					<th>Firma</th>
 					<th [ngStyle]="{'background-color':sort_by === 'time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=time&order='+order,'add')">
@@ -84,23 +85,30 @@
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
 					</th>
+					<th>
+						Operaciones
+					</th>
 					
 					<!-- <th>User #</th> si es admin pues operaciones -->
 				</tr>
 				<tr class="filadatos" *ngFor="let jornada of journeys">
 					<td>{{jornada.date}}</td>
 					<td>
-						<a href="#">Perfil de {{jornada.user_id}}</a>
-							<br>
-						<a href="#">Jornadas de {{jornada.user_id}}</a>
-					</td>
-					<td>
 						<img class="firmas" width="100" src="{{url}}/storage/images/{{jornada.signature}}"/>
 					</td>
 					<td>{{jornada.time}}</td>
 					<td>{{jornada.initial_time}}</td>
 					<td>{{jornada.final_time}}</td>
-					
+					<td>
+						<button class="btn btn-warning" (click)="setLatLon(jornada.initial_pos,jornada.final_pos,jornada.user_data)">
+							<img src="https://img.icons8.com/color/48/000000/spy-male--v2.png">&nbsp;
+								Inspeccionar
+						</button>
+							<br>
+						<a href="#">Perfil #{{jornada.user_id}} - {{jornada.user_data.name}}</a>
+							<br>
+						<a href="#">Jornadas #{{jornada.user_id}} - {{jornada.user_data.name}}</a>
+					</td>
 				</tr>
 			</table>
 		 </div>
@@ -119,7 +127,7 @@
 </div>
 
 
-<!-- MODAL DE APPENDGETURLPARAMS -->
+<!-- MODAL DE APPENDGETURLPARAMS   // el de busquedas y busqueda filtrada !! -->
 	<div class="modal fade" id="appendurlModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -162,3 +170,36 @@
 	    </div>
   	  </div>
   	 </div>
+
+  	 <!-- MODAL DE INSPECCIONAR LA JORNADA -->
+	<div class="modal fade" id="mapsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Ubicaciones del trabajador</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      		<div *ngIf="latitudesYlongitudes">
+	      			<h5><b>Inicio Jornada</b></h5>
+             			 <img src="{{latitudesYlongitudes[0]}}">
+            		<h5><b>Final Jornada</b></h5>
+              			<p>in blank for now</p>
+	      		</div>
+	      		<div *ngIf="user_data">
+	      			<h4><b>{{user_data.name}}&nbsp;{{user_data.surname}}</b></h4>
+		            <h6 *ngIf="user_data.number"><a href="tel:{{user_data.number}}">{{user_data.number}}</a></h6>
+		            <h6><a href="mailto:{{user_data.email}}">{{user_data.email}}</a></h6>
+	      		</div>
+            
+	      		
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+  	  </div>
+	</div>
+

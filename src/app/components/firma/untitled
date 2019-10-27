@@ -72,4 +72,18 @@ los import antiguos de signature pad
   					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')20%, rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 31%,rgba(245,247,249,1) 100%)');
 
 
+/*	MAPAS !!!! */
 
+ $img_url = "https://maps.googleapis.com/maps/api/staticmap?center=".$latlonIni."&zoom=14&size=400x300&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY";
+
+
+'<h5><b>Inicio Jornada</b></h5>'+
+	      			'<p>Imagennnn</p>'+
+	      		'<h5><b>Final Jornada</b></h5>'+
+	      			'<p>in blank for now</p>'+
+	      		'<h5><b>{{user_data.name}}&nbsp;{{user_data.surname}}</b></h5>'+
+	      		'<h6><a href="tel:user_data.number">{{user_data.number}}</a></h6>'+
+	      		'<h6><a href="mailto:user_data.email">{{user_data.email}}</a></h6>';
+
+	      		[routerLink]="['/registro']"
+	      		[routerLink]="['/login']"

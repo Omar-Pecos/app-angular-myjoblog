@@ -14,10 +14,11 @@
         </button>
     </div>
 
-
-	<h2>{{title}} --> {{identity.name}} {{identity.surname}} </h2>
-	<br>
-
+  <div class="titulo">
+  	<h2>{{title}}</h2>
+    <h3>{{identity.dni}}</h3>
+  </div>
+      <br>
 <div class="contenedor">
   <div class="div_left">
     <div *ngIf="firma == false" class="container-firma">

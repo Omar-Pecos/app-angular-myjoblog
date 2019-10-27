@@ -86,7 +86,7 @@ export class UserService {
 			return this._http.get(this.url+'users'+urlparams,{headers : headers});
 	}
 
-	get2First(token){
+	get2First(token): Observable<any> {
 			let headers = new HttpHeaders().set('Authorization',token);
 			return this._http.get(this.url+'get_first_users',{headers : headers});
 	}

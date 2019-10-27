@@ -1,6 +1,5 @@
 /* GRAFICO DONUT DE Horas trabajadores / 160 horas (Hoy) */
 import { Component, OnInit ,OnChanges, SimpleChanges,Input} from '@angular/core';
-import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import { GraphService } from '../../../services/graph.service';
 
@@ -50,30 +49,10 @@ export class AdminDonutMesComponent implements OnChanges{
          this.identity = this._userService.getIdentity();
          this.token = this._userService.getToken(); 
 
-      /*  this._graphService.data_donut_porcentaje(this.token,this.identity.sub).subscribe(
-              response => {
-
-                      this.pieChartData = response.data_donut;
-                       
-                      this.loading = false;
-                      console.log(this.loading);
-                       console.log(this.pieChartData);
-              },
-              error =>{
-                   console.log(<any>error);
-              }
-          );*/
-
           // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
          this._userService.get2First(this.token).subscribe(
               response =>{
-                   let users: User[] = response.users.data; 
-
-                  for(var i=0 ; i<users.length;i++){
-                      this.oldusers.push(users[i].id);
-                  }
-
-                  console.log('oldusers ids -> '+this.oldusers);
+                  this.oldusers = response.users;
 
                              //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
 
@@ -122,7 +101,9 @@ export class AdminDonutMesComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges){
 
-      if (this._privProp != '-1' && this._privProp != this.oldusers[0] && this._privProp != this.oldusers[1]){
+     if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
+
+            this.oldusers.push(parseInt(this._privProp));
             this.loading = true;
 
             this.AddAdminDonutMesdata(this._privProp);

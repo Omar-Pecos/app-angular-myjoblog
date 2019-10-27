@@ -1,5 +1,6 @@
 import { Component ,OnInit,Inject,HostListener, DoCheck } from '@angular/core';
 import { Router , ActivatedRoute , Params} from '@angular/router';
+// este import creo que no haría falta por que lo hace a traves de tsconfig.app.ts
 import * as $ from 'jquery';
 import {UserService} from './services/user.service';
 import { DOCUMENT } from '@angular/common';

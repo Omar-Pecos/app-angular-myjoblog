@@ -1,6 +1,5 @@
 /* GRAFICO DONUT DE MISHORAS/TOTALES */
 import { Component, OnInit ,OnChanges, SimpleChanges,Input} from '@angular/core';
-import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import { GraphService } from '../../../services/graph.service';
 
@@ -15,7 +14,7 @@ export class PieChartComponent implements OnChanges{
   public loading = true;
 
   public idselected = 'NO';
-  public oldusers = [];
+  public oldusers : number [];
 
   private _privProp: string;
  //@Input() public simpleText: string;
@@ -49,32 +48,11 @@ export class PieChartComponent implements OnChanges{
          this.identity = this._userService.getIdentity();
          this.token = this._userService.getToken(); 
 
-      /*  this._graphService.data_donut_porcentaje(this.token,this.identity.sub).subscribe(
-              response => {
-
-                      this.pieChartData = response.data_donut;
-                       
-                      this.loading = false;
-                      console.log(this.loading);
-                       console.log(this.pieChartData);
-              },
-              error =>{
-                   console.log(<any>error);
-              }
-          );*/
-
           // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
          this._userService.get2First(this.token).subscribe(
               response =>{
-                  console.log("rresponse.oldusers --->>" + response);
-                  
-                   let users: User[] = response.users.data;
-
-                  for(var i=0 ; i<users.length;i++){
-                      this.oldusers.push(users[i].id);
-                  }
-
-                  console.log('oldusers ids -> '+this.oldusers);
+                 
+                  this.oldusers =  response.users;
 
                              //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
 
@@ -127,7 +105,15 @@ export class PieChartComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges){
 
-      if (this._privProp != '-1' && this._privProp != this.oldusers[0] && this._privProp != this.oldusers[1]){
+      /*if (this._privProp != '-1' && this._privProp != String(this.oldusers[0]) && this._privProp != String(this.oldusers[1])){
+            this.loading = true;
+
+            this.Addpiechartdata(this._privProp);
+      }*/
+
+      if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
+
+            this.oldusers.push(parseInt(this._privProp));
             this.loading = true;
 
             this.Addpiechartdata(this._privProp);

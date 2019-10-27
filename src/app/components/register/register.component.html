@@ -12,42 +12,44 @@
 <!-- card como la de HOme LOGIN -->
 <div class="card text-center cardhome">
                 <div class="card-header cardhometitulo">
-                   <h2>{{title}}</h2>
+                   <div class="titulo">
+						<h2>{{title}}</h2>
+					</div>
                 </div>
                 <div class="card-body cardentrarbody">
                       	<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
 							<p>
-								<label for="name">Nombre</label>
+								<label for="name"><b>Nombre</b></label>
 								<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
 								<span *ngIf="!name.valid && name.touched">	El nombre es obligatorio
 								</span>
 							</p>
 							<p>
-								<label for="surname">Apellidos</label>
+								<label for="surname"><b>Apellidos</b></label>
 								<input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required>
 								<span *ngIf="!surname.valid && surname.touched">	Los apellidos son obligatorios
 								</span>
 							</p>
 							<p>
-								<label for="email">Email</label>
+								<label for="email"><b>Email</b></label>
 								<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
 								<span *ngIf="!email.valid && email.touched">	El email es obligatorio
 								</span>
 							</p>
 							<p>
-								<label for="dni">DNI</label>
+								<label for="dni"><b>DNI</b></label>
 								<input type="text" name="name" #dni="ngModel" [(ngModel)]="user.dni" class="form-control" required>
 								<span *ngIf="!dni.valid && dni.touched">	El DNI es obligatorio
 								</span>
 							</p>
 							<p>
-								<label for="password">Contraseña</label>
+								<label for="password"><b>Contraseña</b></label>
 								<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
 								<span *ngIf="!password.valid && password.touched">	La contraseña es obligatoria
 								</span>
 							</p>
 							<p>
-								<label for="password">Confirmación contraseña</label>
+								<label for="password"><b>Confirmación contraseña</b></label>
 								<input type="password" name="password_confirmation" #password="ngModel" [(ngModel)]="user.password_confirmation"  class="form-control" required>
 							</p>
 

@@ -1,6 +1,5 @@
 /* GRAFICO LÍNEA CANTIDADHORAS/MES EN AÑO EN CURSO */
 import { Component, OnInit ,OnChanges, SimpleChanges,Input} from '@angular/core';
-import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import { GraphService } from '../../../services/graph.service';
 
@@ -15,7 +14,7 @@ export class LineChartComponent implements OnChanges {
   public loading = true;
   
   public idselected = 'NO';
-  public oldusers = [];
+  public oldusers : number[];
 
   private _privProp: string;
  //@Input() public simpleText: string;
@@ -61,13 +60,8 @@ export class LineChartComponent implements OnChanges {
          // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
          this._userService.get2First(this.token).subscribe(
               response =>{
-                  let users: User[] = response.users.data;
-
-                  for(var i=0 ; i<users.length;i++){
-                      this.oldusers.push(users[i].id);
-                  }
-
-                  console.log('oldusers ids -> '+this.oldusers);
+                 
+                     this.oldusers = response.users;
 
                              //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
                   this._graphService.data_line_pormes(this.token,this.oldusers[0]).subscribe(
@@ -126,7 +120,9 @@ export class LineChartComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
 
-      if (this._privProp != '-1' && this._privProp != this.oldusers[0] && this._privProp != this.oldusers[1]){
+     if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
+
+            this.oldusers.push(parseInt(this._privProp));
             this.loading = true;
 
             this.Addlinechartdata(this._privProp);

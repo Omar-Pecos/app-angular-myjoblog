@@ -3,10 +3,8 @@
   <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
 </div>
 
-<div class="col-md-12" *ngIf="user != undefined">
-	<br>
-		<h2>{{title}}</h2>
-
+<div class="contenido" *ngIf="user != undefined">
+		
 
 <div class="alert alert-success" *ngIf="status == 'success'">
 	Tus datos han sido modificados 
@@ -14,52 +12,60 @@
 <div class="alert alert-danger" *ngIf="status == 'error'">
 	No se han editado tus datos
 
-	
 	<ul *ngFor="let item of errors | keyvalue">
-     <li>Error in <b>{{item.key}}</b>: <b>{{item.value}}</b></li>
+     	<li>Error in <b>{{item.key}}</b>: <b>{{item.value}}</b></li>
     </ul>
 </div>
-	
-	<form #editform="ngForm" (ngSubmit)="onSubmit(editform)" class="col-md-5">
-		<p>
-			<label for="name"><b>Nombre</b></label>
-			<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
-			<span *ngIf="!name.valid && name.touched">	El nombre es obligatorio
-			</span>
-		</p>
-		<p>
-			<label for="surname"><b>Apellidos</b></label>
-			<input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required>
-			<span *ngIf="!surname.valid && surname.touched">	Los apellidos son obligatorios
-			</span>
-		</p>
-		<p>
-			<label for="email"><b>Email</b></label>
-			<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
-			<span *ngIf="!email.valid && email.touched">	El email es obligatorio
-			</span>
-		</p>
-		<p>
-			<label for="dni"><b>DNI</b></label>
-			<input type="text" name="dni" #dni="ngModel" [(ngModel)]="user.dni" class="form-control" required>
-			<span *ngIf="!dni.valid && dni.touched">	El DNI es obligatorio
-			</span>
-		</p>
-		<p>
-			<label for="number"><b>Teléfono Móvil</b></label>
-			<input type="text" name="number" #number="ngModel" [(ngModel)]="user.number" class="form-control">
-		</p>
-		<p>
-			<label for="password"><b>Contraseña</b></label>
-			<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control">
-			<span *ngIf="!password.valid && password.touched">	La contraseña es obligatoria
-			</span>
-		</p>
-		<p>
-			<label for="password"><b>Confirmación contraseña</b></label>
-			<input type="password" name="password_confirmation" #password="ngModel" [(ngModel)]="user.password_confirmation"  class="form-control">
-		</p>
+	<!-- card como la de HOme LOGIN -->
+<div class="card text-center cardhome">
+                <div class="card-header cardhometitulo">
+                   <div class="titulo">
+						<h2>{{title}}</h2>
+					</div>
+                </div>
+                <div class="card-body cardentrarbody">
+						<form #editform="ngForm" (ngSubmit)="onSubmit(editform)" class="col-md-12">
+							<p>
+								<label for="name"><b>Nombre</b></label>
+								<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
+								<span *ngIf="!name.valid && name.touched">	El nombre es obligatorio
+								</span>
+							</p>
+							<p>
+								<label for="surname"><b>Apellidos</b></label>
+								<input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required>
+								<span *ngIf="!surname.valid && surname.touched">	Los apellidos son obligatorios
+								</span>
+							</p>
+							<p>
+								<label for="email"><b>Email</b></label>
+								<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
+								<span *ngIf="!email.valid && email.touched">	El email es obligatorio
+								</span>
+							</p>
+							<p>
+								<label for="dni"><b>DNI</b></label>
+								<input type="text" name="dni" #dni="ngModel" [(ngModel)]="user.dni" class="form-control" required>
+								<span *ngIf="!dni.valid && dni.touched">	El DNI es obligatorio
+								</span>
+							</p>
+							<p>
+								<label for="number"><b>Teléfono Móvil</b></label>
+								<input type="text" name="number" #number="ngModel" [(ngModel)]="user.number" class="form-control">
+							</p>
+							<p>
+								<label for="password"><b>Contraseña</b></label>
+								<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control">
+								<span *ngIf="!password.valid && password.touched">	La contraseña es obligatoria
+								</span>
+							</p>
+							<p>
+								<label for="password"><b>Confirmación contraseña</b></label>
+								<input type="password" name="password_confirmation" #password="ngModel" [(ngModel)]="user.password_confirmation"  class="form-control">
+							</p>
 
-		<input type="submit" value="Editar" class="btn btn-success">
-	</form>
+							<input type="submit" value="Editar" class="btn btn-success">
+						</form>
+				</div>
+		</div>
 </div>

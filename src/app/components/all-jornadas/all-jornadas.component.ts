@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { JourneyService } from '../../services/journey.service';
 
 import {AppComponent} from '../../app.component';
+declare var $: any 
 
 @Component({
   selector: 'app-all-jornadas',
@@ -20,12 +21,16 @@ export class AllJornadasComponent implements DoCheck {
 	public journeys: any[];
   public myapp: AppComponent;
 	public selecteduser:string = 'Identificador';
+  
+  public latitudesYlongitudes: string[] = [];
+  public user_data;
 
   public getParams:string = '';
   public pageInfo:any;
   public order = 'desc';
   public order_now = 'asc';
   public sort_by = 'id';
+
 
   public searchselect:any  = 'date';
 
@@ -214,6 +219,34 @@ export class AllJornadasComponent implements DoCheck {
         //console.log("value -> "+value);
       this.searchselect = value;
   
+  }
+
+  setLatLon(coordIni,coordEnd,user_data){
+
+    this.latitudesYlongitudes = [];
+
+      var ini = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordIni[0]+','+coordIni[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';
+      var end = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordEnd[0]+','+coordEnd[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';
+
+      this.latitudesYlongitudes.push(ini,end);
+
+      console.log("LATITUDES Y LONGITUDES -->"+this.latitudesYlongitudes);
+
+      this.user_data = user_data;
+
+      // show modal
+     /* $('#mapsModal .modal-body').append('<h5><b>Inicio Jornada</b></h5>'+
+              '<p>Imagennnn</p>'+
+            '<h5><b>Final Jornada</b></h5>'+
+              '<p>in blank for now</p>'+
+            '<h5><b>'+this.user_data.name+'&nbsp;'+this.user_data.surname+'</b></h5>'+
+            '<h6><a href="tel:user_data.number">'+this.user_data.number+'</a></h6>'+
+            '<h6><a href="mailto:user_data.email">'+this.user_data.email+'</a></h6>');*/
+      
+      $(function() {
+       $('#mapsModal').modal('show');
+  });
+     
   }
 
 }

@@ -5,8 +5,8 @@
     <span class="navbar-toggler-icon"></span>
   </button>
    <a class="navbar-brand navbar-left" [routerLink]="['home']" >{{title}}</a>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01" *ngIf="identity">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="identity">
       <li *ngIf="identity.role =='admin'" class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Administrador
@@ -46,13 +46,16 @@
        <li class="nav-item active" *ngIf="!identity">
            <a  class="nav-link disabled"  [routerLink]="['login']">Entrar</a>
       </li>
-      <li class="nav-item active" *ngIf="identity">
-      <a  class="nav-link"[routerLink]="['logout',1]">
-                 Salir
-      </a>
+       <li class="nav-item active" *ngIf="identity">
+          <a style="margin-top: 6px;" class="nav-link" [routerLink]="['perfil']">{{identity.name}} {{identity.surname}}</a>
+      </li>
+      <li class="nav-item active" *ngIf="identity">  
+          <a style="margin-top: 3px;"  class="nav-link"[routerLink]="['logout',1]">
+                 <img src="https://img.icons8.com/nolan/32/000000/exit-sign.png">   
+                  Salir
+          </a>
        </li>
-    </ul>
-     
+    </ul> 
   </div>
 </nav>
 </header>

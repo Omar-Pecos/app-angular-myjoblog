@@ -3,7 +3,9 @@
 </div>
 
   <div *ngIf="loading == false">
-  	<h3>Horas por mes</h3>
+  	<div class="titulo-grafico">
+      <h3>Horas por mes</h3>
+    </div>
     <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"

@@ -12,13 +12,15 @@
 <!-- card como la de HOme LOGIN -->
 <div class="card text-center cardhome">
                 <div class="card-header cardhometitulo">
-                   <h2>{{title}}</h2>
+                   <div class="titulo">
+						<h2>{{title}}</h2>
+					</div>
                 </div>
                 <div class="card-body cardentrarbody">
                       		<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" >
 									
 									<p>
-										<label for="email">Email</label>
+										<label for="email"><b>Email</b></label>
 										<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" required  class="form-control" />
 										<span *ngIf="!email.valid && email.touched">
 											El email no es válido
@@ -26,7 +28,7 @@
 									</p>
 
 									<p>
-										<label for="password">Contraseña</label>
+										<label for="password"><b>Contraseña</b></label>
 										<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required class="form-control" />
 										<span *ngIf="!password.valid && password.touched">
 											La contraseña no es válida

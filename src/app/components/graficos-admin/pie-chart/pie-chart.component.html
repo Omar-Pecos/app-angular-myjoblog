@@ -2,7 +2,9 @@
   <img src="assets/images/131.gif">
 </div>
 <div *ngIf="loading == false">
-	<h3>Horas de trabajador / Totales</h3>
+	<div class="titulo-grafico">
+		<h3>Horas de trabajadores / Totales</h3>
+	</div>
   <canvas baseChart
               [data]="pieChartData"
               [labels]="pieChartLabels"
