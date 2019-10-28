@@ -14,18 +14,22 @@ export class PieChartComponent implements OnChanges{
   public loading = true;
 
   public idselected = 'NO';
-  public oldusers : number [];
+  public oldusers : number[];
 
-  private _privProp: string;
- //@Input() public simpleText: string;
+  private _privId: string;
+ private _privColor : any;
+ 
 
- @Input() public set simpleText(value: string) {
-    console.log(`This is pubProp value change detected in setter method: ${value}`);
-    this._privProp = value;
+ @Input() public set theId(value: string) {
+    //console.log(`This is pubProp value change detected in setter method: ${value}`);
+    this._privId = value;
   }
-
-  public get pubProp() {
-    return this._privProp;
+  /*public get pubProp() {
+    return this._privId;
+  }*/
+  @Input() public set theColor(value: any) {
+    //console.log(`TheColor  value change detected in setter method: ${value}`);
+    this._privColor = value;
   }
 
  public pieChartLabels = ['Mis horas', 'Horas Totales'];
@@ -48,14 +52,37 @@ export class PieChartComponent implements OnChanges{
          this.identity = this._userService.getIdentity();
          this.token = this._userService.getToken(); 
 
-          // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
+         this.loading = true;
+
+         this.Call2DefaultData();
+               
+   }
+  ngOnInit() {
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+
+      if (this._privId != '-1' && this.oldusers.includes(parseInt(this._privId)) == false && this._privColor != '0'){
+
+            this.oldusers.push(parseInt(this._privId));
+            this.loading = true;
+
+            this.Addpiechartdata(this._privId,this._privColor);
+      }
+
+    
+}
+
+Call2DefaultData(){
+
+   // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
          this._userService.get2First(this.token).subscribe(
               response =>{
                  
-                  this.oldusers =  response.users;
+                     this.oldusers = response.users;
 
-                             //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
-
+              //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
                  this._graphService.data_donut_porcentaje(this.token,this.oldusers[0]).subscribe(
                         response => {
                                 console.log(response.data_donut);
@@ -70,7 +97,7 @@ export class PieChartComponent implements OnChanges{
 
                                                          var num = this.pieChartData.length;
 
-                                                         this.pieChartData[num - 1] = 80;
+                                                         this.pieChartData[num - 1] = response.data_donut[1];
                                                         
                                                           this.pieChartData.unshift(response.data_donut[0]);
                                                           this.pieChartLabels.unshift(response.label[0]);
@@ -93,53 +120,17 @@ export class PieChartComponent implements OnChanges{
                              console.log(<any>error);
                         }
                     );
-              },
+
+           },
               error =>{
-                   console.log(<any>error);
+
               }
           );
-   }
-  ngOnInit() {
-    
-  }
-
-  ngOnChanges(changes: SimpleChanges){
-
-      /*if (this._privProp != '-1' && this._privProp != String(this.oldusers[0]) && this._privProp != String(this.oldusers[1])){
-            this.loading = true;
-
-            this.Addpiechartdata(this._privProp);
-      }*/
-
-      if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
-
-            this.oldusers.push(parseInt(this._privProp));
-            this.loading = true;
-
-            this.Addpiechartdata(this._privProp);
-      }
-    
 }
 
-
-  GenColor(){
-      var color;
-        var r;
-        var g;
-        var b;
-
-        r = Math.floor(Math.random() * 255);
-        g = Math.floor(Math.random() * 255);
-        b = Math.floor(Math.random() * 255);
-
-        color = {'r':r,'g':g,'b':b};
-
-        return color;
-  }
-
-  Addpiechartdata(id){
-    this.loading = true;
-     var color = this.GenColor();
+  Addpiechartdata(id,color){
+   // this.loading = true;
+    // var color = this.GenColor();
      var colorrgb = 'rgb('+color.r+','+color.g+','+color.b;
 
         this._graphService.data_donut_porcentaje(this.token,id).subscribe(
@@ -147,7 +138,7 @@ export class PieChartComponent implements OnChanges{
 
                         var num = this.pieChartData.length;
 
-                         this.pieChartData[num - 1] = 69;
+                         this.pieChartData[num - 1] = response.data_donut[1];
                         
                           this.pieChartData.unshift(response.data_donut[0]);
                           this.pieChartLabels.unshift(response.label[0]);
@@ -158,9 +149,9 @@ export class PieChartComponent implements OnChanges{
                          // display el grafico !
                            this.loading = false;
 
-                            console.log("idselected ->"+this.idselected);
+                           /* console.log("idselected ->"+this.idselected);
                             console.log("pieChartColors --->>> "+this.pieChartColors[0].backgroundColor)
-                            console.log(this.loading);
+                            console.log(this.loading);*/
                 },
                 error =>{
                      console.log(<any>error);

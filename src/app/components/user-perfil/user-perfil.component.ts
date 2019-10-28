@@ -17,6 +17,8 @@ export class UserPerfilComponent implements OnInit {
 	public identity;
 	public user : User;
 
+  public theid;
+
   constructor(	
   		private _route : ActivatedRoute,
 		private _router : Router,
@@ -26,20 +28,34 @@ export class UserPerfilComponent implements OnInit {
   		this.token = this._userService.getToken();
   		this.identity = this._userService.getIdentity();
 
-// si es admin y quiere editar a otro user de esta manera solo se podria editar el mismo 
-// var -> id perfil = ver si se puede cojer con un parametro de url o algo asi
-  		this._userService.getUser(this.identity.sub,this.token).subscribe(
-  				response =>{
-  					if (response.status = 'success'){
+   this._route.params.subscribe(
+      params=>{
+          this.theid = +params['id'];
+          this.GetUser(this.theid);
 
-  						this.user = response.user;
-  						console.log(this.user);
-  					}
-  				},
-  				error =>{
-  					console.log(<any>error);
-  				}
-  			)
+      });
+  }
+
+  GetUser(id){
+      this._userService.getUser(id,this.token).subscribe(
+          response =>{
+            if (response.status = 'success'){
+
+              this.user = response.user;
+              console.log(this.user);
+            }
+
+             if (response.status == 'error'){
+                 //redireccion
+                  
+              }
+          },
+          error =>{
+            console.log(<any>error);
+            // SI EL ERROR ES DE CODIGO 401 UNAUTORIZEHD O ALGUNO DE ESTOS PUES --> AL HOME
+              this._router.navigate(['home']);
+          }
+        );
   }
 
   ngOnInit() {
@@ -54,13 +70,27 @@ export class UserPerfilComponent implements OnInit {
 
     /// si es un user admin y edita el perfil de otros el perfil a editar sería el de user.id y si es el de cada uno en verdad tmb por que en user 
     // se recogen los datos de ese usuario que se ha pasado en getUser();
-  		this._userService.editUser(this.identity.sub,this.user,this.token).subscribe(
+  		this._userService.editUser(this.theid,this.user,this.token).subscribe(
   				response =>{
   					if (response.status == 'success'){
-  						this.status = 'success';
-  					}
+  						  this.status = 'success';   
+            }
+
+              this.GetUser(this.theid);
+
+              if (this.theid == this.identity.sub){
+                 // en this.user esta la nueva info so create a new identity and set u¡in local storage and getIdentity();
+                let identidad = {'sub':this.user.id,'dni':this.user.dni,"email":this.user.email,'name':this.user.name,"surname":this.user.surname,"role":this.user.role,"iat":this.identity.iat,"exp":this.identity.exp};
+                console.log("NUEVA IDENTIDAD -->"+identidad.name);
+                  
+                  this.identity = identidad;
+                  localStorage.setItem('identity',JSON.stringify(this.identity));
+              }
+             
   				},
   				error =>{
+             this.GetUser(this.theid);
+
   					this.status = 'error';
   					console.log(<any>error.error);
   					this.errors = error.error;

@@ -77,11 +77,11 @@ body{
 }
 #btnlogin{
 	 background-color: #936021;
-	 animation: registrologinAnimation 2s forwards 0s ease;
+	 animation: loginbtnAnimation 2s forwards 0s ease;
 }
-@keyframes registrologinAnimation{
+@keyframes loginbtnAnimation{
     0%{
-        transform: scale(.3) translateX(-100%);
+        transform: rotate(0) scale(.3) translateX(-100%);
         opacity: 0;
         }
     100%{
@@ -146,7 +146,7 @@ body{
 	animation: heroAnimation 2s forwards 0s ease;
 }
 .titulo-grafico{
-	animation: titulograficoAnimation 2s forwards 1s ease-in-out;
+	animation: titulograficoAnimation 2s forwards 0.5s ease-in-out;
 }
 @keyframes titulograficoAnimation{
     0%{
@@ -179,12 +179,10 @@ body{
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
-	/*background: linear-gradient(135deg, rgba(252,236,252,1) 0%,rgba(67,231,249,1) 74%,rgba(45,228,255,1) 100%);*/
 
 	cursor: pointer;
 	transform: rotateY(-30deg) rotateX(15deg);
 	mix-blend-mode: multiply;
-
 }
 
 .divhome:hover{
@@ -282,10 +280,33 @@ th,td{
 	width:250px;
 }
 
-/* buscador */
+/* buscadores y otros elementos de Pag (el acordeon de misarchivos,los botones-firma (en la sig seccion botones!)) */
+#accordion{
+	width: 50%;
+	margin: 0 auto;
+	animation: otrosElemPagAnimation 2s forwards 0s ease;
+}
+#accordion .card{
+	border: none;
+}
 .buscador{
 	width: 300px;
-	margin: 30px ;
+	margin: 30px;
+	animation: otrosElemPagAnimation 2s forwards 0s ease;
+}
+@keyframes otrosElemPagAnimation{
+    0%{
+        transform: rotate(0)translateY(70%);
+        opacity: 0;
+        }
+    85%{
+    	transform: rotate(0) translateX(0) translateY(-15%);
+        opacity: 0.8;
+    }
+    100%{
+        transform: rotate(0) translateY(0);
+        opacity: 1;
+        }
 }
 #buscadores {
 	display: flex;
@@ -319,6 +340,7 @@ th,td{
 	justify-content: center;
 	margin: 30px auto;
 	align-items: center;
+	animation: otrosElemPagAnimation 2s forwards 0s ease;
 }
 .botonpaginas{
 	background-color: #25B7D3;
@@ -428,9 +450,9 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		margin: 0 auto !important;
 	}
 
-	/*#giffirma img{
-		
-	}*/
+	#accordion{
+		width: 80%;
+	}
 
 	.dosgraficos  > *{
 		width: 340px;

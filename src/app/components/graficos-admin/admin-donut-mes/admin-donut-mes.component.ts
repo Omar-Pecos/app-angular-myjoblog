@@ -18,16 +18,19 @@ export class AdminDonutMesComponent implements OnChanges{
   public idselected = 'NO';
   public oldusers = [];
 
-  private _privProp: string;
- //@Input() public simpleText: string;
-
- @Input() public set simpleText(value: string) {
-    console.log(`This is pubProp value change detected in setter method: ${value}`);
-    this._privProp = value;
+  private _privId: string;
+ private _privColor : any;
+ 
+  @Input() public set theId(value: string) {
+    //console.log(`This is pubProp value change detected in setter method: ${value}`);
+    this._privId = value;
   }
-
-  public get pubProp() {
-    return this._privProp;
+  /*public get pubProp() {
+    return this._privId;
+  }*/
+  @Input() public set theColor(value: any) {
+    //console.log(`TheColor  value change detected in setter method: ${value}`);
+    this._privColor = value;
   }
 
  public donutChartLabels = ['160 horas'];
@@ -101,35 +104,20 @@ export class AdminDonutMesComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges){
 
-     if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
+     if (this._privId != '-1' && this.oldusers.includes(parseInt(this._privId)) == false && this._privColor != '0'){
 
-            this.oldusers.push(parseInt(this._privProp));
+            this.oldusers.push(parseInt(this._privId));
             this.loading = true;
 
-            this.AddAdminDonutMesdata(this._privProp);
+            this.AddAdminDonutMesdata(this._privId,this._privColor);
       }
     
 }
 
 
-  GenColor(){
-      var color;
-        var r;
-        var g;
-        var b;
-
-        r = Math.floor(Math.random() * 255);
-        g = Math.floor(Math.random() * 255);
-        b = Math.floor(Math.random() * 255);
-
-        color = {'r':r,'g':g,'b':b};
-
-        return color;
-  }
-
-  AddAdminDonutMesdata(id){
+  AddAdminDonutMesdata(id,color){
     this.loading = true;
-     var color = this.GenColor();
+   //  var color = this.GenColor();
      var colorrgb = 'rgb('+color.r+','+color.g+','+color.b;
 
         this._graphService.data_donut_mes(this.token,id).subscribe(
@@ -144,9 +132,9 @@ export class AdminDonutMesComponent implements OnChanges{
                          // display el grafico !
                            this.loading = false;
 
-                            console.log("idselected ->"+this.idselected);
+                           /* console.log("idselected ->"+this.idselected);
                             console.log("pieChartColors --->>> "+this.donutChartColors[0].backgroundColor)
-                            console.log(this.loading);
+                            console.log(this.loading);*/
                 },
                 error =>{
                      console.log(<any>error);

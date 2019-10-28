@@ -3,7 +3,7 @@
 <div class="contenido" *ngIf="identity">  
   <!-- Infomsg -->
       <div *ngIf="infomsg != ''" class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>¡Antención!</strong> {{infomsg}}
+        <strong>¡Antención!</strong> {{infomsg}}<a [routerLink]="['/archivos']"><b>Mis Pdf</b></a>
         <button type="button" (click)="setinfomsg('')" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -18,30 +18,28 @@
            <h2>  {{title}}</h2>
         </div>
       </div>
-      <!-- el otro div girado que parezcaa que mira a el menú o un gif o tal -->
       
     <div class="containerhome">
-       
-          <a class="divhome" [routerLink]="['/fichar']" >
+          <span class="divhome" [routerLink]="['/fichar']" >
                <img  src="https://img.icons8.com/color/96/000000/autograph.png">
-                <button class="btn btn-info">Fichar</button>   
-          </a>
-          <a  class="divhome" [routerLink]="['/perfil']">
+                <button  class="btn btn-info">Fichar</button>  
+          </span>
+          <span  class="divhome" [routerLink]="['/perfil',identity.sub]">
                   <img src="https://img.icons8.com/color/96/000000/edit-user-female.png">
                   <button class="btn btn-info">Mi Perfil</button> 
-          </a>
-           <a class="divhome" [routerLink]="['/jornadas']">
+          </span>
+           <span class="divhome" [routerLink]="['/jornadas',identity.sub]">
                     <img src="https://img.icons8.com/color/96/000000/overview-pages-3.png">
                     <button class="btn btn-info">Mis Jornadas</button>
-          </a> 
-             <a class="divhome"[routerLink]="['/graficos']">
+          </span> 
+             <span class="divhome"[routerLink]="['/graficos']">
                   <img src="https://img.icons8.com/color/96/000000/rebalance-portfolio--v2.png">
                   <button class="btn btn-info">Gráficos</button>
-          </a>
-            <a class="divhome" [routerLink]="['/archivos']">
+          </span>
+            <span class="divhome" [routerLink]="['/archivos']">
                   <img src="https://img.icons8.com/officel/96/000000/pdf.png">
                   <button class="btn btn-info">Mis Pdf</button>
-          </a>
+          </span>
     </div>
 
 <span *ngIf="identity.role == 'admin'" >
@@ -49,30 +47,36 @@
     <br>
       <hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;">
     <br>
+    <div class="titulo">
+      <h2 style="text-align: center;">Menú Administrador</h2>
+    </div>
+    <br>
+    <br>
 </span>
+
   <div class="containerhome" *ngIf="identity.role == 'admin'">
-          <a class="divhome" [routerLink]="['/usuarios']" >
+          <span class="divhome" [routerLink]="['/usuarios']" >
                   <img src="https://img.icons8.com/color/96/000000/user-group-man-woman.png">
-                  <button class="btn btn-info">Usuarios</button>
+                  <button class="btn btn-info ">Usuarios</button>
              
-          </a>
-          <a  class="divhome" [routerLink]="['/todas_jornadas']">
+          </span>
+          <span  class="divhome" [routerLink]="['/todas_jornadas']">
                   <img src="https://img.icons8.com/color/96/000000/edit-property.png">
                   <button class="btn btn-info">Jornadas</button>
                   <!-- Tmb puede ser timesheet o time card -->
-          </a>
-          <a class="divhome" [routerLink]="['/graficos_administrador']">
+          </span>
+          <span class="divhome" [routerLink]="['/graficos_administrador']">
                   <img src="https://img.icons8.com/color/96/000000/doughnut-chart--v2.png">
                   <button class="btn btn-info">Graficos de trabajadores</button>
-          </a>
-          <a class="divhome"  href="#">
+          </span>
+          <span class="divhome"  href="#">
                     <img src="https://img.icons8.com/color/96/000000/calendar.png">
                     <button class="btn btn-info">Vacaciones</button>
-          </a>
-          <a class="divhome" href="#">
+          </span>
+          <span class="divhome" href="#">
                   <img src="https://img.icons8.com/color/96/000000/pdf-2.png">
                   <button class="btn btn-info">Exportar</button>
-          </a>
+          </span>
     </div> 
 
     <br>

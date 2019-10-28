@@ -21,18 +21,33 @@
 	
 		<!-- grafico numero de horas por mes en este año PARA UNOS TRABAJADORES -->
 		<div class="canvasholder">
-				<line-chart [simpleText]="idselected" ></line-chart>
+				<line-chart 
+						[theId]="idselected" 
+						[theColor]="color">
+				</line-chart>
 		</div>
 		<!-- grafico mishoras/horas totales PARA VARIOS TRABAJADORES-->
 		<div class="canvasholder">
-				<pie-chart [simpleText]="idselected" ></pie-chart>
+				<pie-chart 
+						[theId]="idselected" 
+						[theColor]="color">
+				</pie-chart>
 		</div>
 
 		<!-- PARA VARIOS TRABAJADORES grafico dia / mes / año -->
 		<div class="canvasholder dosgraficos">
-				<admin-donut-dia [simpleText]="idselected"></admin-donut-dia>
-				<admin-donut-mes [simpleText]="idselected"></admin-donut-mes>
-				<admin-donut-anio [simpleText]="idselected"></admin-donut-anio> 
+				<admin-donut-dia 
+						[theId]="idselected" 
+						[theColor]="color">		
+				</admin-donut-dia>
+				<admin-donut-mes 
+						[theId]="idselected"
+						 [theColor]="color">
+				 </admin-donut-mes>
+				<admin-donut-anio 
+						[theId]="idselected" 
+						[theColor]="color">
+				</admin-donut-anio> 
 		</div>
 
 </div>

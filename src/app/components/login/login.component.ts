@@ -75,24 +75,25 @@ export class LoginComponent implements OnInit{
 	}
 
 	logout(){
-		this._route.params.subscribe(params=>{
-			let logout = +params['sure'];
-			
-			if (logout == 1){
-				localStorage.removeItem('identity');
-				localStorage.removeItem('token');
+		this._route.params.subscribe(
+			params=>{
+				let logout = +params['sure'];
+				
+				if (logout == 1){
+					localStorage.removeItem('identity');
+					localStorage.removeItem('token');
 
-				this.identity = null;
-				this.token = null;
+					this.identity = null;
+					this.token = null;
 
-						/*//Limpiar el datajson que se genera al iniciar una jornada o terminarla !!
-						if (localStorage.getItem("datajson") != null) {
-						  	localStorage.removeItem("datajson");
-						}*/
+							/*//Limpiar el datajson que se genera al iniciar una jornada o terminarla !!
+							if (localStorage.getItem("datajson") != null) {
+							  	localStorage.removeItem("datajson");
+							}*/
 
-				//redireccion
-				this._router.navigate(['home']);
-			}
+					//redireccion
+					this._router.navigate(['home']);
+				}
 		});
 	}
 }

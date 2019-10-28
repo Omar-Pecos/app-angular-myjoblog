@@ -3,8 +3,11 @@
 </div>
 
 <div class="contenido" *ngIf="journeys != undefined">
-	<div class="titulo">
+	<div *ngIf="identity.sub == theid" class="titulo">
 			<h2>{{title}}</h2>
+	</div>
+	<div *ngIf="identity.sub != theid" class="titulo">
+			<h2>Visualizando jornadas de trabajador</h2>
 	</div>
 <div class="container">
 	<div class="buscador row justify-content-center">
@@ -135,7 +138,7 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button (click)="getJourneysofOne()" type="button" class="btn btn-primary" data-dismiss="modal">
+	        <button (click)="getJourneysofOne(theid)" type="button" class="btn btn-primary" data-dismiss="modal">
 	        	<img  width="30" src="https://img.icons8.com/color/48/000000/search.png">&nbsp;&nbsp;Búsqueda Normal
 	    	</button>
 	      </div>

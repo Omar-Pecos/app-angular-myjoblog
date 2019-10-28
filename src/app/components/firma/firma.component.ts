@@ -103,7 +103,7 @@ ngOnInit(){
 										// JORNADA INICIADA ALERT
 										$(document).ready(function(){  
 													   $("#giffirma").html('<img width="70" src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif"><br><br>'+
-														'<div class="alert alert-info"><img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;<h6><b>Inicio de la jornada</b></h6><br><p>'+ response.init +'</p></div>');
+														'<div class="alert alert-info"><h6><img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;<b>Inicio de la jornada</b></h6><p>'+ response.init +'</p></div>');
 													});  
 											
 											// PARADAS DE LA JORNADA ALERT
@@ -121,10 +121,10 @@ ngOnInit(){
 														 minutes = "0" + date.getMinutes();
 														 seconds = "0" + date.getSeconds();
 
-														 cadena +='<hr><div class="alert alert-secondary"><img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;<h6>'+(i+1)+'º Pausa</h6><br> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</div>';
+														 cadena +='<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;"><div class="alert alert-secondary"><h6><img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;'+(i+1)+'º Pausa</h6><p> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</p></div>';
 													
 															if (i == (num-1)){
-																cadena +='<div class="alert alert-danger"><h6><b>Total tiempo no trabajado : </b>'+response.time_lost+' minutos </h6></div>';
+																cadena +='<hr><div class="alert alert-danger"><h6><img src="https://img.icons8.com/color/48/000000/pause.png"><b>Total tiempo no trabajado : </b>'+response.time_lost+' minutos </h6></div><hr>';
 															}
 												}
 												 $(document).ready(function(){  
@@ -137,8 +137,8 @@ ngOnInit(){
 											if (this.paused != 0){
 												this.title = "Jornada Pausada";
 												$(document).ready(function(){  
-													  $("#giffirma").append('<hr>'+
-													'<div class="alert alert-warning"><img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;<h6><b>Pausa</b></h6><br> Tiempo en parada : '+ response.paused +'min </div>');
+													  $("#giffirma").append('<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;">'+
+													'<div class="alert alert-warning"><h6><img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;<b>Pausa</b></h6><p>Tiempo en parada : '+ response.paused +' min </p></div>');
 													}); 
 												
 											}	
@@ -175,14 +175,14 @@ ngOnInit(){
 
 
 							/* SI ES LA CANTIDAD ESPERADA DE DIAS HACE EL TRIGRERR DEL PDF  */	
-								if (this.quantity >= 3){
-									console.log("----------------trigereeeddddd !!!!!!!!!!!!!!!");
+								if (this.quantity >= 2){
+									console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
 									/* TRIGGER EL PDF */ 
 												this._pdfService.generate_pdf(this.token,this.pdfjourneys).subscribe(
 										              response =>{ 
 										    			console.log(<any>response);
 
-										    				this.infomsg = "Un pdf ha sido generado para ti . Acude a la sección de Mis Pdf para visualizarlo,guardarlo";
+										    				this.infomsg = " ¡ Un pdf ha sido generado para ti ! Para visualizarlo o guardarlo, dirígete a la sección de ";
 										    				this.globals.infomsg = this.infomsg;
 
 										    				this.setTrigger(this.token,0,'0');
@@ -408,7 +408,7 @@ ngOnInit(){
 								var date = new Date(response.journey.date);
 								var ifmonday = date.getDay();
 
-								if (ifmonday == 3 || this.quantity > 0){
+								if (ifmonday == 1 || this.quantity > 0){
 									this.week = true;
 								}
 
@@ -442,9 +442,12 @@ ngOnInit(){
 							this.jornada_activa = true;
 							this.title = "Jornada Pausada";
 							//this.paused = true;
-									this.paused = 999;
+									
 									// se actualiza la info
 									this.HasActiveJourney(this.token);
+
+									console.log("	thuis paused ----------->"+this.paused);
+									//this.paused = 0.017;
 						},
 						error =>{
 							console.log(<any>error);

@@ -7,11 +7,11 @@
 		
 
 <div class="alert alert-success" *ngIf="status == 'success'">
-	Tus datos han sido modificados 
+	El perfil ha sido modificado correctamente 
 </div>
 <div class="alert alert-danger" *ngIf="status == 'error'">
-	No se han editado tus datos
-
+	No se ha editado el perfil
+	<br>
 	<ul *ngFor="let item of errors | keyvalue">
      	<li>Error in <b>{{item.key}}</b>: <b>{{item.value}}</b></li>
     </ul>

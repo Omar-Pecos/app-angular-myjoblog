@@ -16,16 +16,19 @@ export class LineChartComponent implements OnChanges {
   public idselected = 'NO';
   public oldusers : number[];
 
-  private _privProp: string;
- //@Input() public simpleText: string;
+  private _privId: string;
+  private _privColor : any;
 
- @Input() public set simpleText(value: string) {
-    console.log(`This is pubProp value change detected in setter method: ${value}`);
-    this._privProp = value;
+ @Input() public set theId(value: string) {
+   // console.log(`This is pubProp value change detected in setter method: ${value}`);
+    this._privId = value;
   }
-
-  public get pubProp() {
-    return this._privProp;
+  /*public get pubProp() {
+    return this._privId;
+  }*/
+  @Input() public set theColor(value: any) {
+    //console.log(`TheColor  value change detected in setter method: ${value}`);
+    this._privColor = value;
   }
 
   public lineChartOptions = {
@@ -57,15 +60,41 @@ export class LineChartComponent implements OnChanges {
          this.identity = this._userService.getIdentity();
          this.token = this._userService.getToken(); 
 
-         // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
+          this.loading = true;
+
+        this.Call2DefaultData();
+   }
+
+  ngOnInit() {
+     
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+
+
+     if (this._privId != '-1' && this.oldusers.includes(parseInt(this._privId)) == false  && this._privColor != '0'){
+
+            this.oldusers.push(parseInt(this._privId));
+            this.loading = true;
+
+            this.Addlinechartdata(this._privId,this._privColor);
+      }  
+
+      /*if (this.oldusers != '0' && this.oldusers.length == 2 ){
+        this.Call2DefaultData();
+      } */
+}
+
+  Call2DefaultData()  {
+          // llamada que devuelve los 2 primeros users mas antiguos !! por ejemplo
          this._userService.get2First(this.token).subscribe(
               response =>{
                  
                      this.oldusers = response.users;
 
-                             //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
-                  this._graphService.data_line_pormes(this.token,this.oldusers[0]).subscribe(
-                        response => {
+                        //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
+                       this._graphService.data_line_pormes(this.token,this.oldusers[0]).subscribe(
+                            response => {
 
                                 this.lineChartData = [
                                   {data: response.data_line, label: response.label}
@@ -90,9 +119,9 @@ export class LineChartComponent implements OnChanges {
                                                          // display el grafico !
                                                            this.loading = false;
 
-                                                            console.log("idselected ->"+this.idselected);
+                                                           /* console.log("idselected ->"+this.idselected);
                                                               console.log(this.loading);
-                                                              console.log(this.lineChartData[0].data);
+                                                              console.log(this.lineChartData[0].data);*/
                                                   },
                                                   error =>{
                                                        console.log(<any>error);
@@ -109,29 +138,11 @@ export class LineChartComponent implements OnChanges {
               error =>{
 
               }
-          );
-
-        
-   }
-
-  ngOnInit() {
-     console.log("simpleText -> "+this.simpleText);
+          );     
   }
 
-  ngOnChanges(changes: SimpleChanges){
 
-     if (this._privProp != '-1' && this.oldusers.includes(parseInt(this._privProp)) == false){
-
-            this.oldusers.push(parseInt(this._privProp));
-            this.loading = true;
-
-            this.Addlinechartdata(this._privProp);
-      }
-    
-}
-
-
-  GenColor(){
+  /*GenColor(){
       var color;
         var r;
         var g;
@@ -144,11 +155,11 @@ export class LineChartComponent implements OnChanges {
         color = {'r':r,'g':g,'b':b};
 
         return color;
-  }
+  }*/
 
-  Addlinechartdata(id){
+  Addlinechartdata(id,color){
     this.loading = true;
-     var color = this.GenColor();
+    /* var color = this.GenColor();*/
      var colorrgb = 'rgb('+color.r+','+color.g+','+color.b;
      var colorrgba = 'rgba('+color.r+','+color.g+','+color.b;
 
@@ -169,8 +180,8 @@ export class LineChartComponent implements OnChanges {
 
                         // display el grafico !
                          this.loading = false;
-                            console.log(this.loading);
-                            console.log(this.lineChartData[0].data);
+                          /*  console.log(this.loading);
+                            console.log(this.lineChartData[0].data);*/
                 },
                 error =>{
                      console.log(<any>error);

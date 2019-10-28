@@ -75,9 +75,10 @@
 						<a *ngIf="user.number != undefined" href="tel:{{user.number}}">{{user.number}}</a>
 					</td>
 					<td>
-						<a href="#">Perfil #{{user.id}}</a><br>
-						<a href="#">Jornadas #{{user.id}}</a><br>
+						<a [routerLink]="['/perfil',user.id]">Perfil #{{user.id}}</a><br>
+						<a [routerLink]="['/jornadas',user.id]">Jornadas #{{user.id}}</a><br>
 						<a href="#">Hacer admin ?¿ #{{user.id}}</a>
+						<a href="#">Eliminar #{{user.id}}</a>
 					</td>
 			</tr>
 		</table>

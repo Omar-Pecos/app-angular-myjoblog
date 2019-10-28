@@ -7,12 +7,55 @@
 	<div class="titulo">
 			<h2>{{title}}</h2>
 	</div>
-	<h4><b>Ver</b> : Visualiza el Pdf y descárgarlo en la localización deseada con un nombre personalizado</h4>
-	<h4><b>Descargar</b> : Descarga directa con un nombre por defecto a carpeta de descargas por defecto</h4>
-	<h4><b>Borrar</b> : Elimina el Pdf totalmente de la aplicación*
-		<br>*Es recomendable haberlo descargado primero así tendras una copia del registro de jornadas
-	</h4>
+	<br>
 
+<div id="accordion">
+  <div class="card">
+    <div class="card-header cardhometitulo" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-success btn-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+         	<b>Ver PDF</b> 
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body cardentrarbody">
+       	 	Visualiza el Pdf y descárgarlo en la localización deseada con un nombre personalizado
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header cardhometitulo" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-success btn-block collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          	<b>Descargar PDF</b> 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body cardentrarbody">
+       		 Descarga directa con un nombre generado originalmente a su carpeta de descargas por defecto
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header cardhometitulo" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-success btn-block collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          	<b>Eliminar PDF</b> 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body cardentrarbody">
+	        Elimina el Pdf totalmente de la aplicación (***)
+			<br><p style="color: red;">(***) Es recomendable haberlo descargado primero, así tú tendrás una copia del registro de jornadas semanales</p>
+      </div>
+    </div>
+  </div>
+</div>
+	<br>
 		<table class="table table-light table-hover responsive">
 			<tr class="cabecera-tabla">
 				<th>Id#</th>

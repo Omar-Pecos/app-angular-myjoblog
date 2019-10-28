@@ -27,6 +27,7 @@ export class JornadasComponent implements DoCheck {
   public sort_by = 'id';
 
   public searchselect:any  = 'date';
+  public theid;
 
   constructor(
   			private _route : ActivatedRoute,
@@ -37,11 +38,18 @@ export class JornadasComponent implements DoCheck {
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity();
 
-  			this.getJourneysofOne();
+         this._route.params.subscribe(
+            params=>{
+                this.theid = +params['id'];
+              
+               this.getJourneysofOne(this.theid);
+
+      });
+  			
   	}
 
-  getJourneysofOne(){
-    this._journeyService.getMyJourneys(this.identity.sub,this.token,this.getParams).subscribe(
+  getJourneysofOne(id){
+    this._journeyService.getMyJourneys(id,this.token,this.getParams).subscribe(
               response =>{
                 if (response.status == 'success'){
                   //console.log("MyJourneys response ->"+response);
@@ -61,6 +69,10 @@ export class JornadasComponent implements DoCheck {
                   }
                   this.order_now = response.order;
                   this.sort_by = response.sort_by;
+                }
+                else{
+                  // no tiene de la busqueda ?? 
+                    this.journeys = [];
                 }
               },
               error =>{
@@ -101,36 +113,38 @@ export class JornadasComponent implements DoCheck {
                       var diasinput = $("#diasinput").val();
                       var mesinput = $("#mesinput").val();
                       var anioinput = $("#anioinput").val();
+
+                      console.log("diasinput"+diasinput+"mesinput"+mesinput+"anioinput"+anioinput);
                       var mystring;
 
                          // dia, mes y año
-                        if (diasinput != null && mesinput != null && anioinput != null ){
+                        if (diasinput != '' && mesinput != '' && anioinput != '' ){
                              diasinput = diasinput > 9 ? "" + diasinput: "0" + diasinput;
                             mesinput =  mesinput > 9 ? "" + mesinput: "0" + mesinput;
                             mystring = anioinput+'-'+mesinput+'-'+diasinput;
                         }
                         // mes y año
-                        if (diasinput == null && mesinput != null && anioinput != null ){
+                        if (diasinput == '' && mesinput != '' && anioinput != '' ){
                             mesinput =  mesinput > 9 ? "" + mesinput: "0" + mesinput;
                             mystring = anioinput+'-'+mesinput;
                         }
                         // mes y dia
-                        if (diasinput != null && mesinput != null && anioinput == null ){
+                        if (diasinput != '' && mesinput != '' && anioinput == '' ){
                             diasinput = diasinput > 9 ? "" + diasinput: "0" + diasinput;
                             mesinput =  mesinput > 9 ? "" + mesinput: "0" + mesinput;
                             mystring = mesinput+'-'+diasinput;
                         }
 
                         //solo año
-                        if (diasinput == null && mesinput == null && anioinput != null ){
+                        if (diasinput == '' && mesinput == '' && anioinput != '' ){
                             mystring = anioinput+'-';
                         }
                         //solo mes
-                        if (diasinput == null && mesinput != null && anioinput == null ){
+                        if (diasinput == '' && mesinput != '' && anioinput == '' ){
                             mystring = '-'+mesinput+'-';
                         }
                         //solo dia
-                        if (diasinput != null && mesinput == null && anioinput == null ){
+                        if (diasinput != '' && mesinput == '' && anioinput == '' ){
                             mystring = '-'+diasinput;
                         }
 
@@ -198,7 +212,9 @@ export class JornadasComponent implements DoCheck {
                         AppComponent.myapp.scrollToTop();
                     }
 
-               this.getJourneysofOne();     
+                //
+                console.log("THIS.THEID >>>>>>>>>>>> "+this.theid);
+               this.getJourneysofOne(this.theid);     
             }
     }
 
@@ -212,7 +228,7 @@ export class JornadasComponent implements DoCheck {
   }
 
 
-//  A ESTO NO LE ECHES CUENTA !!!!!!!!!!!!!!!!!!
+/*//  A ESTO NO LE ECHES CUENTA !!!!!!!!!!!!!!!!!!
   // getImage()
 
   getImage(){
@@ -224,6 +240,6 @@ export class JornadasComponent implements DoCheck {
            console.log(<any>error);
           }
       );
-  }
+  }*/
 
 }

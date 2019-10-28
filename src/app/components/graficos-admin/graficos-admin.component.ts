@@ -15,6 +15,7 @@ export class GraficosAdminComponent implements OnInit {
   public users;
   public id = -1;
   public idselected = -1;
+  public color = '0';
 
    constructor(
   		 private _userService : UserService
@@ -29,6 +30,13 @@ export class GraficosAdminComponent implements OnInit {
                     console.log(this.users);
 
                     this.id = this.users[0].id;
+
+                    /*// coje los 2 primeros ids de los users 
+                      this.oldusers = [];
+                    for (let i=0;i<2;i++){
+                      this.oldusers.push(this.users[i].id);
+                    }*/
+
                 }
               },
               error =>{
@@ -46,10 +54,27 @@ export class GraficosAdminComponent implements OnInit {
 	   this.token = this._userService.getToken(); 
   }
 
+  GenColor(){
+      var color;
+        var r;
+        var g;
+        var b;
+
+        r = Math.floor(Math.random() * 255);
+        g = Math.floor(Math.random() * 255);
+        b = Math.floor(Math.random() * 255);
+
+        color = {'r':r,'g':g,'b':b};
+
+        return color;
+  }
+
   passID(){
-        // set var global ; idselected = this.idselected;
+        var color = this.GenColor();
+
         this.idselected = this.id;
-        console.log(this.idselected);
+        this.color = color;
+        console.log("COLOR DESDE EL PARENT ->"+this.color);
   }
 
 }
