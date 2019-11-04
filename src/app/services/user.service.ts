@@ -4,6 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {GLOBAL} from './global';
 import {User} from '../models/user';
 
+/*import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';*/
+
 @Injectable()
 
 export class UserService {
@@ -98,6 +101,16 @@ export class UserService {
 		let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
 										.set('Authorization',this.token);
 		return this._http.put(this.url+'users/'+id,params,{headers : headers});
+	}
+
+	setActive(token,id,active) : Observable<any> {
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'set_active?id='+id+'&active='+active,{headers : headers});
+	}
+
+	makeAdmin(token,id) : Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'make_admin?id='+id,{headers : headers});
 	}
 
 }

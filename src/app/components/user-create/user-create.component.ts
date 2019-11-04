@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import { Router , ActivatedRoute , Params} from '@angular/router';
+import { Router , ActivatedRoute ,Params} from '@angular/router';
 import { User} from '../../models/user';
 import {UserService} from '../../services/user.service';
 
 @Component({
-	selector: 'register',
-	templateUrl : './register.component.html',
+	selector: 'create',
+	templateUrl : './user-create.component.html',
 	providers: [UserService]
 })
 
-export class RegisterComponent implements OnInit{
-	public title: string = 'Regístrate';
+export class UserCreateComponent implements OnInit{
+	public title: string = 'Crear Usuario';
 	public user: User;
 	public status : string;
 
@@ -27,12 +27,13 @@ export class RegisterComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		console.log('register.component cargado correctamente !!');
-		this.user =  new User(1, 'user','','','','');
+		console.log('Create.component cargado correctamente !!');
+		this.user =  new User(99, 'user','','','','');
 		//this._userService = new UserService();
 	}
 
 	onSubmit(form){
+		
 		//console.log(this.user);
 		//console.log(this._userService.pruebas());
 
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit{
 						this.status = response.status;
 
 						// vaciar el form
-						this.user =  new User(1, 'ROLE_USER','','','','');
+						this.user =  new User(99, 'user','','','','');
 						form.reset();
 					}
 				},

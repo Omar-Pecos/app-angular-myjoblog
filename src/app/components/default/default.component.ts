@@ -75,7 +75,7 @@ export class DefaultComponent implements OnInit{
   					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')10%, rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 31%,rgba(245,247,249,0.7) 50%,rgba('+(color.r+40)+','+(color.g + 40)+','+(color.b +40)+','+color.a+') 69%,rgba('+color.r+','+color.g +','+color.b +','+color.a+')90%)');
 					*/
 					cajas.eq(i).css('background',
-  					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')15%,rgba(245,247,249,0.7) 50%,rgba('+color.r+','+color.g +','+color.b +','+color.a+') 85%)');
+  					 	'linear-gradient(225deg,rgba('+color.r+','+color.g +','+color.b +','+color.a+')0%,rgba(245,247,249,0.7) 50%,rgba('+color.r+','+color.g +','+color.b +','+color.a+') 100%)');
   				}
   			}
 

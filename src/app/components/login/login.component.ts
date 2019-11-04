@@ -42,25 +42,25 @@ export class LoginComponent implements OnInit{
 				response =>{
 				
 
-		if (response.status != 'error'){
-					this.status = 'success';
-					// conseguir el token
-					this.token = response;
-					localStorage.setItem('token',this.token);
-					// objeto usuario identificado
-					
-					this._userService.signup(this.user,true).subscribe(
-						response =>{
-									//datos del user
-									this.identity = response;
-									localStorage.setItem('identity',JSON.stringify(this.identity));
+				if (response.status != 'error'){
+							this.status = 'success';
+							// conseguir el token
+							this.token = response;
+							localStorage.setItem('token',this.token);
+							// objeto usuario identificado
+							
+							this._userService.signup(this.user,true).subscribe(
+								response =>{
+											//datos del user
+											this.identity = response;
+											localStorage.setItem('identity',JSON.stringify(this.identity));
 
-									//redireccion
-									this._router.navigate(['home']);
-								},
-								error =>{
-									console.log(<any>error);
-								}
+											//redireccion
+											this._router.navigate(['home']);
+										},
+										error =>{
+											console.log(<any>error);
+										}
 
 
 							);

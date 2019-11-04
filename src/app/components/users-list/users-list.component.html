@@ -5,8 +5,15 @@
 <div class="contenido" *ngIf="users != undefined">
 	<div class="titulo">
 			<h2>{{title}}</h2>
-		</div>
+	</div>
+
 	<div class="container">
+		
+		<br>
+			<button class="btn btn-info" [routerLink]="['/crear']">
+					<img src="https://img.icons8.com/color/50/000000/add-user-group-woman-woman.png">Crear Usuario
+				</button>
+				
 		<div class="buscador row justify-content-center">
 			<h3>Buscador</h3>
 			<select id="selectsearch" class="form-control">
@@ -64,6 +71,7 @@
 			<tr class="filadatos" *ngFor="let user of users">
 					<td>
 						{{user.id}} - {{user.role}}
+						<p *ngIf="user.active == 0" style="color:red;">No activo</p>
 					</td>
 					<td>{{user.name}} </td>
 					<td>{{user.surname}}</td>
@@ -75,11 +83,22 @@
 						<a *ngIf="user.number != undefined" href="tel:{{user.number}}">{{user.number}}</a>
 					</td>
 					<td>
-						<a [routerLink]="['/perfil',user.id]">Perfil #{{user.id}}</a><br>
-						<a [routerLink]="['/jornadas',user.id]">Jornadas #{{user.id}}</a><br>
-						<a href="#">Hacer admin ?¿ #{{user.id}}</a>
-						<a href="#">Eliminar #{{user.id}}</a>
+						<span  class="operacionesUser" *ngIf="user.active != 0">
+							<button class="btn btn-info" [routerLink]="['/perfil',user.id]">
+								<img src="https://img.icons8.com/color/40/000000/contact-card.png">&nbsp;Perfil #{{user.id}}</button>
+							<button  class="btn btn-info"[routerLink]="['/jornadas',user.id]">
+								<img src="https://img.icons8.com/color/32/000000/overview-pages-1.png">&nbsp;Jornadas #{{user.id}}</button>
+							<button class="btn btn-warning"  *ngIf="user.role == 'user'" (click)="MakeAdmin(user.id)">
+								<img src="https://img.icons8.com/color/32/000000/user-shield.png">&nbsp;Hacer Admin</button>
+							<button class="btn btn-danger" *ngIf="user.id != identity.sub" href="#">
+								<img src="https://img.icons8.com/color/32/000000/cancel--v1.png">&nbsp;Eliminar</button>
+						</span>
+						<span  *ngIf="user.active == 0"  class="operacionesUser">
+							<button  class="btn btn-danger" *ngIf="user.id != identity.sub" href="#">
+									<img src="https://img.icons8.com/color/32/000000/cancel--v1.png">&nbsp;Eliminar</button>
+						</span>
 					</td>
+						
 			</tr>
 		</table>
 	 </div>

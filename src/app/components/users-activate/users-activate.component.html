@@ -1,0 +1,37 @@
+<div  class="cargando text-center" *ngIf="users == undefined">
+  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+</div>
+
+<div class="contenido" *ngIf="users != undefined">
+	<div class="titulo">
+			<h2>{{title}}</h2>
+	</div>
+
+	
+		<div style="width: 70%;margin: 20px auto;" class="alert alert-success" *ngFor="let user of users">
+					
+					<h5><b> Nombre : {{user.name}} {{user.surname}}</b></h5>
+					<h5>
+						 ID,Rol : #{{user.id}} - {{user.role}}
+					</h5>
+					<h5> Email : {{user.email}}</h5>
+					<h5> DNI : {{user.dni}}</h5>
+						<br>	
+					<h6><b> Registrado : {{user.created_at}}</b></h6>
+
+					<div class="d-flex flex-row justify-content-center my-flex-container">
+					     <button (click)="ActivateUser(user.id,1)" class="p-2 my-flex-item btn btn-info">
+					     	<img src="https://img.icons8.com/color/48/000000/checked--v2.png">Activar
+					     </button> 
+					     <button (click)="ActivateUser(user.id,0)" class="p-2 my-flex-item btn btn-info">
+						     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+								width="48" height="48"
+								viewBox="0 0 172 172"
+								style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M157.66667,86c0,39.57792 -32.08875,71.66667 -71.66667,71.66667c-39.57792,0 -71.66667,-32.08875 -71.66667,-71.66667c0,-39.57792 32.08875,-71.66667 71.66667,-71.66667c39.57792,0 71.66667,32.08875 71.66667,71.66667z" fill="#f0857c"></path><path d="M106.26733,55.599l10.13367,10.13367l-50.66833,50.66833l-10.13367,-10.13367z" fill="#e53d2c"></path><path d="M116.401,106.26733l-10.13367,10.13367l-50.66833,-50.66833l10.13367,-10.13367z" fill="#e53d2c"></path></g></g></svg>
+							Cancelar
+					 	</button>
+					     
+					</div>
+		</div>
+
+</div>

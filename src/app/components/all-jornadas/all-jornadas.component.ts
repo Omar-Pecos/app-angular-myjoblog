@@ -20,6 +20,7 @@ export class AllJornadasComponent implements DoCheck {
 	public identity;
 	public journeys: any[];
   public myapp: AppComponent;
+  public ListUsers = [];
 	public selecteduser:string = 'Identificador';
   
   public latitudesYlongitudes: string[] = [];
@@ -43,7 +44,22 @@ export class AllJornadasComponent implements DoCheck {
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity();
 
-  			this.getJourneysofAll();
+
+        this._userService.getUsers(this.token,this.getParams).subscribe(
+              response =>{
+                  this.ListUsers = response.users.data;
+
+                 /* for (let i = 0;i<users.length;i++){
+                      this.ListUsers.push(users[i].id);
+                  }*/
+
+                     this.getJourneysofAll();
+              },
+              error =>{
+                  console.log(<any>error);
+              }
+          )
+  			
 
   	 }
 
@@ -109,33 +125,33 @@ export class AllJornadasComponent implements DoCheck {
                       var mystring;
 
                          // dia, mes y año
-                        if (diasinput != null && mesinput != null && anioinput != null ){
+                        if (diasinput != '' && mesinput != '' && anioinput != '' ){
                              diasinput = diasinput > 9 ? "" + diasinput: "0" + diasinput;
                             mesinput =  mesinput > 9 ? "" + mesinput: "0" + mesinput;
                             mystring = anioinput+'-'+mesinput+'-'+diasinput;
                         }
                         // mes y año
-                        if (diasinput == null && mesinput != null && anioinput != null ){
+                        if (diasinput == '' && mesinput != '' && anioinput != '' ){
                             mesinput =  mesinput > 9 ? "" + mesinput: "0" + mesinput;
                             mystring = anioinput+'-'+mesinput;
                         }
                         // mes y dia
-                        if (diasinput != null && mesinput != null && anioinput == null ){
+                        if (diasinput != '' && mesinput != '' && anioinput == '' ){
                             diasinput = diasinput > 9 ? "" + diasinput: "0" + diasinput;
                             mesinput =  mesinput > 9 ? "" + mesinput: "0" + mesinput;
                             mystring = mesinput+'-'+diasinput;
                         }
 
                         //solo año
-                        if (diasinput == null && mesinput == null && anioinput != null ){
+                        if (diasinput == '' && mesinput == '' && anioinput != '' ){
                             mystring = anioinput+'-';
                         }
                         //solo mes
-                        if (diasinput == null && mesinput != null && anioinput == null ){
+                        if (diasinput == '' && mesinput != '' && anioinput == '' ){
                             mystring = '-'+mesinput+'-';
                         }
                         //solo dia
-                        if (diasinput != null && mesinput == null && anioinput == null ){
+                        if (diasinput != '' && mesinput == '' && anioinput == '' ){
                             mystring = '-'+diasinput;
                         }
 

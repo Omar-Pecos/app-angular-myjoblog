@@ -36,6 +36,10 @@ import { AdminDonutDiaComponent } from './components/graficos-admin/admin-donut-
 import { AdminDonutMesComponent } from './components/graficos-admin/admin-donut-mes/admin-donut-mes.component';
 import { AdminDonutAnioComponent } from './components/graficos-admin/admin-donut-anio/admin-donut-anio.component';
 
+import { Error404Component } from './components/error404/error404.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
+import { UsersActivateComponent } from './components/users-activate/users-activate.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +63,10 @@ import { AdminDonutAnioComponent } from './components/graficos-admin/admin-donut
     PieChartComponent,
     AdminDonutDiaComponent,
     AdminDonutMesComponent,
-    AdminDonutAnioComponent
+    AdminDonutAnioComponent,
+    Error404Component,
+    UserCreateComponent,
+    UsersActivateComponent
   ],
   imports: [
     BrowserModule,

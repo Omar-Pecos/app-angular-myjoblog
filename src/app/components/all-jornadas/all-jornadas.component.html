@@ -15,8 +15,7 @@
 				<h3>Buscador de ID</h3>
 				<select class="form-control" [(ngModel)]="selecteduser">
 					<option value="Identificador" >...</option>
-					<option value="1">Omar Pecos Paisa</option>
-					<option value="2">Luis Ruiz</option>
+						<option *ngFor="let user of ListUsers" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
 				</select>
 				<input class="form-control" type="text" value="{{selecteduser}}" disabled>
 			</div>
@@ -45,7 +44,7 @@
 								<input id="minutosinput" class="form-control" type="number" placeholder="MM">	
 						</span>
 						<span *ngIf="searchselect == 'id'">
-							<input id="inputid" class="form-control" type="text" placeholder="Value">
+							<input id="inputid" class="form-control" type="text" value="{{selecteduser}}">
 						</span>
 						
 				<input (click)="addgetParams('','search')" data-toggle="modal" data-target="#appendurlModal" type="button" value="Buscar" class="btn btn-success">
@@ -100,14 +99,16 @@
 					<td>{{jornada.initial_time}}</td>
 					<td>{{jornada.final_time}}</td>
 					<td>
+						<b>{{jornada.user.dni}}</b>
+							<br>
 						<button class="btn btn-warning" (click)="setLatLon(jornada.initial_pos,jornada.final_pos,jornada.user_data)">
 							<img src="https://img.icons8.com/color/48/000000/spy-male--v2.png">&nbsp;
 								Inspeccionar
 						</button>
 							<br>
-						<a href="#">Perfil #{{jornada.user_id}} - {{jornada.user_data.name}}</a>
+						<a href="#">Perfil #{{jornada.user_id}} - {{jornada.user.name}}</a>
 							<br>
-						<a href="#">Jornadas #{{jornada.user_id}} - {{jornada.user_data.name}}</a>
+						<a href="#">Jornadas #{{jornada.user_id}} - {{jornada.user.name}}</a>
 					</td>
 				</tr>
 			</table>

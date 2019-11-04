@@ -16,9 +16,13 @@ import { ArchivosComponent } from './components/archivos/archivos.component';
 import { GraficosComponent } from './components/graficos/graficos.component';
 import { GraficosAdminComponent } from './components/graficos-admin/graficos-admin.component';
 
+import { Error404Component } from './components/error404/error404.component';
+import { UserCreateComponent } from './components/user-create/user-create.component';
+import { UsersActivateComponent } from './components/users-activate/users-activate.component';
+
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},
-	{path : 'inicio', component: DefaultComponent},
+	{path : 'home', component: DefaultComponent},
 	{path : 'login' , component: LoginComponent},
 	{path : 'logout/:sure' , component: LoginComponent},
 	{path : 'registro', component : RegisterComponent},
@@ -30,7 +34,10 @@ const appRoutes: Routes = [
 	{path : 'archivos', component : ArchivosComponent},
 	{path : 'graficos', component : GraficosComponent},
 	{path : 'graficos_administrador', component : GraficosAdminComponent},
-	{path: '**', component: DefaultComponent}
+	{path : 'crear', component : UserCreateComponent},
+	{path : 'activar', component : UsersActivateComponent},
+	{path : '**', component : Error404Component },
+	//{path: '**', component: DefaultComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

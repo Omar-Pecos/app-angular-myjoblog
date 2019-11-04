@@ -1,0 +1,70 @@
+
+<div class="contenido">
+
+
+<div class="alert alert-success" *ngIf="status == 'success'">
+	Se ha creado correctamente el nuevo usuario y no necesita activación
+</div>
+<div class="alert alert-danger" *ngIf="status == 'error'">
+	El proceso de creación no se ha completado correctamente
+</div>
+
+<!-- card como la de HOme LOGIN -->
+<div class="card text-center cardhome">
+                <div class="card-header cardhometitulo">
+                   <div class="titulo">
+						<h2>{{title}}</h2>
+					</div>
+                </div>
+                <div class="card-body cardentrarbody">
+                      	<form #createForm="ngForm" (ngSubmit)="onSubmit(createForm)">
+							<p>
+								<label for="name"><b>Nombre</b></label>
+								<input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
+								<span *ngIf="!name.valid && name.touched">	El nombre es obligatorio
+								</span>
+							</p>
+							<p>
+								<label for="surname"><b>Apellidos</b></label>
+								<input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required>
+								<span *ngIf="!surname.valid && surname.touched">	Los apellidos son obligatorios
+								</span>
+							</p>
+							<p>
+								<label for="email"><b>Email</b></label>
+								<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
+								<span *ngIf="!email.valid && email.touched">	El email es obligatorio
+								</span>
+							</p>
+							<p>
+								<label for="dni"><b>DNI</b></label>
+								<input type="text" name="name" #dni="ngModel" [(ngModel)]="user.dni" class="form-control" required>
+								<span *ngIf="!dni.valid && dni.touched">	El DNI es obligatorio
+								</span>
+							</p>
+							<p>
+								<label for="role"><b>Rol de usuario</b></label>
+								<select  name="role" #role="ngModel" [(ngModel)]="user.role" class="form-control">
+									<option value="user" selected>Usuario</option>
+									<option value="admin" selected>Administrador</option>
+								</select>
+			
+							</p>
+							<p>
+								<label for="password"><b>Contraseña</b></label>
+								<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required>
+								<span *ngIf="!password.valid && password.touched">	La contraseña es obligatoria
+								</span>
+							</p>
+							<p>
+								<label for="password"><b>Confirmación contraseña</b></label>
+								<input type="password" name="password_confirmation" #password="ngModel" [(ngModel)]="user.password_confirmation"  class="form-control" required>
+							</p>
+
+							<input type="submit" value="Registrarme" class="btn btn-info" [disabled]="!createForm.form.valid">
+						</form>		
+                </div>
+</div>
+	
+</div>
+

@@ -125,4 +125,21 @@ export class UsersListComponent implements DoCheck {
         }
     }
 
+    MakeAdmin(id){
+
+      this._userService.makeAdmin(this.token,id).subscribe(
+              response =>{
+                     this.getUsersAll(); 
+                }
+              ,
+              error =>{
+                console.log(<any>error);
+              }
+            );
+
+    }
+    DeleteUser(id){
+
+    }
+
 }

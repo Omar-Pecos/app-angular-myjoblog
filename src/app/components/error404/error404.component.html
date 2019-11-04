@@ -1,0 +1,16 @@
+<div *ngIf="infoerror" class="alert alert-danger">
+	{{infoerror}}
+</div>
+
+<div style="width: 100%;">
+			<br>
+				<div class="titulo">
+					<h1>{{title}}</h1>
+				</div>
+			<br>
+		<div class="contenedor404">
+		<button class="btn btn-success" [routerLink]="['/home']">Inicio</button>
+				<img width="200" src="assets/images/404.png"> 
+		</div>	
+	
+</div>

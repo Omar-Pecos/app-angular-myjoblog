@@ -3,7 +3,7 @@
 <div class="contenido" *ngIf="identity">  
   <!-- Infomsg -->
       <div *ngIf="infomsg != ''" class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>¡Antención!</strong> {{infomsg}}<a [routerLink]="['/archivos']"><b>Mis Pdf</b></a>
+        <strong>¡Antención!</strong> {{infomsg}}<a [routerLink]="['/crear']"><b>Mis Pdf</b></a>
         <button type="button" (click)="setinfomsg('')" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -11,11 +11,12 @@
 
       <div class="heroimage">
         <div>
-          <img width="100" src="https://cpb-us-w2.wpmucdn.com/u.osu.edu/dist/8/41046/files/2016/12/binoculars-2leccg7.gif">
+          <img style="margin-right: 30px;" width="100" src="https://img.icons8.com/color/48/000000/client-company.png">
+         <!-- <img width="100" src="https://cpb-us-w2.wpmucdn.com/u.osu.edu/dist/8/41046/files/2016/12/binoculars-2leccg7.gif"> -->
         </div>
         <div id="titulohome">
-           <h1>  {{identity.name}} {{identity.surname}}</h1>
-           <h2>  {{title}}</h2>
+              <div class="emboss-txt"> Inicio </div>
+              <h1>{{identity.name}} {{identity.surname}}</h1>
         </div>
       </div>
       
@@ -48,13 +49,18 @@
       <hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;">
     <br>
     <div class="titulo">
-      <h2 style="text-align: center;">Menú Administrador</h2>
+      <h2 style="text-align: center;">Administrador</h2>
     </div>
     <br>
     <br>
 </span>
 
   <div class="containerhome" *ngIf="identity.role == 'admin'">
+        <span class="divhome" [routerLink]="['/activar']" >
+                 <img src="https://img.icons8.com/color/96/000000/reviewer-female.png">
+                  <button class="btn btn-info ">Activar Usuarios</button>
+             
+          </span>
           <span class="divhome" [routerLink]="['/usuarios']" >
                   <img src="https://img.icons8.com/color/96/000000/user-group-man-woman.png">
                   <button class="btn btn-info ">Usuarios</button>
@@ -99,7 +105,7 @@
 		 
       <div class="card text-center cardhome">
                 <div class="card-header cardhometitulo">
-                    <div class="titulo-grafico">
+                    <div class="titulo-HOME">
                         <h1>MyJob Log</h1>
                     </div>
                 </div>
@@ -115,7 +121,7 @@
                         <button id="btnlogin" class="btn btn-info btn-lg btn-block" [routerLink]="['/login']" >Entrar</button>
                 </div>
                 <div class="card-footer cardhometitulo">   
-                    <div class="titulo-grafico">
+                    <div class="titulo-HOME">
                       <h4><b>2019</b></h4>
                     </div>
                 </div>

@@ -16,6 +16,7 @@ body{
 
 /* HOME */
 .cardhome{
+	border: none !important;
 	width: 40%;
 	margin: 140px auto;
 
@@ -136,16 +137,15 @@ body{
 }
 
 .heroimage div{
-	padding-left: 30px;
+	/*padding-left: 30px;*/
 }
 #titulohome{
-	position: relative;
-	top: -10px;
+	margin-bottom: 30px;
 }
 .titulo{
 	animation: heroAnimation 2s forwards 0s ease;
 }
-.titulo-grafico{
+.titulo-grafico, .titulo-HOME{
 	animation: titulograficoAnimation 2s forwards 0.5s ease-in-out;
 }
 @keyframes titulograficoAnimation{
@@ -158,6 +158,60 @@ body{
         opacity: 1;
         }
 }
+/* Nombre del user en home - decorado */
+.emboss-txt , .titulo , .titulo-HOME{
+  filter: blur(0.5px);
+  position: relative;
+  font-size: 120px;
+  letter-spacing: 5px;
+  text-shadow: 
+  /*3d layers*/
+  0px 0px 1px rgb(37,40,80),
+  0px 1px 1px rgb(37,40,80),
+  0px 2px 1px rgb(37,40,80),
+
+  1px 1px 1px rgb(37,40,80),
+  1px 2px 1px rgb(37,40,80),
+  1px 3px 1px rgb(37,40,80),
+
+  2px 2px 1px rgb(37,40,80),
+  2px 3px 1px rgb(37,40,80),
+  2px 4px 1px rgb(37,40,80),
+
+  /*long soft bottom*/
+  1px 10px 30px rgba(0,0,0,0.3),
+  1px 10px 70px rgba(0,0,0,0.3),
+
+  /*short soft bottom*/
+  0px 5px 5px rgba(0,0,0,0.3),
+
+  /*left shadow*/
+  -5px 5px 20px rgba(0,0,0,0.3),
+  /*right shadow*/
+  5px 5px 20px rgba(0,0,0,0.3),
+
+  /*white light*/
+  1px 1px 120px rgba(255,255,255,0.5);
+}
+.emboss-txt::after {
+  content: "Inicio";
+  font-size: 120px;
+  letter-spacing: 5px;
+  position: absolute;
+  top:0;
+  left:0;
+  text-shadow: 0px 0px 100px rgba(11,124,199,1);
+  animation: cycle 5s linear infinite;
+}
+@keyframes cycle {
+  0% { text-shadow: 0px 0px 100px rgba(11,124,199,1);}
+  20% { text-shadow: 0px 0px 100px rgba(168,11,199,1);}
+  40% { text-shadow: 0px 0px 100px rgba(11,199,96,1);}
+  60% { text-shadow: 0px 0px 100px rgba(199,11,11,1);}
+  80% { text-shadow: 0px 0px 100px rgba(199,96,11,1);}
+}
+
+
 .containerhome{
 	display: flex;
 	flex-flow: row wrap;
@@ -197,8 +251,8 @@ body{
 /* div general de contenido */
 .contenido {
 	/*background-color: #beff65;*/
-	
 	/*background-color: #BFFF8E;*/
+
 	background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
 	color: #3e78b2 !important;
 	padding: 20px 30px;
@@ -408,6 +462,28 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 .dosgraficos  > *{
 	width: 500px;
 }
+
+.contenedor404{
+	width: 60%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.contenedor404 button{
+	margin: 15px auto;
+	width: 30%;
+}
+.contenedor404 img{
+	margin: 0 auto;
+}
+
+.operacionesUser{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
 	 
 
 @media (max-width: 576px) {
@@ -420,13 +496,10 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	}
 	.heroimage{
 		flex-flow: row nowrap;
-		margin-bottom: 15px;
+		/*margin-bottom: 15px;*/
 	}
 	.heroimage img {
-		width: 70px;
-	}
-	.heroimage div{
-		padding-left: 10px;
+		width: 60px;
 	}
 	.divhome{
 		margin: 0;
@@ -438,9 +511,14 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	}
 	.contenido {
 		/*height: 100%;*/
+		padding: 20px 0px;
+	}
+
+	.titulo , .heroimage , .buscadores{
+		padding: 20px 30px;
 	}
 	.buscador{
-		width: 240px;
+		width: 90%;
 		margin: 10px ;
 	}
 	.modal-dialog {
@@ -457,6 +535,14 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	.dosgraficos  > *{
 		width: 340px;
 	}
+
+	.emboss-txt {
+		font-size: 80px;
+	}
+	.emboss-txt::after {
+		  font-size: 80px;
+	}
+
 	/*.canvasholder{
 		height: 150px;
 	}
