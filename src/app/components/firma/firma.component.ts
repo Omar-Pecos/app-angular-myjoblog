@@ -64,27 +64,38 @@ export class FirmaComponent implements OnInit,DoCheck{
 						this.HasActiveJourney(this.token);
 				}
 
-ngOnInit(){	
+		ngOnInit(){	
 
-	/*// call to get triggerpdf DATA					
-			*/
-			 $(document).ready(function(){  
-				console.log("document.ready");						 	
-			}); 
+			/*// call to get triggerpdf DATA					
+					*/
+					 $(document).ready(function(){  
+						console.log("document.ready");						 	
+					}); 
+					
+
+					this.getTrigger(this.token);		
+			}
+
+
+			ngAfterViewInit() {	
 			
 
-			this.getTrigger(this.token);		
-	}
+		}
 
-
-	ngAfterViewInit() {	/// esto por lo menos el set no me lo hace aunque despues en el runtime si !!! 
-    // this.signaturePad is now available
-  /*  console.log("AfterViewInit ():");
-    console.log("signaturePad   --> "+this.signaturePad);
-    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
-    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API*/
-
-}
+	isGeolocationEnabled = function () {
+				    navigator.geolocation.getCurrentPosition (
+				        function() {
+				            return 'true';
+				        },
+				        function (error) { 
+				            if (error.code == error.PERMISSION_DENIED) {
+				                return 'false';
+				            }
+				            else {          
+				                return 'true';
+				        }
+				    });
+				}
 
 		HasActiveJourney(token){
 			this._journeyService.hasactiveJourney(token).subscribe(
@@ -142,8 +153,11 @@ ngOnInit(){
 													}); 
 												
 											}	
-									}
+									}	
 								}
+								// pregunta otra vez para aceptar la Ubicación
+								this.isGeolocationEnabled();
+								
 						},
 							error =>{
 								console.log(<any>error);
@@ -287,8 +301,9 @@ ngOnInit(){
 		                      if (navigator.geolocation) {
 		                     	navigator.geolocation.getCurrentPosition(putPosition);
 		                      } else {
-		                        alert("La Geolocalización no está disponible en este navegador");
-		                        // hacer la peticion tmb con unos valores nodisponible o algo así!!!
+		                        console.log("La Geolocalización no está disponible en este navegador");
+		                         	$('#latini').val('nada');
+		                    		$('#lonini').val('nada');
 		                      }
 		                    }
 
@@ -358,9 +373,10 @@ ngOnInit(){
 				 function cogerLocation() {
 		                      if (navigator.geolocation) {
 		                     	navigator.geolocation.getCurrentPosition(ponerPosition);
-		                      } else {
-		                        alert("La Geolocalización no está disponible en este navegador");
-		                        // hacer la peticion tmb con unos valores nodisponible o algo así!!!
+		                      } else { 
+			                        console.log("La Geolocalización no está disponible en este navegador");
+			                         	 $('#latend').val('nada');
+			                    		 $('#lonend').val('nada');
 		                      }
 		                    }
 

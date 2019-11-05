@@ -1,8 +1,8 @@
-<div  class="cargando text-center" *ngIf="users == undefined">
+<div  class="cargando text-center" *ngIf="loading == true">
   <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
 </div>
 
-<div class="contenido" *ngIf="users != undefined">
+<div class="contenido" *ngIf="loading == false">
 	<div class="titulo">
 			<h2>{{title}}</h2>
 	</div>
@@ -90,11 +90,11 @@
 								<img src="https://img.icons8.com/color/32/000000/overview-pages-1.png">&nbsp;Jornadas #{{user.id}}</button>
 							<button class="btn btn-warning"  *ngIf="user.role == 'user'" (click)="MakeAdmin(user.id)">
 								<img src="https://img.icons8.com/color/32/000000/user-shield.png">&nbsp;Hacer Admin</button>
-							<button class="btn btn-danger" *ngIf="user.id != identity.sub" href="#">
+							<button class="btn btn-danger" *ngIf="user.id != identity.sub" (click)="SetIdUser(user.id)" >
 								<img src="https://img.icons8.com/color/32/000000/cancel--v1.png">&nbsp;Eliminar</button>
 						</span>
 						<span  *ngIf="user.active == 0"  class="operacionesUser">
-							<button  class="btn btn-danger" *ngIf="user.id != identity.sub" href="#">
+							<button  class="btn btn-danger" *ngIf="user.id != identity.sub" (click)="SetIdUser(user.id)" >
 									<img src="https://img.icons8.com/color/32/000000/cancel--v1.png">&nbsp;Eliminar</button>
 						</span>
 					</td>
@@ -161,4 +161,25 @@
 	    </div>
   	  </div>
     </div>
+
+<!-- MODAL DE CONFIRMACION DE ELIMINAR -->
+    <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><b>Confirmación</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>¿Desea realmente eliminar a este usuario?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="DeleteUser(id_user)">Eliminar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

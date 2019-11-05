@@ -113,4 +113,9 @@ export class UserService {
 			return this._http.get(this.url+'make_admin?id='+id,{headers : headers});
 	}
 
+	deleteUser(token,id) : Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.delete(this.url+'users/'+id,{headers : headers});
+	}
+
 }

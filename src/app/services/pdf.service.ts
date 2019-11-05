@@ -52,10 +52,16 @@ export class PdfService {
 	}
 
 
-	get_files(token):Observable<any>{
+	get_files(token,getParams):Observable<any>{
+		
+		var urlparams = '';
+		if (getParams != undefined){
+			var urlparams = '?'+getParams;
+		}
 			let headers = new HttpHeaders().set('Authorization',token);
-			return this._http.get(this.url+'get_files',{headers : headers});
+			return this._http.get(this.url+'get_files'+urlparams,{headers : headers});
 	}
+
 
 	/*see_pdf(name):Observable<any>{
 			//let headers = new HttpHeaders().set('Authorization',token);

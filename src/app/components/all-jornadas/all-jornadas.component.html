@@ -65,7 +65,7 @@
 					<th>Firma</th>
 					<th [ngStyle]="{'background-color':sort_by === 'time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=time&order='+order,'add')">
-						Duración (s)
+						Duración [horas]
 							<span *ngIf="sort_by == 'time'">({{ order_now | uppercase }})</span>
 							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
 							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">

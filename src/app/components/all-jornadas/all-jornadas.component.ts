@@ -239,6 +239,12 @@ export class AllJornadasComponent implements DoCheck {
 
   setLatLon(coordIni,coordEnd,user_data){
 
+    /*
+        <iframe width="100%" height="300" src="https://maps.google.com/maps?width=100%&height=300&hl=es&coord=37.2546586,-6.9484613&q=+()&ie=UTF8&t=&z=15&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+        </iframe>
+    */
+   
+
     this.latitudesYlongitudes = [];
 
       var ini = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordIni[0]+','+coordIni[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';

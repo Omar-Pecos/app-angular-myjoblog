@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
    providers: [UserService]
 })
 export class UserPerfilComponent implements OnInit {
-	public title: string = 'Mi Perfil';
+	public title: string = 'Perfil';
 	public status:string;
 	public errors :any[];
 	public token;
@@ -51,9 +51,14 @@ export class UserPerfilComponent implements OnInit {
               }
           },
           error =>{
-            console.log(<any>error);
-            // SI EL ERROR ES DE CODIGO 401 UNAUTORIZEHD O ALGUNO DE ESTOS PUES --> AL HOME
-              this._router.navigate(['home']);
+            // se puede comentar 
+            console.log("$$$ - Error - $$$ -> "+<any>error.error.code);
+
+          // SI EL ERROR ES DE CODIGO 401 UNAUTORIZEHD O ALGUNO DE ESTOS PUES --> AL HOME
+             if (error.error.code == 401){
+                this._router.navigate(['home']);
+              }
+           
           }
         );
   }

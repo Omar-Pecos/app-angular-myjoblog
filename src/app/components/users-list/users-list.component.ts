@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { JourneyService } from '../../services/journey.service';
 // for scroll top
 import {AppComponent} from '../../app.component';
+declare var $: any 
 
 @Component({
   selector: 'app-users-list',
@@ -19,6 +20,8 @@ export class UsersListComponent implements DoCheck {
 	public identity;
 	public users: any[];
   public myapp: AppComponent;
+  public loading;
+  public id_user;
 
   public getParams:string = '';
   public pageInfo:any;
@@ -35,6 +38,7 @@ export class UsersListComponent implements DoCheck {
      
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity(); 
+        this.loading = true;
 
   			this.getUsersAll();
   		}
@@ -60,6 +64,8 @@ export class UsersListComponent implements DoCheck {
                   }
                   this.order_now = response.order;
                   this.sort_by = response.sort_by;
+
+                  this.loading = false;
                   
                 }
               },
@@ -138,7 +144,30 @@ export class UsersListComponent implements DoCheck {
             );
 
     }
+    SetIdUser(value){
+
+      this.id_user = value;
+      $("#deleteModal").modal('show');
+
+   /*$(function() {
+         $('#mapsModal').modal('show');
+    });*/
+
+    }
     DeleteUser(id){
+        this.loading = true;
+       
+
+      this._userService.deleteUser(this.token,id).subscribe(
+              response =>{
+                     this.getUsersAll(); 
+                }
+              ,
+              error =>{
+                console.log(<any>error);
+              }
+            );
+
 
     }
 

@@ -43,6 +43,7 @@ export class DefaultComponent implements OnInit{
 
 	}
 
+
 	ngOnInit(){
 		console.log('2º ---> default.component cargado correctamente !!');
 		this.user =  new User(1, 'ROLE_USER','','','','');

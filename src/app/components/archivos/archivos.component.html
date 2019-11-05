@@ -1,9 +1,9 @@
 <!-- queda por hacer los exports un modelo y poder filtrarlo y tal con el ShowAll() -->
-<div  class="cargando" *ngIf="!files">
+<div  class="cargando" *ngIf="loading">
   <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
 </div>
 
-<div class="contenido" *ngIf="files">
+<div class="contenido" *ngIf="!loading">
 	<div class="titulo">
 			<h2>{{title}}</h2>
 	</div>
@@ -58,9 +58,28 @@
 	<br>
 		<table class="table table-light table-hover responsive">
 			<tr class="cabecera-tabla">
-				<th>Id#</th>
-				<th>Fecha y Hora</th>
-				<th>Nombre</th>
+
+         
+			  <th [ngStyle]="{'background-color':sort_by === 'id' ? '#F39C12' : ''}" 
+          (click)="addgetParams('sort_by=id&order='+order,'add')">
+            ID #
+              <span *ngIf="sort_by == 'id'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
+              <img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+        </th>
+				<th [ngStyle]="{'background-color':sort_by === 'datetime' ? '#F39C12' : ''}" 
+          (click)="addgetParams('sort_by=datetime&order='+order,'add')">
+            Fecha y Hora
+              <span *ngIf="sort_by == 'datetime'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
+              <img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+          </th>
+				 <th [ngStyle]="{'background-color':sort_by === 'namefile' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=namefile&order='+order,'add')">
+            Nombre
+              <span *ngIf="sort_by == 'namefile'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
+              <img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+          </th>
 				<th>Opciones</th>
 			</tr>
 			<tr *ngFor="let file of files" class="alert alert-info">
@@ -68,19 +87,33 @@
 				<td>{{file.datetime}}</td>
 				<td>{{file.namefile}}</td>
 				<td>
-					<button (click)="seePdf(file.namefile)"> 
-						<img src="https://img.icons8.com/color/48/000000/visible.png">&nbsp;Ver
-					</button><br>
-					<button (click)="downloadPdf(file.namefile)">
-						<img src="https://img.icons8.com/color/48/000000/software-installer.png">&nbsp;Descargar
-					</button><br>
-					<button (click)="deletePdf(file.namefile)">
-						<img src="https://img.icons8.com/color/48/000000/delete-forever.png">&nbsp;Borrar 
-					</button>
+          <span class="operacionesUser">
+    					<button class="btn btn-info" (click)="seePdf(file.namefile)"> 
+    						<img src="https://img.icons8.com/color/48/000000/visible.png">&nbsp;Ver
+    					</button>
+    					<button class="btn btn-info" (click)="downloadPdf(file.namefile)">
+    						<img src="https://img.icons8.com/color/48/000000/software-installer.png">&nbsp;Descargar
+    					</button>
+    					<button class="btn btn-warning" (click)="deletePdf(file.namefile)">
+    						<img src="https://img.icons8.com/color/48/000000/delete-forever.png">&nbsp;Borrar 
+    					</button>
+          </span>
 				</td>
 			</tr>
 		</table>
 		
+
+ <!-- PAGINACIÓN -->
+ <div class="row justify-content-center align-items-center paginacion">
+  <button class="botonpaginas" [disabled]="pageInfo.previous == null" (click)="addgetParams(pageInfo.previous,'slice')">
+    <img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png">
+  </button>
+  <span id="numpag"><b>{{pageInfo.page}} de {{pageInfo.lastpage}}</b></span>
+  <button class="botonpaginas" [disabled]="pageInfo.next == null" (click)="addgetParams(pageInfo.next,'slice')">
+    <img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png">
+  </button>
+</div>
+  <p class="text-center"> <b >Mostrando {{pageInfo.from}}-{{pageInfo.to}} de {{pageInfo.total}} totales</b></p>
 
 </div>
 
