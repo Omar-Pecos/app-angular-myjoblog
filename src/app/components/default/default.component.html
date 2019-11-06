@@ -4,6 +4,7 @@
   <!-- Infomsg -->
       <div *ngIf="infomsg != ''" class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>¡Antención!</strong> {{infomsg}}<a [routerLink]="['/crear']"><b>Mis Pdf</b></a>
+        <p *ngIf="identity.role =='admin'"> ó <a [routerLink]="['/exportar']"><b>Exportar</b></a></p>
         <button type="button" (click)="setinfomsg('')" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -79,7 +80,7 @@
                     <img src="https://img.icons8.com/color/96/000000/calendar.png">
                     <button class="btn btn-info">Vacaciones</button>
           </span>
-          <span class="divhome" href="#">
+          <span class="divhome" [routerLink]="['/exportar']">
                   <img src="https://img.icons8.com/color/96/000000/pdf-2.png">
                   <button class="btn btn-info">Exportar</button>
           </span>
@@ -87,6 +88,7 @@
 
     <br>
     <br>
+
 </div>
   <!-- spuesta,emte falta un div close pero me peta  -->
  <svg *ngIf="!identity">

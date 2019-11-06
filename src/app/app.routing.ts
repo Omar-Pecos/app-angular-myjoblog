@@ -19,6 +19,7 @@ import { GraficosAdminComponent } from './components/graficos-admin/graficos-adm
 import { Error404Component } from './components/error404/error404.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UsersActivateComponent } from './components/users-activate/users-activate.component';
+import { ArchivosAdminComponent } from './components/archivos-admin/archivos-admin.component';
 
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
 	{path : 'graficos_administrador', component : GraficosAdminComponent},
 	{path : 'crear', component : UserCreateComponent},
 	{path : 'activar', component : UsersActivateComponent},
+	{path : 'exportar', component : ArchivosAdminComponent},
 	{path : '**', component : Error404Component },
 	//{path: '**', component: DefaultComponent}
 ];

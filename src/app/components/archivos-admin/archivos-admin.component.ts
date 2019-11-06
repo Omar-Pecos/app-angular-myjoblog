@@ -1,25 +1,23 @@
 import {Component,DoCheck,OnInit} from '@angular/core';
 import { Router , ActivatedRoute , Params} from '@angular/router';
 
-
-//import { FileService } from './file.service';
-//import * as fileSaver from 'file-saver';
-
 import { UserService } from '../../services/user.service';
 import {PdfService} from '../../services/pdf.service';
 
-import {GLOBAL} from './../../services/global';
 import {AppComponent} from '../../app.component';
+import {GLOBAL} from './../../services/global';
+import {Globals} from './../../globals'
 
 @Component({
-  selector: 'app-archivos',
-  templateUrl: './archivos.component.html',
-  styleUrls: ['./archivos.component.css'],
+  selector: 'app-archivos-admin',
+  templateUrl: './archivos-admin.component.html',
   providers: [UserService,PdfService]
 })
-export class ArchivosComponent implements OnInit{
+export class ArchivosAdminComponent implements OnInit{
+	globals: Globals;
 	public url;
-	public title: string = 'Mis Archivos';
+
+	public title: string = 'Generar Archivos';
 	public token;
 	public identity;
 	public loading;
@@ -28,6 +26,11 @@ export class ArchivosComponent implements OnInit{
 	public files;
 	public deletedexport;
 
+	public selecteduser;
+	public year;
+	public ListUsers;
+	public infomsg;
+
 public getParams:string = '';
   public pageInfo:any;
   public order = 'desc';
@@ -35,17 +38,33 @@ public getParams:string = '';
   public sort_by = 'id';
 
   constructor(
+  		globals: Globals,
   		private _route : ActivatedRoute,
 		private _router : Router,
 		private _userService : UserService,
 		private _pdfService : PdfService
-  	) { 
-  			this.url = GLOBAL.baseUrl;
-  			 this.identity = this._userService.getIdentity();
-	  		 this.token = this._userService.getToken();
-	  		 this.loading = true;
-	  		 this.getMyFiles('auto');
-	  	}
+  	) { 			
+  					this.url = GLOBAL.baseUrl;
+  					this.globals = globals;
+					this.infomsg = globals.infomsg;
+
+		  			 this.identity = this._userService.getIdentity();
+			  		 this.token = this._userService.getToken();
+			  		 this.loading = true;
+
+			  		  this._userService.getUsers(this.token,this.getParams).subscribe(
+		              response =>{
+
+		                  this.ListUsers = response.users.data;
+
+		                   this.getMyFiles('generated');
+		              },
+		              error =>{
+		                  console.log(<any>error);
+		              }
+          )
+	  		
+  }
 
   ngOnInit() {
   }
@@ -56,6 +75,36 @@ public getParams:string = '';
 	   this.token = this._userService.getToken();
 
   	}
+
+  	GenPdf(value){
+  		let ids = 'all';
+  		let identificador;
+
+  		if (value == 'id'){
+  			identificador = this.selecteduser;
+  		}else{
+  			identificador = 0;
+  		}
+
+  		console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
+					/* TRIGGER EL PDF */ 
+						this._pdfService.generate_pdf(this.token,ids,identificador,this.year).subscribe(
+				              response =>{ 
+				    				console.log(<any>response);
+
+				    				this.infomsg = "Se ha terminado de generar el Pdf que solicitaste ";
+				    				this.globals.infomsg = this.infomsg;
+
+				    				// Volver a cargar de nuevo la lista de pdfs
+				    				this.getMyFiles('generated');
+				              },
+				              error =>{
+				                console.log(<any>error);
+				              }
+		            );	
+  	}
+
+  	// call to gen for All 
 
   	getMyFiles(tipo){
   		 this._pdfService.get_files(this.token,this.getParams,tipo).subscribe(
@@ -100,7 +149,7 @@ public getParams:string = '';
 	}
 
 	downloadPdf(name){
-		var url =  this.url+'api/down_file?name='+name;
+		var url = this.url+'api/down_file?name='+name;
 			//1_66190088M_pdf_16_10_19__10_25.pdf
 				
 				console.log(url);
@@ -113,23 +162,13 @@ public getParams:string = '';
 		// call service delete 
 		this._pdfService.delete_pdf(this.token,name).subscribe(
 						              response =>{ 
-						    			console.log(<any>response);
+						    			//console.log(<any>response);
 
 						    			this.deletedexport = response.deletedexport;
 
 
-						    							// then call myfiles ()
-										    			this._pdfService.get_files(this.token,this.getParams,'auto').subscribe(
-										              response =>{ 
-										    			console.log(<any>response);
-
-										    			this.files = response.files;
-
-										              },
-										              error =>{
-										                console.log(<any>error);
-										              }
-								            );
+						    				this.getMyFiles('generated');
+								           
 
 						              },
 						              error =>{
@@ -162,7 +201,14 @@ public getParams:string = '';
 	                    AppComponent.myapp.scrollToTop();
 	                }
 
-	          this.getMyFiles('auto');
+	          this.getMyFiles('generated');
        
     }
+
+    setinfomsg(value){
+
+    	this.globals.infomsg = value;
+    	// igual no hace falta que cambie la local
+ 
+	}
 }

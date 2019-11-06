@@ -190,9 +190,9 @@ export class FirmaComponent implements OnInit,DoCheck{
 
 							/* SI ES LA CANTIDAD ESPERADA DE DIAS HACE EL TRIGRERR DEL PDF  */	
 								if (this.quantity >= 2){
-									console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
-									/* TRIGGER EL PDF */ 
-												this._pdfService.generate_pdf(this.token,this.pdfjourneys).subscribe(
+										console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
+											/* TRIGGER EL PDF (token, ids jornadas , user_id,year) */ 
+												this._pdfService.generate_pdf(this.token,this.pdfjourneys,0,0).subscribe(
 										              response =>{ 
 										    			console.log(<any>response);
 
@@ -206,9 +206,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 										              error =>{
 										                console.log(<any>error);
 										              }
-								            );
-
-							
+								            );	
 					}
 							
 	

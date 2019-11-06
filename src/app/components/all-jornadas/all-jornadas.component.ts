@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { JourneyService } from '../../services/journey.service';
 
 import {AppComponent} from '../../app.component';
+import {GLOBAL} from './../../services/global';
 declare var $: any 
 
 @Component({
@@ -14,7 +15,7 @@ declare var $: any
    providers: [UserService, JourneyService]
 })
 export class AllJornadasComponent implements DoCheck {
-	public url = 'http://webtime.com.devel';
+	public url;
 	public title: string = 'Jornadas de todos los trabajadores';
 	public token;
 	public identity;
@@ -41,6 +42,7 @@ export class AllJornadasComponent implements DoCheck {
 			private _userService: UserService,
 			public _journeyService : JourneyService
   	) { 
+        this.url = GLOBAL.baseUrl;
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity();
 
@@ -238,37 +240,48 @@ export class AllJornadasComponent implements DoCheck {
   }
 
   setLatLon(coordIni,coordEnd,user_data){
+        // este APi es mejor porque se puede elegir otros modos y buscar por lugares pero no me va los markers
+        // https://www.google.com/maps/embed/v1/place?key=AIzaSyAqLFf9RljEFf4lraNDWiIasbtAFRi7dYU&q=%22%22&center=37.25,-6.94&zoom=18
+       
+         for (let i = 0;i<coordIni.length;i++){
+            if (coordIni[i] == '' || coordIni[i] == 'nada'){
+                coordIni[i] = 0;
+            }
+            if (coordEnd[i] == '' || coordEnd[i] == 'nada'){
+                coordEnd[i] = 0;
+            }
+         }
+        
 
-    /*
-        <iframe width="100%" height="300" src="https://maps.google.com/maps?width=100%&height=300&hl=es&coord=37.2546586,-6.9484613&q=+()&ie=UTF8&t=&z=15&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-        </iframe>
-    */
-   
+         // var ini = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordIni[0]+','+coordIni[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';
+         // var end = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordEnd[0]+','+coordEnd[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';
+         // let ini = '<iframe width="100%" height="300" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAqLFf9RljEFf4lraNDWiIasbtAFRi7dYU&q=""&center='+(coordIni[0])+','+(coordIni[1])+'&zoom=18" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>';
+         // let end = '<iframe width="100%" height="300" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAqLFf9RljEFf4lraNDWiIasbtAFRi7dYU&q=&center='+(coordEnd[0])+','+(coordEnd[1])+'" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>';
+         
+          this.latitudesYlongitudes = [];
 
-    this.latitudesYlongitudes = [];
+          let ini = '<img style="width:100%;height:300px;" src="https://maps.googleapis.com/maps/api/staticmap?center='+(coordIni[0])+','+(coordIni[1])+'&zoom=15&size=340x300&markers=color:green%7Clabel:X%7C'+(coordIni[0])+','+(coordIni[1])+'&key=AIzaSyAqLFf9RljEFf4lraNDWiIasbtAFRi7dYU"/>'; 
+          let end = '<img style="width:100%;height:300px;" src="https://maps.googleapis.com/maps/api/staticmap?center='+(coordEnd[0])+','+(coordEnd[1])+'&zoom=15&size=340x300&markers=color:green%7Clabel:X%7C'+(coordEnd[0])+','+(coordEnd[1])+'&key=AIzaSyAqLFf9RljEFf4lraNDWiIasbtAFRi7dYU"/>' 
+          
+          this.latitudesYlongitudes.push(ini,end);
+          console.log("LATITUDES Y LONGITUDES -->"+this.latitudesYlongitudes);
+          
+          this.user_data = user_data;
 
-      var ini = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordIni[0]+','+coordIni[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';
-      var end = 'https://maps.googleapis.com/maps/api/staticmap?center='+coordEnd[0]+','+coordEnd[1]+'&zoom=14&size=340x270&sensor=false&key=AIzaSyCi1QTQYVrqLKdp5JJFh2-BEm_ZEa3umiY';
-
-      this.latitudesYlongitudes.push(ini,end);
-
-      console.log("LATITUDES Y LONGITUDES -->"+this.latitudesYlongitudes);
-
-      this.user_data = user_data;
-
-      // show modal
-     /* $('#mapsModal .modal-body').append('<h5><b>Inicio Jornada</b></h5>'+
-              '<p>Imagennnn</p>'+
-            '<h5><b>Final Jornada</b></h5>'+
-              '<p>in blank for now</p>'+
-            '<h5><b>'+this.user_data.name+'&nbsp;'+this.user_data.surname+'</b></h5>'+
-            '<h6><a href="tel:user_data.number">'+this.user_data.number+'</a></h6>'+
-            '<h6><a href="mailto:user_data.email">'+this.user_data.email+'</a></h6>');*/
-      
-      $(function() {
-       $('#mapsModal').modal('show');
-  });
-     
+           let modalBody = $('#mapsModal .modal-body');
+            modalBody.html('');
+            
+            // show modal
+            modalBody.append('<h5><b>Inicio Jornada Lat,Lon : '+(coordIni[0])+','+(coordIni[1])+'</b></h5>'+ini+
+                  '<h5><b>Final Jornada Lat,Lon : '+(coordEnd[0])+','+(coordEnd[1])+'</b></h5>'+end+
+                  '<h5><b>'+this.user_data.name+'&nbsp;'+this.user_data.surname+'</b></h5>'+
+                  '<h6 *ngIf="{{user_data.number}}"><a href="tel:{{user_data.number}}">'+this.user_data.number+'</a></h6>'+
+                  '<h6><a href="mailto:{{user_data.email}}">'+this.user_data.email+'</a></h6>');
+            
+            $(function() {
+                $('#mapsModal').modal('show');
+            });
+    
   }
 
 }

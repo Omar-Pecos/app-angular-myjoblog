@@ -39,6 +39,7 @@ import { AdminDonutAnioComponent } from './components/graficos-admin/admin-donut
 import { Error404Component } from './components/error404/error404.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UsersActivateComponent } from './components/users-activate/users-activate.component';
+import { ArchivosAdminComponent } from './components/archivos-admin/archivos-admin.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { UsersActivateComponent } from './components/users-activate/users-activa
     AdminDonutAnioComponent,
     Error404Component,
     UserCreateComponent,
-    UsersActivateComponent
+    UsersActivateComponent,
+    ArchivosAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { User} from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { JourneyService } from '../../services/journey.service';
 
+import {GLOBAL} from './../../services/global';
 import {AppComponent} from '../../app.component';
 
 @Component({
@@ -13,7 +14,7 @@ import {AppComponent} from '../../app.component';
   providers: [UserService, JourneyService]
 })
 export class JornadasComponent implements DoCheck {
-	public url = 'http://webtime.com.devel';
+	public url;
 	public title: string = 'Mis Jornadas';
 	public token;
 	public identity;
@@ -35,6 +36,7 @@ export class JornadasComponent implements DoCheck {
 			private _userService: UserService,
 			public _journeyService : JourneyService
   	) { 
+        this.url = GLOBAL.baseUrl;
   			this.token = this._userService.getToken();
   			this.identity = this._userService.getIdentity();
 

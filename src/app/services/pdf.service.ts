@@ -24,12 +24,23 @@ export class PdfService {
 		console.log("%&%&%&%&%& -- Pdf trigered -- &%&%&%&%&&");
 	}
 
-	generate_pdf(token,ids):Observable<any>{
-		var arrayids = JSON.stringify(ids);
+	generate_pdf(token,ids,user_id,year):Observable<any>{
+		var arrayids;
+		// si ids es distinto de 'all'
+		if (ids != 'all'){
+			arrayids = JSON.stringify(ids);
+		}
+		else{
+			arrayids = 'all';
+		}
 
 		let headers = new HttpHeaders().set('Authorization',token);
-			
-		return this._http.get(this.url+'pdf?id='+arrayids,{headers : headers});
+		
+		if (arrayids != 'all')	
+			return this._http.get(this.url+'pdf?id='+arrayids+'&user_id='+user_id,{headers : headers});
+		else{
+			return this._http.get(this.url+'pdf?id='+arrayids+'&user_id='+user_id+'&year='+year,{headers : headers});
+		}
 	}
 
 	get_trigger(token):Observable<any>{
@@ -52,14 +63,18 @@ export class PdfService {
 	}
 
 
-	get_files(token,getParams):Observable<any>{
+	get_files(token,getParams,tipo):Observable<any>{
 		
 		var urlparams = '';
 		if (getParams != undefined){
 			var urlparams = '?'+getParams;
 		}
-			let headers = new HttpHeaders().set('Authorization',token);
-			return this._http.get(this.url+'get_files'+urlparams,{headers : headers});
+		let params = 'type='+tipo;
+
+			let headers = new HttpHeaders()
+								.set('Content-Type','application/x-www-form-urlencoded')
+								.set('Authorization',token);
+			return this._http.post(this.url+'get_files'+urlparams,params,{headers : headers});
 	}
 
 

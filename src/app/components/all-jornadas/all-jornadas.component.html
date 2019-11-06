@@ -11,13 +11,13 @@
 	<br>
 	<!-- BUSCADORES  -->
 		<div id="buscadores" class="container  text-center">
-			<div class="buscador">
+			<div *ngIf="searchselect == 'id'" class="buscador">
 				<h3>Buscador de ID</h3>
 				<select class="form-control" [(ngModel)]="selecteduser">
 					<option value="Identificador" >...</option>
 						<option *ngFor="let user of ListUsers" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
 				</select>
-				<input class="form-control" type="text" value="{{selecteduser}}" disabled>
+				<!--<input class="form-control" type="text" value="{{selecteduser}}" disabled> -->
 			</div>
 				<br>
 			<div class="buscador row justify-content-center">
@@ -93,7 +93,7 @@
 				<tr class="filadatos" *ngFor="let jornada of journeys">
 					<td>{{jornada.date}}</td>
 					<td>
-						<img class="firmas" width="100" src="{{url}}/storage/images/{{jornada.signature}}"/>
+						<img class="firmas" width="100" src="{{url}}storage/images/{{jornada.signature}}"/>
 					</td>
 					<td>{{jornada.time}}</td>
 					<td>{{jornada.initial_time}}</td>
@@ -101,7 +101,7 @@
 					<td>
 						<b>{{jornada.user.dni}}</b>
 							<br>
-						<button class="btn btn-warning" (click)="setLatLon(jornada.initial_pos,jornada.final_pos,jornada.user_data)">
+						<button class="btn btn-warning" (click)="setLatLon(jornada.initial_pos,jornada.final_pos,jornada.user)">
 							<img src="https://img.icons8.com/color/48/000000/spy-male--v2.png">&nbsp;
 								Inspeccionar
 						</button>
@@ -183,19 +183,11 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	      		<div *ngIf="latitudesYlongitudes">
-	      			<h5><b>Inicio Jornada</b></h5>
-             			 <img src="{{latitudesYlongitudes[0]}}">
-            		<h5><b>Final Jornada</b></h5>
-              			<p>in blank for now</p>
-	      		</div>
-	      		<div *ngIf="user_data">
+	      		<!--<div *ngIf="user_data">
 	      			<h4><b>{{user_data.name}}&nbsp;{{user_data.surname}}</b></h4>
 		            <h6 *ngIf="user_data.number"><a href="tel:{{user_data.number}}">{{user_data.number}}</a></h6>
 		            <h6><a href="mailto:{{user_data.email}}">{{user_data.email}}</a></h6>
-	      		</div>
-            
-	      		
+	      		</div> -->
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
