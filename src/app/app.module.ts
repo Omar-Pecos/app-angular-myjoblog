@@ -14,6 +14,8 @@ import { FirmaComponent } from './components/firma/firma.component';
 
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { ChartsModule } from 'ng2-charts';
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 
 
 import { UserPerfilComponent } from './components/user-perfil/user-perfil.component';
@@ -40,6 +42,9 @@ import { Error404Component } from './components/error404/error404.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UsersActivateComponent } from './components/users-activate/users-activate.component';
 import { ArchivosAdminComponent } from './components/archivos-admin/archivos-admin.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,8 @@ import { ArchivosAdminComponent } from './components/archivos-admin/archivos-adm
     Error404Component,
     UserCreateComponent,
     UsersActivateComponent,
-    ArchivosAdminComponent
+    ArchivosAdminComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -76,9 +82,12 @@ import { ArchivosAdminComponent } from './components/archivos-admin/archivos-adm
      HttpClientModule,
     routing,
     SignaturePadModule,
-    ChartsModule
+    ChartsModule,
+    FullCalendarModule,
+    DlDateTimeDateModule,  // <--- Determines the data type of the model
+    DlDateTimePickerModule
   ],
-  providers: [appRoutingProviders , Globals],
+  providers: [appRoutingProviders , Globals , DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

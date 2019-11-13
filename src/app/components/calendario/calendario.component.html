@@ -1,0 +1,149 @@
+<div  class="cargando" *ngIf="loading">
+  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+</div>
+
+<div class="contenido" *ngIf="!loading">
+	<div class="titulo">
+				<h2>{{title}}</h2>
+		</div>
+
+	<full-calendar
+		  defaultView="dayGridMonth"
+		   locale = "es" 
+		  [plugins]="calendarPlugins"
+		  [weekends]="true"
+		  [events]="events"
+></full-calendar>
+
+	<br>
+
+			<div class="flexcentercontainer">
+				<button class="btn btn-info" (click)="setOperacion('añadir')">Añadir</button>
+				<button class="btn btn-warning" (click)="setOperacion('editar')">Editar</button>
+				<button class="btn btn-danger" (click)="setOperacion('borrar')">Borrar</button>
+			</div>
+
+	<br>
+
+			<div style="text-align: center;" class="titulo" *ngIf="operacion == 'añadir'">
+						<h3>Añadir</h3>
+			</div>
+			<div style="text-align: center;" class="titulo" *ngIf="operacion == 'editar'">
+						<h3>Editar</h3>
+			</div>
+			<div style="text-align: center;" class="titulo" *ngIf="operacion == 'borrar'">
+						<h3>Borrar</h3>
+			</div>
+
+	<br>
+
+	 			<form class="col-md-4" style="margin: 0 auto;"  *ngIf="operacion == 'añadir'">
+					<input type="checkbox" class="form-check-input" name="festivo" [(ngModel)]="festivo">
+		   		 	<p style="font-size: 20px;position: relative;bottom: 6px" class="form-check-label">¿Añadir Festivo o evento personal?</p>
+		   		 		<br>
+		   		 </form>
+	
+	<div class="flexcentercontainer" *ngIf="operacion == 'añadir'">
+		<br>
+		
+		<div *ngIf="!festivo" style="width: 35%;">
+				<select  class="form-control" [(ngModel)]="userselected">
+					<option *ngFor="let user of users" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
+				</select>
+				<input  class="form-control" type="text" value="{{userselected}}" disabled />
+		</div>
+		<div style="width: 35%;">
+					<input class="form-control" (click)="verDatePicker(1)" type="text"  value="{{selectedDate1 | date:'yyyy-MM-dd' }}" placeholder="Fecha Inicial"/>
+				
+					<input class="form-control" (click)="verDatePicker(2)" type="text"   value="{{selectedDate2 | date:'yyyy-MM-dd' }}"  placeholder="Fecha Reincorporación"/>
+
+					<input *ngIf="festivo" class="form-control"  type="text"    [(ngModel)]="titleevent"  placeholder="Etiqueta del festivo"/>
+
+		</div>
+
+	</div>
+
+	<div class="flexcentercontainer" *ngIf="operacion == 'editar'">
+		<br>
+		<div style="width: 30%;">
+				<select  class="form-control" [(ngModel)]="userselected">
+					<option *ngFor="let user of users" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
+				</select>
+				<div class="input-group">
+					<input  class="form-control" type="text" value="{{userselected}}" disabled /> 
+					 <span class="input-group-btn">
+						<button class="btn btn-info" (click)="cargarEventos(userselected)">Cargar</button> 
+					</span>
+				</div>	
+		</div>
+		<div style="width: 40%;" *ngIf = "userevents.length > 0">
+				<select  class="form-control" [(ngModel)]="eventselected">
+					<option *ngFor="let event of userevents" value="{{event.id}}">{{event.title}}&nbsp;<strong style="color:red;">INICIO => </strong> {{event.start}} <strong style="color:red;">INCORPORACIÓN => </strong> {{event.end}}</option>
+				</select>
+				<input  class="form-control" type="text" value="{{eventselected}}" disabled />
+		</div>
+		<div style="width: 30%;">
+					<input class="form-control" (click)="verDatePicker(1)" type="text"  value="{{selectedDate1 | date:'yyyy-MM-dd' }}" placeholder="Fecha Inicial"/>
+				
+					<input class="form-control" (click)="verDatePicker(2)" type="text"   value="{{selectedDate2 | date:'yyyy-MM-dd' }}"  placeholder="Fecha Reincorporación"/>
+				
+		</div>
+
+	</div>
+
+	<div class="flexcentercontainer" *ngIf="operacion == 'borrar'">
+		<br>
+		<div style="width: 30%;">
+				<select  class="form-control" [(ngModel)]="userselected">
+					<option *ngFor="let user of users" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
+				</select>
+				<div class="input-group">
+					<input  class="form-control" type="text" value="{{userselected}}" disabled /> 
+					 <span class="input-group-btn">
+						<button class="btn btn-info" (click)="cargarEventos(userselected)">Cargar</button> 
+					</span>
+				</div>	
+		</div>
+		<div style="width: 60%;" *ngIf = "userevents.length > 0">
+				<select  class="form-control" [(ngModel)]="eventselected">
+					<option *ngFor="let event of userevents" value="{{event.id}}">{{event.title}}&nbsp;<strong style="color:red;">INICIO => </strong> {{event.start}} <strong style="color:red;">INCORPORACIÓN => </strong> {{event.end}}</option>
+				</select>
+				<input  class="form-control" type="text" value="{{eventselected}}" disabled />
+		</div>
+		
+
+	</div>
+
+			<br>
+				<dl-date-time-picker *ngIf="seeDatePicker == 1"
+					locale = "es" 
+				    startView="day"
+				    maxView="year"
+				     minView="day"
+				    minuteStep="5"
+				    [(ngModel)]="selectedDate1"
+				>
+				</dl-date-time-picker>
+
+				<dl-date-time-picker  *ngIf="seeDatePicker == 2"
+				    startView="day"
+				    maxView="year"
+				    minView="day"
+				    minuteStep="5"
+				    [(ngModel)]="selectedDate2"
+				>
+				</dl-date-time-picker>
+
+		<div class="flexcentercontainer" *ngIf="operacion == 'añadir'">
+			<button  [disabled]="selectedDate1 == null || selectedDate2 == null" (click)="addEvent()" class="btn btn-success">Añadir</button>
+		</div>
+
+		<div class="flexcentercontainer" *ngIf="operacion == 'editar'">
+			<button [disabled]="selectedDate1 == null || selectedDate2 == null"  (click)="editEvent(eventselected)" class="btn btn-success">Editar</button>
+		</div>
+
+		<div class="flexcentercontainer" *ngIf="operacion == 'borrar'">
+			<button [disabled]="userevents.length == 0" (click)="deleteEvent(eventselected)" class="btn btn-danger">Borrar</button>
+		</div>
+
+</div>

@@ -20,6 +20,8 @@ import { Error404Component } from './components/error404/error404.component';
 import { UserCreateComponent } from './components/user-create/user-create.component';
 import { UsersActivateComponent } from './components/users-activate/users-activate.component';
 import { ArchivosAdminComponent } from './components/archivos-admin/archivos-admin.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+
 
 const appRoutes: Routes = [
 	{path : '', component: DefaultComponent},
@@ -38,6 +40,7 @@ const appRoutes: Routes = [
 	{path : 'crear', component : UserCreateComponent},
 	{path : 'activar', component : UsersActivateComponent},
 	{path : 'exportar', component : ArchivosAdminComponent},
+	{path : 'calendario', component : CalendarioComponent},
 	{path : '**', component : Error404Component },
 	//{path: '**', component: DefaultComponent}
 ];

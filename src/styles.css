@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 /* try to import the styles of the signature pad !! ... */
 
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
 
 /* Body */
 html,body{
@@ -10,6 +14,7 @@ html,body{
 body{
    /* height: 100%;
 	width: 100%;*/
+
 	padding-left: 10%;
 	padding-right: 10%;
 }
@@ -343,6 +348,9 @@ th,td{
 #accordion .card{
 	border: none;
 }
+#buscadorUserList{
+	margin-left: 15px;
+}
 .buscador{
 	width: 300px;
 	margin: 30px;
@@ -485,13 +493,47 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	flex-flow: column;
 	justify-content: center;
 }
-	 
+
+/* Calendario */
+.fc-view-container{
+	background-color: white;
+}
+.fc-title{
+	color: white;
+}
+.fc-head{
+	background-color:#28A745;
+	color: white;
+}
+
+.flexcentercontainer{
+	display:  flex;
+	align-items:  center;
+	justify-content: center;
+} 
+
+/* Date Picker */
+
+.dl-abdtp-left-button,.dl-abdtp-right-button,.dl-abdtp-up-button,.dl-abdtp-view-label{
+	background-color: #28A745 !important;
+	color : white !important;
+}
+
+.dl-abdtp-left-button:hover{
+	background-color:#280745 !important;
+}
+.dl-abdtp-right-button:hover{
+	background-color:#280745 !important;
+}
+.dl-abdtp-up-button:hover{
+	background-color:#280745 !important;
+}
 
 @media (max-width: 576px) {
 /*html{
 	height: inherit;
 }*/
-	  body{
+  body{
 		padding-left: 0;
 		padding-right: 0;
 	}
@@ -502,13 +544,17 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	.heroimage img {
 		width: 60px;
 	}
+	.containerhome{
+		padding-left: 10%;
+		padding-right: 10%;
+	}
 	.divhome{
 		margin: 0;
 		margin-bottom: -30px;
 		transform: rotateY(-15deg) rotateX(15deg);
 	}
 	.cardhome{
-		width: 90%;
+		width: 70%;
 	}
 	.contenido {
 		/*height: 100%;*/

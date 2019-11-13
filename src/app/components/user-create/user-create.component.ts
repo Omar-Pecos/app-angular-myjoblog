@@ -28,7 +28,7 @@ export class UserCreateComponent implements OnInit{
 
 	ngOnInit(){
 		console.log('Create.component cargado correctamente !!');
-		this.user =  new User(99, 'user','','','','');
+		this.user =  new User(99, 'user','','','',0,'');
 		//this._userService = new UserService();
 	}
 
@@ -44,7 +44,7 @@ export class UserCreateComponent implements OnInit{
 						this.status = response.status;
 
 						// vaciar el form
-						this.user =  new User(99, 'user','','','','');
+						this.user =  new User(99, 'user','','','',0,'');
 						form.reset();
 					}
 				},

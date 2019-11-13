@@ -31,7 +31,7 @@ export class ArchivosAdminComponent implements OnInit{
 	public ListUsers;
 	public infomsg;
 
-public getParams:string = '';
+public getParams:string = 'sort_by=datetime&order=desc';
   public pageInfo:any;
   public order = 'desc';
   public order_now = 'asc';
@@ -56,6 +56,9 @@ public getParams:string = '';
 		              response =>{
 
 		                  this.ListUsers = response.users.data;
+
+		                  let date_Year = new Date().getFullYear();
+		                  this.year = date_Year;
 
 		                   this.getMyFiles('generated');
 		              },

@@ -12,7 +12,7 @@ export class GraficosAdminComponent implements OnInit {
 	public identity;
 	public token;
 
-  public users;
+  public users = [];
   public id = -1;
   public idselected = -1;
   public color = '0';
@@ -25,11 +25,15 @@ export class GraficosAdminComponent implements OnInit {
 
         this._userService.getUsers(this.token,undefined).subscribe(
               response =>{
-                if (response.status == 'success'){
-                    this.users = response.users.data;
-                    console.log(this.users);
 
-                    this.id = this.users[0].id;
+                if (response.status == 'success'){
+                  let users = response.users.data;
+                    for (let i = 0;i<users.length;i++){
+                        if (users[i].active == 1){
+                           this.users.push(users[i]);
+                        }
+                      }
+                    this.id = this.users[2].id; // el pos 2 que sera el sig 
 
                     /*// coje los 2 primeros ids de los users 
                       this.oldusers = [];

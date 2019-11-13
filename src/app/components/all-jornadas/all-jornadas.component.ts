@@ -49,11 +49,13 @@ export class AllJornadasComponent implements DoCheck {
 
         this._userService.getUsers(this.token,this.getParams).subscribe(
               response =>{
-                  this.ListUsers = response.users.data;
 
-                 /* for (let i = 0;i<users.length;i++){
-                      this.ListUsers.push(users[i].id);
-                  }*/
+                let users = response.users.data;
+                for (let i = 0;i<users.length;i++){
+                    if (users[i].active == 1){
+                      this.ListUsers.push(users[i]);
+                    }
+                  }
 
                      this.getJourneysofAll();
               },

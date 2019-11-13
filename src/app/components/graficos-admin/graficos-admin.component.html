@@ -10,13 +10,14 @@
 				<select  class="form-control" [(ngModel)]="id">
 					<option *ngFor="let user of users" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
 				</select>
+				<input type="button" value="Añadir" (click)="passID()" class="btn btn-success">
 			</div>
-				<br>
+				<!--<br>
 			<div class="buscador row justify-content-center">
 				<h3>Añadir</h3>
 				<input class="form-control" type="text" value="{{id}}" disabled>
-				<input type="button" value="Añadir" (click)="passID()" class="btn btn-success">
-			</div>
+				
+			</div>-->
 		</div>	
 	
 		<!-- grafico numero de horas por mes en este año PARA UNOS TRABAJADORES -->

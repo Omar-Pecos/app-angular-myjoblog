@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit{
 
 	ngOnInit(){
 		console.log('register.component cargado correctamente !!');
-		this.user =  new User(1, 'user','','','','');
+		this.user =  new User(1, 'user','','','',0,'');
 		//this._userService = new UserService();
 	}
 
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit{
 						this.status = response.status;
 
 						// vaciar el form
-						this.user =  new User(1, 'ROLE_USER','','','','');
+						this.user =  new User(1, 'ROLE_USER','','','',0,'');
 						form.reset();
 					}
 				},

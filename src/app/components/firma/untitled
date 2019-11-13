@@ -137,3 +137,15 @@ los import antiguos de signature pad
 
 
 <div style="width: 100%"><iframe width="100%" height="400" src="https://maps.google.com/maps?width=100%&height=400&hl=es&coord=37.2584788922232,-6.940887446980924&q=Les%20Rambles%2C%201%20Barcelona%2C%20Spain+(Mi%20nombre%20de%20egocios)&ie=UTF8&t=&z=14&iwloc=B&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/calcular-ruta.html">Mapa de Ruta</a></iframe></div><br />
+
+SELECT * FROM `journeys` WHERE `user_id` = 1 AND `date` like "%2019-%" ORDER BY `date` DESC
+
+http://webtime.com.devel/api/pdf?id=all&user_id=1&year=2019 -> 20 y tiene que ser 23 las 3 de 11/2019
+
+journeys/1?sort_by=date&order=desc
+
+
+[events]="[
+		    { title: 'event 1', date: '2019-11-11' },
+		    { title: 'event 2', date: '2019-11-12' }
+		  ]"

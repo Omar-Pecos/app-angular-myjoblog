@@ -100,7 +100,7 @@ export class UserService {
 
 		let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
 										.set('Authorization',this.token);
-		return this._http.put(this.url+'users/'+id,params,{headers : headers});
+		return this._http.patch(this.url+'users/'+id,params,{headers : headers});
 	}
 
 	setActive(token,id,active) : Observable<any> {

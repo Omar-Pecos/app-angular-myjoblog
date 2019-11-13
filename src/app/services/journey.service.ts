@@ -62,7 +62,7 @@ export class JourneyService {
 
 	getMyJourneys(id,token,getParams):Observable<any>{
 		var urlparams = '';
-		if (getParams != undefined){
+		if (getParams != ''){
 			var urlparams = '?'+getParams;
 		}
 
@@ -72,7 +72,7 @@ export class JourneyService {
 
 	getAllJourneys(token,getParams):Observable<any>{
 		var urlparams = '';
-		if (getParams != undefined){
+		if (getParams != ''){
 			var urlparams = '?'+getParams;
 		}
 

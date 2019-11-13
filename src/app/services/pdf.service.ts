@@ -78,9 +78,14 @@ export class PdfService {
 	}
 
 
-	/*see_pdf(name):Observable<any>{
-			//let headers = new HttpHeaders().set('Authorization',token);
+	/*see_pdf(token,name):Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
 			return this._http.get(this.url+'see_file?name='+name);
+	}*/
+
+	/*download_pdf(token,name):Observable<any>{
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'down_file?name='+name);
 	}*/
 
 	delete_pdf(token,name):Observable<any>{

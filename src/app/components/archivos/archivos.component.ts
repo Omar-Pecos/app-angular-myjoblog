@@ -28,7 +28,7 @@ export class ArchivosComponent implements OnInit{
 	public files;
 	public deletedexport;
 
-public getParams:string = '';
+public getParams:string = 'sort_by=datetime&order=desc';
   public pageInfo:any;
   public order = 'desc';
   public order_now = 'asc';
@@ -58,6 +58,7 @@ public getParams:string = '';
   	}
 
   	getMyFiles(tipo){
+
   		 this._pdfService.get_files(this.token,this.getParams,tipo).subscribe(
 						              response =>{ 
 						    			console.log(<any>response);
@@ -87,12 +88,12 @@ public getParams:string = '';
 						                console.log(<any>error);
 						              }
 				            );
-  	}
+  		}
 
   	seePdf(name){
 
-  			var url = this.url+'api/see_file?name='+name;
-			//1_66190088M_pdf_16_10_19__10_25.pdf
+  				var url = this.url+'api/see_file?name='+name;
+				//1_66190088M_pdf_16_10_19__10_25.pdf
   				console.log(url);
 
   				window.open(url,'_blank');
@@ -100,8 +101,8 @@ public getParams:string = '';
 	}
 
 	downloadPdf(name){
-		var url =  this.url+'api/down_file?name='+name;
-			//1_66190088M_pdf_16_10_19__10_25.pdf
+				var url =  this.url+'api/down_file?name='+name;
+					//1_66190088M_pdf_16_10_19__10_25.pdf
 				
 				console.log(url);
 
