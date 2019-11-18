@@ -30,6 +30,8 @@ export class FirmaComponent implements OnInit,DoCheck{
 	public journey;
 	public paused;
 
+	public noche = false;
+
 	public pdfjourneys: any[] = [];
 	public quantity:number;
 	public week = false;
@@ -60,6 +62,11 @@ export class FirmaComponent implements OnInit,DoCheck{
 
 						this.token = this._userService.getToken();
 						this.journey = new Journey('nadadeimagen','nada','nada');	
+
+						let hours = new Date().getHours();
+						if (hours >= 18){
+							this.noche = true;
+						}
 
 						this.HasActiveJourney(this.token);
 				}

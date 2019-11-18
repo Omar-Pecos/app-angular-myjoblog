@@ -21,6 +21,7 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { UsersActivateComponent } from './components/users-activate/users-activate.component';
 import { ArchivosAdminComponent } from './components/archivos-admin/archivos-admin.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { LogComponent } from './components/log/log.component';
 
 
 const appRoutes: Routes = [
@@ -41,8 +42,9 @@ const appRoutes: Routes = [
 	{path : 'activar', component : UsersActivateComponent},
 	{path : 'exportar', component : ArchivosAdminComponent},
 	{path : 'calendario', component : CalendarioComponent},
-	{path : '**', component : Error404Component },
-	//{path: '**', component: DefaultComponent}
+	{path : 'error/:code', component : Error404Component },
+	{path : 'log', component : LogComponent},
+	{path: '**', component: DefaultComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

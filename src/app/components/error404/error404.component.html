@@ -4,8 +4,14 @@
 
 <div style="width: 100%;">
 			<br>
-				<div class="titulo">
+				<div style="text-align: center;" class="titulo">
 					<h1>{{title}}</h1>
+						<h3 *ngIf="code == 401">No Autenticado</h3>
+						<h3 *ngIf="code == 403">No posee permisos para realizar esa acción</h3>
+						<h3 *ngIf="code == 404">Recurso no encontrado</h3>
+						<h3 *ngIf="code == 405">Método no permitido</h3>
+						<h3 *ngIf="code == 409">Conflicto</h3>
+						<h3 *ngIf="code == 500">Fallo inesperado , por favor inténtelo de nuevo</h3>
 				</div>
 			<br>
 		<div class="contenedor404">

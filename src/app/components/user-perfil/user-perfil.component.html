@@ -1,6 +1,6 @@
 
 <div  class="cargando" *ngIf="user == undefined">
-  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+  <img src="assets/images/loading-9.gif">
 </div>
 
 <div class="contenido" *ngIf="user != undefined">
@@ -13,7 +13,8 @@
 	No se ha editado el perfil
 	<br>
 	<ul *ngFor="let item of errors | keyvalue">
-     	<li>Error in <b>{{item.key}}</b>: <b>{{item.value}}</b></li>
+     	<!-- <li>Error in <b>{{item.key}}</b>: <b>{{item.value}}</b></li> -->
+     	<li>Error : <b>{{item.value}}</b></li> 
     </ul>
 </div>
 	<!-- card como la de HOme LOGIN -->

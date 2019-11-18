@@ -43,6 +43,7 @@ import { UserCreateComponent } from './components/user-create/user-create.compon
 import { UsersActivateComponent } from './components/users-activate/users-activate.component';
 import { ArchivosAdminComponent } from './components/archivos-admin/archivos-admin.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { LogComponent } from './components/log/log.component';
 
 import { DatePipe } from '@angular/common';
 
@@ -74,7 +75,8 @@ import { DatePipe } from '@angular/common';
     UserCreateComponent,
     UsersActivateComponent,
     ArchivosAdminComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,

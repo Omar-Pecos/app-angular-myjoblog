@@ -1,6 +1,6 @@
 
 <div  class="cargando" *ngIf="jornada_activa== undefined">
-  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+  <img src="assets/images/loading-9.gif">
 </div>
 
 
@@ -28,12 +28,19 @@
            <!-- (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()" -->
         </p>
         <div class="botones-firma">
-           <button type="button" class="button" (click)="clear()" >Limpiar</button>
-             <button type="button" class="button" (click)="change_color()" >Cambiar Color</button>
-              <button type="button" class="button" (click)="undo()" >Deshacer</button>
-              <br>
-              
-            <button type="button" class="button" (click)="clickconfirmar()" >Confirmar firma</button>
+           <button class="btn btn-success" type="button"  (click)="clear()" >
+            <img width="30" src="assets/images/delete-forever.png">&nbsp;Limpiar
+          </button>
+             <button class="btn btn-success" type="button"  (click)="change_color()" >
+              <img width="30" src="assets/images/color.png">&nbsp;Cambiar
+            </button>
+              <button class="btn btn-success" type="button"  (click)="undo()" >
+                <img width="30" src="assets/images/deshacer.png">&nbsp;Deshacer
+            </button>
+              <br> 
+            <button class="btn btn-success" type="button"  (click)="clickconfirmar()" >
+              <img width="30" src="assets/images/guardar.png">&nbsp;Confirmar
+            </button>
         </div>
     </div>
 
@@ -42,7 +49,8 @@
     </div> -->
 
     <div style="text-align: center;" id="giffirma" *ngIf="firma == true">
-       <img style="width: 70%;margin: 0 auto;" src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif">
+       <img *ngIf="!noche" style="width: 70%;margin: 0 auto;" src="assets/images/sol.gif">
+        <img *ngIf="noche" style="width: 70%;margin: 0 auto;" src="assets/images/luna.gif">
     </div>
 
   </div>
@@ -86,25 +94,25 @@
      <input id="imagenpng"  type="hidden" name="image" #image="ngModel" [(ngModel)]="journey.image">
      <input id="latini"  type="hidden"  name="lat"  #lat="ngModel" [(ngModel)]="journey.lat">
      <input id="lonini"  type="hidden"  name="lon" #lon="ngModel" [(ngModel)]="journey.lon">
-     <button data-toggle="modal" data-target="#initModal" (click)="initModal()"  [disabled]="jornada_activa || !firma" >
-        <img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;
+     <button class="btn btn-secondary"  data-toggle="modal" data-target="#initModal" (click)="initModal()"  [disabled]="jornada_activa || !firma" >
+        <img src="assets/images/icons8-play-50.png">&nbsp;
         Iniciar&nbsp;
     </button>
   </form>
-  <button (click)="Pause_journey()"  [disabled]="!jornada_activa || paused != 0" >
-        <img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;
+  <button class="btn btn-secondary" (click)="Pause_journey()"  [disabled]="!jornada_activa || paused != 0" >
+        <img src="assets/images/icons8-pause-50.png">&nbsp;
         Pausar &nbsp;
   </button>
-   <button  (click)="Continue_journey()" [disabled]="!jornada_activa || paused == 0" >
-        <img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;
+   <button class="btn btn-secondary"  (click)="Continue_journey()" [disabled]="!jornada_activa || paused == 0" >
+        <img src="assets/images/icons8-resume-button-50.png">&nbsp;
         Reanudar&nbsp;
     </button>
 	<form id="formend">
      <input id="latend"  type="hidden" name="latend">
        <input id="lonend"  type="hidden" name="lonend">
        <!-- desactivar tmb si paused != 0 -->
-	 <button  data-toggle="modal" data-target="#endModal" (click)="endModal()"  [disabled]="!jornada_activa || paused != 0">
-          <img src="https://img.icons8.com/color/48/000000/stop.png">&nbsp;
+	 <button class="btn btn-secondary"  data-toggle="modal" data-target="#endModal" (click)="endModal()"  [disabled]="!jornada_activa || paused != 0">
+          <img src="assets/images/icons8-stop-50.png">&nbsp;
           Finalizar&nbsp;
   </button>
   </form>

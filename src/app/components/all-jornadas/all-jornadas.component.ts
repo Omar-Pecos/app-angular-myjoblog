@@ -60,7 +60,8 @@ export class AllJornadasComponent implements DoCheck {
                      this.getJourneysofAll();
               },
               error =>{
-                  console.log(<any>error);
+                  let code = error.error.code;
+                this._router.navigate(['error',code]);
               }
           )
   			

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit ,DoCheck} from '@angular/core';
 import { Router , ActivatedRoute ,Params} from '@angular/router';
 import { User} from '../../models/user';
 import {UserService} from '../../services/user.service';
@@ -13,6 +13,8 @@ export class UserCreateComponent implements OnInit{
 	public title: string = 'Crear Usuario';
 	public user: User;
 	public status : string;
+	public token;
+	public identity;
 
 	/*private _route : ActivatedRoute;
 	private _router : Router;
@@ -23,7 +25,13 @@ export class UserCreateComponent implements OnInit{
 			private _router : Router,
 			private _userService: UserService
 		){
-		//this.title = ;
+		this.token = this._userService.getToken();
+  			this.identity = this._userService.getIdentity(); 
+
+			 // verifica que sea admin sino pues pag de error
+        if (this.identity.role == 'user'){
+         this._router.navigate(['error',403]);
+        }
 	}
 
 	ngOnInit(){
@@ -31,6 +39,10 @@ export class UserCreateComponent implements OnInit{
 		this.user =  new User(99, 'user','','','',0,'');
 		//this._userService = new UserService();
 	}
+	ngDoCheck(){
+	   this.identity = this._userService.getIdentity();
+	   this.token = this._userService.getToken(); 
+  }
 
 	onSubmit(form){
 		

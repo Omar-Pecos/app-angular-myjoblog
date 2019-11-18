@@ -28,7 +28,7 @@ export class ArchivosAdminComponent implements OnInit{
 
 	public selecteduser;
 	public year;
-	public ListUsers;
+	public ListUsers = [];
 	public infomsg;
 
 public getParams:string = 'sort_by=datetime&order=desc';
@@ -55,15 +55,21 @@ public getParams:string = 'sort_by=datetime&order=desc';
 			  		  this._userService.getUsers(this.token,this.getParams).subscribe(
 		              response =>{
 
-		                  this.ListUsers = response.users.data;
-
+		                  let users = response.users.data;
+		                  for (let i=0;i<users.length;i++){
+		                  	if (users[i].active == 1){
+		                  		this.ListUsers.push(users[i]);
+		                  	}
+		                  }
+		                   
 		                  let date_Year = new Date().getFullYear();
 		                  this.year = date_Year;
 
 		                   this.getMyFiles('generated');
 		              },
 		              error =>{
-		                  console.log(<any>error);
+		                  let code = error.error.code;
+                			this._router.navigate(['error',code]);
 		              }
           )
 	  		
@@ -112,7 +118,6 @@ public getParams:string = 'sort_by=datetime&order=desc';
   	getMyFiles(tipo){
   		 this._pdfService.get_files(this.token,this.getParams,tipo).subscribe(
 						              response =>{ 
-						    			console.log(<any>response);
 
 						    			this.files = response.files.data;
 

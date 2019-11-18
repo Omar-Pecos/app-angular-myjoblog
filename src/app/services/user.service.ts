@@ -81,9 +81,9 @@ export class UserService {
 
 	getUsers(token,getParams): Observable<any>{
 		
-		var urlparams = '';
+		let urlparams = '';
 		if (getParams != undefined){
-			var urlparams = '?'+getParams;
+			 urlparams = '?'+getParams;
 		}
 			let headers = new HttpHeaders().set('Authorization',token);
 			return this._http.get(this.url+'users'+urlparams,{headers : headers});
@@ -117,5 +117,28 @@ export class UserService {
 			let headers = new HttpHeaders().set('Authorization',token);
 			return this._http.delete(this.url+'users/'+id,{headers : headers});
 	}
+
+
+	/* ENDPOINT PARA EL LOG DE APLICACION */
+
+	get_logs(token,getParams): Observable<any>{
+		
+		let urlparams = '';
+		if (getParams != undefined){
+			urlparams = '?'+getParams;
+		}
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'get_logs'+urlparams,{headers : headers});
+	}
+
+	/*get_userlogs(token,getParams,id): Observable<any>{
+		
+		let urlparams = '';
+		if (getParams != undefined){
+			urlparams = '?'+getParams;
+		}
+			let headers = new HttpHeaders().set('Authorization',token);
+			return this._http.get(this.url+'get_userlogs/'+id+urlparams,{headers : headers});
+	}*/
 
 }

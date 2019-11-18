@@ -22,7 +22,7 @@ export class Error404Component implements OnInit{
 	public identity;
 
 	public infoerror;
-
+	public code;
 	/*private _route : ActivatedRoute;
 	private _router : Router;
 	private _userService: UserService;*/
@@ -40,7 +40,13 @@ export class Error404Component implements OnInit{
 				this.token = this._userService.getToken();
 				this.identity = this._userService.getIdentity();
 
-				this.title = 'Error 404';
+				this._route.params.subscribe(
+
+			      params=>{
+			          this.code = +params['code'];
+			      });
+
+				this.title = 'Error '+this.code;
 
 	}
 

@@ -1,4 +1,5 @@
 import { Component, OnInit ,DoCheck } from '@angular/core';
+import { Router , ActivatedRoute ,Params} from '@angular/router';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { UserService } from './../../services/user.service';
 import { VacationService } from './../../services/vacation.service';
@@ -32,6 +33,8 @@ public titleevent;
 
   constructor(
   			private datePipe: DatePipe,
+        private _route : ActivatedRoute,
+        private _router : Router,
   			private _userService : UserService,
   			private _vacationService : VacationService
   	) { 
@@ -56,7 +59,8 @@ public titleevent;
 		                  this.getEvents();
               },
               error =>{
-                console.log(<any>error);
+                let code = error.error.code;
+                this._router.navigate(['error',code]);
               }
             );
   }

@@ -1,0 +1,77 @@
+<div  class="cargando" *ngIf="loading">
+  <img src="assets/images/loading-9.gif">
+</div>
+
+<div class="contenido" *ngIf="!loading">
+	<div class="titulo">
+			<h2>{{title}}</h2>
+	</div>
+	<br>
+
+  <div style="overflow-x:auto;"> 
+		<table class="table table-light table-hover responsive">
+			<tr class="cabecera-tabla">
+
+         
+			  <th [ngStyle]="{'background-color':sort_by === 'id' ? '#F39C12' : ''}" 
+          (click)="addgetParams('sort_by=id&order='+order,'add')">
+            ID #
+              <span *ngIf="sort_by == 'id'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="assets/images/down.png">
+              <img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
+        </th>
+         <th>
+            Rol Usuario
+        </th>
+        <th [ngStyle]="{'background-color':sort_by === 'user_id' ? '#F39C12' : ''}" 
+          (click)="addgetParams('sort_by=user_id&order='+order,'add')">
+            ID Usuario
+            <span *ngIf="sort_by == 'user_id'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="assets/images/down.png">
+              <img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
+        </th>
+        
+         <th [ngStyle]="{'background-color':sort_by === 'user' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=user&order='+order,'add')">
+            Usuario
+              <span *ngIf="sort_by == 'user'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="assets/images/down.png">
+              <img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
+          </th>
+           <th [ngStyle]="{'background-color':sort_by === 'action' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=action&order='+order,'add')">
+            Acción
+              <span *ngIf="sort_by == 'action'">({{ order_now | uppercase }})</span>
+              <img *ngIf="order == 'desc'" src="assets/images/down.png">
+              <img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
+          </th>
+				<th [ngStyle]="{'background-color':sort_by === 'datetime' ? '#F39C12' : ''}" 
+          (click)="addgetParams('sort_by=datetime&order='+order,'add')">
+            Fecha y Hora
+              <span *ngIf="sort_by == 'datetime'">({{ order_now | uppercase }})</span>
+             <img *ngIf="order == 'desc'" src="assets/images/down.png">
+              <img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
+          </th>
+			</tr>
+			<tr *ngFor="let log of logs" >
+				<td>{{log.id}}</td>
+        <td>{{log.role}}</td>
+        <td>{{log.user_id}}</td>
+				<td>{{log.user}}</td>
+        <td>{{log.action}}</td>
+        <td>{{log.datetime}}</td>
+			</tr>
+		</table>
+</div>	
+
+ <!-- PAGINACIÓN -->
+ <div class="row justify-content-center align-items-center paginacion">
+  <button class="botonpaginas" [disabled]="pageInfo.previous == null" (click)="addgetParams(pageInfo.previous,'slice')">
+    <img width="50" src="assets/images/arrow-left.png">
+  </button>
+  <span id="numpag"><b>{{pageInfo.page}} de {{pageInfo.lastpage}}</b></span>
+  <button class="botonpaginas" [disabled]="pageInfo.next == null" (click)="addgetParams(pageInfo.next,'slice')">
+    <img width="50" src="assets/images/arrow-right.png">
+  </button>
+</div>
+  <p class="text-center"> <b >Mostrando {{pageInfo.from}}-{{pageInfo.to}} de {{pageInfo.total}} totales</b></p>
+
+</div>

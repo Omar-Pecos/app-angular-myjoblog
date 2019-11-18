@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router , ActivatedRoute} from '@angular/router';
 import { UserService } from './../../services/user.service';
 
 @Component({
@@ -18,10 +19,17 @@ export class GraficosAdminComponent implements OnInit {
   public color = '0';
 
    constructor(
+       private _route : ActivatedRoute,
+        private _router : Router,
   		 private _userService : UserService
   	) { 
   			 this.identity = this._userService.getIdentity();
 	   		this.token = this._userService.getToken(); 
+
+       /* // verifica que sea admin sino pues pag de error
+        if (this.identity.role == 'user'){
+         this._router.navigate(['error',403]);
+        }*/
 
         this._userService.getUsers(this.token,undefined).subscribe(
               response =>{
@@ -45,6 +53,13 @@ export class GraficosAdminComponent implements OnInit {
               },
               error =>{
                 console.log(<any>error);
+                let code = <any>error.error.code;
+                
+                      if (this.identity.role == 'user'){
+                         this._router.navigate(['error',code]);
+                      }else{
+                         this._router.navigate(['error',code]);
+                      }
               }
             );
   }

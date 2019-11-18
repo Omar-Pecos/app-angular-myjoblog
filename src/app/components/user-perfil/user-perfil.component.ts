@@ -52,11 +52,13 @@ export class UserPerfilComponent implements OnInit {
           },
           error =>{
             // se puede comentar 
-            console.log("$$$ - Error - $$$ -> "+<any>error.error.code);
+            console.log(<any>error);
+            let code = error.error.code;
+            console.log("$$$ - Error - $$$ -> "+<any>code);
 
-          // SI EL ERROR ES DE CODIGO 401 UNAUTORIZEHD O ALGUNO DE ESTOS PUES --> AL HOME
-             if (error.error.code == 401){
-                this._router.navigate(['home']);
+          // Si el error es 403 (sin auto) o 401 (sin autenticar)
+             if (code != 400){
+                this._router.navigate(['error',code]);
               }
            
           }

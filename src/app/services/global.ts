@@ -1,6 +1,6 @@
 export var GLOBAL = {
-	url: 'http://webtime.com.devel/api/',
-	baseUrl : 'http://webtime.com.devel/'
+	url: 'https://omardev.elementfx.com/api/',
+	baseUrl : 'https://omardev.elementfx.com/'
 };
 
 /*

@@ -1,5 +1,5 @@
 <div  class="cargando text-center" *ngIf="journeys == undefined">
-  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+ <img src="assets/images/loading-9.gif">
 </div>
 
 <div class="contenido" *ngIf="journeys != undefined">
@@ -47,30 +47,30 @@
 					(click)="addgetParams('sort_by=date&order='+order,'add')">
 						Fecha
 							<span *ngIf="sort_by == 'date'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th>Firma</th>
 					<th [ngStyle]="{'background-color':sort_by === 'time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=time&order='+order,'add')">
 						Duración [horas]
 							<span *ngIf="sort_by == 'time'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th [ngStyle]="{'background-color':sort_by === 'initial_time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=initial_time&order='+order,'add')">
 						Inicio
 							<span *ngIf="sort_by == 'initial_time'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th [ngStyle]="{'background-color':sort_by === 'final_time' ? '#F39C12' : ''}" 
 					(click)="addgetParams('sort_by=final_time&order='+order,'add')">
 						Final
 							<span *ngIf="sort_by == 'final_time'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					
 					<!-- <th>User #</th> si es admin pues operaciones -->
@@ -93,11 +93,11 @@
  <!-- PAGINACIÓN -->
  <div class="row justify-content-center align-items-center paginacion">
  	<button class="botonpaginas" [disabled]="pageInfo.previous == null" (click)="addgetParams(pageInfo.previous,'slice')">
- 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png">
+ 		<img width="50" src="assets/images/arrow-left.png">
  	</button>
  	<span id="numpag"><b>{{pageInfo.page}} de {{pageInfo.lastpage}}</b></span>
  	<button class="botonpaginas" [disabled]="pageInfo.next == null" (click)="addgetParams(pageInfo.next,'slice')">
- 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png">
+ 		<img width="50" src="assets/images/arrow-right.png">
  	</button>
 </div>
 	<p class="text-center"> <b >Mostrando {{pageInfo.from}}-{{pageInfo.to}} de {{pageInfo.total}} totales</b></p>
@@ -134,14 +134,14 @@
 				</label>	
 				&nbsp;&nbsp;&nbsp;
 				<button (click)="addgetParams('','sorted_search')" type="button" class="btn btn-primary" data-dismiss="modal">
-					<img src="https://img.icons8.com/color/48/000000/opera-glasses.png">&nbsp;&nbsp;Búsqueda Filtrada
+					<img src="assets/images/icons8-opera-glasses-50.png">&nbsp;&nbsp;Búsqueda Filtrada
 				</button>
 				
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	        <button (click)="getJourneysofOne(theid)" type="button" class="btn btn-primary" data-dismiss="modal">
-	        	<img  width="30" src="https://img.icons8.com/color/48/000000/search.png">&nbsp;&nbsp;Búsqueda Normal
+	        	<img  width="30" src="assets/images/icons8-search-50.png">&nbsp;&nbsp;Búsqueda Normal
 	    	</button>
 	      </div>
 	    </div>

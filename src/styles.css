@@ -10,7 +10,9 @@
 html,body{
 	height: 100vh;
 }
-
+h1,h2,h3,h4,h5 , .navbar-brand, #titulohome{
+	font-family: 'Merienda', cursive;
+}
 body{
    /* height: 100%;
 	width: 100%;*/
@@ -147,10 +149,10 @@ body{
 #titulohome{
 	margin-bottom: 30px;
 }
-.titulo{
+.titulo , .titulo-HOME{
 	animation: heroAnimation 2s forwards 0s ease;
 }
-.titulo-grafico, .titulo-HOME{
+.titulo-grafico{
 	animation: titulograficoAnimation 2s forwards 0.5s ease-in-out;
 }
 @keyframes titulograficoAnimation{
@@ -317,16 +319,15 @@ tr:nth-child(even) {
 .filadatos:hover{
 	background-color: #fff3bd
 }
-th{
-	/*border: 1px solid #3e78b2 !important;*/
-	border: 1px solid black !important;
-}
-
 th,td{
   text-align: center !important;
   vertical-align: middle !important;
 
- border: 1px solid #51D1F6;
+ border: 1px solid #51D1F6 !important;
+}
+th{
+	/*border: 1px solid #3e78b2 !important;*/
+	border: 1px solid black !important;
 }
 .cabecera-tabla{
 	/*background-color: #51d1f6;*/
@@ -401,9 +402,12 @@ th,td{
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	margin: 30px auto;
+	margin: 15px auto;
 	align-items: center;
 	animation: otrosElemPagAnimation 2s forwards 0s ease;
+}
+.botones-firma button{
+	margin: 2px;
 }
 .botonpaginas{
 	background-color: #25B7D3;
@@ -506,6 +510,10 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	color: white;
 }
 
+.fc-view-container .fc-content-skeleton td{
+	border: none !important;
+}
+ 
 .flexcentercontainer{
 	display:  flex;
 	align-items:  center;

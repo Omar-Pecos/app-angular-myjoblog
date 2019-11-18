@@ -78,7 +78,13 @@ export class JornadasComponent implements DoCheck {
                 }
               },
               error =>{
-                console.log(<any>error);
+                let code = error.error.code;
+            console.log("$$$ - Error - $$$ -> "+<any>code);
+
+          // Si el error es 403 (sin auto) o 401 (sin autenticar)
+             if (code != 400){
+                this._router.navigate(['error',code]);
+              }
               }
             );
   } 

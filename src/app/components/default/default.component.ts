@@ -23,6 +23,7 @@ export class DefaultComponent implements OnInit{
 	public identity;
 
 	public infomsg;
+	public year;
 
 	/*private _route : ActivatedRoute;
 	private _router : Router;
@@ -40,6 +41,8 @@ export class DefaultComponent implements OnInit{
 
 				this.token = this._userService.getToken();
 				this.identity = this._userService.getIdentity();
+
+				this.year = new Date().getFullYear();
 
 	}
 

@@ -61,7 +61,6 @@ public getParams:string = 'sort_by=datetime&order=desc';
 
   		 this._pdfService.get_files(this.token,this.getParams,tipo).subscribe(
 						              response =>{ 
-						    			console.log(<any>response);
 
 						    			this.files = response.files.data;
 
@@ -119,18 +118,7 @@ public getParams:string = 'sort_by=datetime&order=desc';
 						    			this.deletedexport = response.deletedexport;
 
 
-						    							// then call myfiles ()
-										    			this._pdfService.get_files(this.token,this.getParams,'auto').subscribe(
-										              response =>{ 
-										    			console.log(<any>response);
-
-										    			this.files = response.files;
-
-										              },
-										              error =>{
-										                console.log(<any>error);
-										              }
-								            );
+						    			this.getMyFiles('auto');
 
 						              },
 						              error =>{

@@ -1,5 +1,5 @@
 <div  class="cargando text-center" *ngIf="loading == true">
-  <img src="https://acegif.com/wp-content/uploads/loading-9.gif">
+  <img src="assets/images/loading-9.gif">
 </div>
 
 <div class="contenido" *ngIf="loading == false">
@@ -11,7 +11,7 @@
 		
 		<br>
 			<button class="btn btn-info" [routerLink]="['/crear']">
-					<img src="https://img.icons8.com/color/50/000000/add-user-group-woman-woman.png">Crear Usuario
+					<img src="assets/images/icons8-add-user-group-woman-man-50.png">Crear Usuario
 				</button>
 				
 		<div id="buscadorUserList" class="buscador row justify-content-center">
@@ -36,32 +36,32 @@
 					(click)="addgetParams('sort_by=id&order='+order,'add')">
 						ID #
 							<span *ngIf="sort_by == 'id'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th [ngStyle]="{'background-color':sort_by === 'name' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=name&order='+order,'add')">
 						Nombre
 							<span *ngIf="sort_by == 'name'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th [ngStyle]="{'background-color':sort_by === 'surname' ? '#F39C12' : ''}" (click)="addgetParams('sort_by=surname&order='+order,'add')">
 						Apellidos
 							<span *ngIf="sort_by == 'surname'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th [ngStyle]="{'background-color':sort_by === 'email' ? '#F39C12' : ''}"(click)="addgetParams('sort_by=email&order='+order,'add')">
 						Email
 							<span *ngIf="sort_by == 'email'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th [ngStyle]="{'background-color':sort_by === 'dni' ? '#F39C12' : ''}"(click)="addgetParams('sort_by=dni&order='+order,'add')">
 						DNI
 							<span *ngIf="sort_by == 'dni'">({{ order_now | uppercase }})</span>
-							<img *ngIf="order == 'desc'" src="https://img.icons8.com/metro/26/000000/down--v2.png">
-							<img *ngIf="order == 'asc'" src="https://img.icons8.com/metro/26/000000/up--v2.png">
+							<img *ngIf="order == 'desc'" src="assets/images/down.png">
+							<img width="26" *ngIf="order == 'asc'" src="assets/images/up.png">
 					</th>
 					<th>Teléfono</th>
 					<th>Operaciones</th>
@@ -85,17 +85,17 @@
 					<td>
 						<span  class="operacionesUser" *ngIf="user.active != 0">
 							<button class="btn btn-info" [routerLink]="['/perfil',user.id]">
-								<img src="https://img.icons8.com/color/40/000000/contact-card.png">&nbsp;Perfil #{{user.id}}</button>
-							<button  class="btn btn-info"[routerLink]="['/jornadas',user.id]">
-								<img src="https://img.icons8.com/color/32/000000/overview-pages-1.png">&nbsp;Jornadas #{{user.id}}</button>
+								<img  style="width: 30px;padding-bottom: 5px;" src="assets/images/icons8-contact-50.png">&nbsp;Perfil #{{user.id}}</button>
+							<button  class="btn btn-info" [routerLink]="['/jornadas',user.id]">
+								<img  width="26" src="assets/images/icons8-page-50.png">&nbsp;Jornadas #{{user.id}}</button>
 							<button class="btn btn-warning"  *ngIf="user.role == 'user'" (click)="MakeAdmin(user.id)">
-								<img src="https://img.icons8.com/color/32/000000/user-shield.png">&nbsp;Hacer Admin</button>
+								<img width="26" src="assets/images/icons8-user-shield-50.png">&nbsp;Hacer Admin</button>
 							<button class="btn btn-danger" *ngIf="user.id != identity.sub" (click)="SetIdUser(user.id)" >
-								<img src="https://img.icons8.com/color/32/000000/cancel--v1.png">&nbsp;Eliminar</button>
+								<img width="26" src="assets/images/icons8-cancel-50.png">&nbsp;Eliminar</button>
 						</span>
 						<span  *ngIf="user.active == 0"  class="operacionesUser">
 							<button  class="btn btn-danger" *ngIf="user.id != identity.sub" (click)="SetIdUser(user.id)" >
-									<img src="https://img.icons8.com/color/32/000000/cancel--v1.png">&nbsp;Eliminar</button>
+									<img width="26" src="assets/images/icons8-cancel-50.png">&nbsp;Eliminar</button>
 						</span>
 					</td>
 						
@@ -106,11 +106,11 @@
 	 <!-- PAGINACIÓN -->
  <div class="row justify-content-center align-items-center paginacion">
  	<button class="botonpaginas" [disabled]="pageInfo.previous == null" (click)="addgetParams(pageInfo.previous,'slice')">
- 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-left.png">
+ 		<img width="50" src="assets/images/arrow-left.png">
  	</button>
  	<span id="numpag"><b>{{pageInfo.page}} de {{pageInfo.lastpage}}</b></span>
  	<button class="botonpaginas" [disabled]="pageInfo.next == null" (click)="addgetParams(pageInfo.next,'slice')">
- 		<img width="50" src="https://img.icons8.com/flat_round/64/000000/arrow-right.png">
+ 		<img width="50" src="assets/images/arrow-right.png">
  	</button>
 </div>
 	<p class="text-center"> <b >Mostrando {{pageInfo.from}}-{{pageInfo.to}} de {{pageInfo.total}} totales</b></p>
@@ -148,14 +148,14 @@
 				</label>
 				&nbsp;&nbsp;&nbsp;	
 				<button (click)="addgetParams('','sorted_search')" type="button" class="btn btn-primary" data-dismiss="modal">
-					<img src="https://img.icons8.com/color/48/000000/opera-glasses.png">&nbsp;&nbsp;Búsqueda Filtrada
+					<img src="assets/images/icons8-opera-glasses-50.png">&nbsp;&nbsp;Búsqueda Filtrada
 				</button>
 				
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 	        <button (click)="getUsersAll()" type="button" class="btn btn-primary" data-dismiss="modal">
-	        	<img  width="30" src="https://img.icons8.com/color/48/000000/search.png">&nbsp;&nbsp;Búsqueda Normal
+	        	<img  width="30" src="assets/images/icons8-search-50.png">&nbsp;&nbsp;Búsqueda Normal
 	    	</button>
 	      </div>
 	    </div>
