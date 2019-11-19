@@ -547,7 +547,6 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	}
 	.heroimage{
 		flex-flow: row nowrap;
-		/*margin-bottom: 15px;*/
 	}
 	.heroimage img {
 		width: 60px;
@@ -561,12 +560,20 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		margin-bottom: -30px;
 		transform: rotateY(-15deg) rotateX(15deg);
 	}
+
 	.cardhome{
-		width: 70%;
+		width: 90%;
+		margin: 0 auto;
+		position: relative;
+		top:20px;
+	}
+	.background .cardhome{
+		top:100px;
 	}
 	.contenido {
 		/*height: 100%;*/
 		padding: 20px 0px;
+		padding-bottom: 100px;
 	}
 
 	.titulo , .heroimage , .buscadores{
@@ -608,5 +615,12 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		width: 100%;
 		height: 100%;
 	}*/
+
+
+	/* gifhome+sus btns + heroimage HOME, todos titulos, otrosElementos anim */
+	#gifhome,#btnregistro,#btnlogin, .heroimage, .titulo , .titulo-HOME , .titulo-grafico ,.botones-firma , #accordion ,.buscador{
+		animation: none;
+	}
+
 
 }

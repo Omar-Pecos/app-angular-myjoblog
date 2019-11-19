@@ -1,6 +1,6 @@
 export var GLOBAL = {
-	url: 'https://omardev.elementfx.com/api/',
-	baseUrl : 'https://omardev.elementfx.com/'
+	url: 'http://omardev.elementfx.com/api/',
+	baseUrl : 'http://omardev.elementfx.com/'
 };
 
 /*

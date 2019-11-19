@@ -31,6 +31,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 	public paused;
 
 	public noche = false;
+	public cadenagif = '';
 
 	public pdfjourneys: any[] = [];
 	public quantity:number;
@@ -64,7 +65,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 						this.journey = new Journey('nadadeimagen','nada','nada');	
 
 						let hours = new Date().getHours();
-						if (hours >= 18){
+						if (hours >= 18 || hours < 6){
 							this.noche = true;
 						}
 
@@ -118,10 +119,11 @@ export class FirmaComponent implements OnInit,DoCheck{
 									if (response.journey == true){
 										this.title = "Jornada Iniciada";
 
+										
 										// JORNADA INICIADA ALERT
 										$(document).ready(function(){  
-													   $("#giffirma").html('<img width="70" src="https://media.giphy.com/media/l1J9Nd2okdiIq7K9O/giphy.gif"><br><br>'+
-														'<div class="alert alert-info"><h6><img src="https://img.icons8.com/color/48/000000/play.png">&nbsp;<b>Inicio de la jornada</b></h6><p>'+ response.init +'</p></div>');
+													   $("#giffirma").html('<img style="width: 70px;margin: 0 auto;" src="assets/images/luna.gif"/><br><br>'+
+														'<div class="alert alert-info"><h6><img src="assets/images/icons8-play-50.png">&nbsp;<b>Inicio de la jornada</b></h6><p>'+ response.init +'</p></div>');
 													});  
 											
 											// PARADAS DE LA JORNADA ALERT
@@ -139,10 +141,10 @@ export class FirmaComponent implements OnInit,DoCheck{
 														 minutes = "0" + date.getMinutes();
 														 seconds = "0" + date.getSeconds();
 
-														 cadena +='<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;"><div class="alert alert-secondary"><h6><img src="https://img.icons8.com/color/48/000000/resume-button.png">&nbsp;'+(i+1)+'º Pausa</h6><p> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</p></div>';
+														 cadena +='<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;"><div class="alert alert-secondary"><h6><img src="assets/images/icons8-resume-button-50.png">&nbsp;'+(i+1)+'º Pausa</h6><p> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</p></div>';
 													
 															if (i == (num-1)){
-																cadena +='<hr><div class="alert alert-danger"><h6><img src="https://img.icons8.com/color/48/000000/pause.png"><b>Total tiempo no trabajado : </b>'+response.time_lost+' minutos </h6></div><hr>';
+																cadena +='<hr><div class="alert alert-danger"><h6><img src="assets/images/icons8-stop-50.png"><b>Total tiempo no trabajado : </b>'+response.time_lost+' minutos </h6></div><hr>';
 															}
 												}
 												 $(document).ready(function(){  
@@ -156,7 +158,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 												this.title = "Jornada Pausada";
 												$(document).ready(function(){  
 													  $("#giffirma").append('<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;">'+
-													'<div class="alert alert-warning"><h6><img src="https://img.icons8.com/color/48/000000/pause.png">&nbsp;<b>Pausa</b></h6><p>Tiempo en parada : '+ response.paused +' min </p></div>');
+													'<div class="alert alert-warning"><h6><img src="assets/images/icons8-pause-50.png">&nbsp;<b>Pausa</b></h6><p>Tiempo en parada : '+ response.paused +' min </p></div>');
 													}); 
 												
 											}	
@@ -203,7 +205,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 										              response =>{ 
 										    			console.log(<any>response);
 
-										    				this.infomsg = " ¡ Un pdf ha sido generado para ti ! Para visualizarlo o guardarlo, dirígete a la sección de ";
+										    				this.infomsg = " ¡ Un pdf ha sido generado para ti ! Para visualizarlo o guardarlo, dirígete a la sección de archivos";
 										    				this.globals.infomsg = this.infomsg;
 
 										    				this.setTrigger(this.token,0,'0');
