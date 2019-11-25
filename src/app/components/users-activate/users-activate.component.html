@@ -20,10 +20,11 @@
 					<h6><b> Registrado : {{user.created_at}}</b></h6>
 
 					<div class="d-flex flex-row justify-content-center my-flex-container">
-					     <button (click)="ActivateUser(user.id,1)" class="p-2 my-flex-item btn btn-info">
+					     <button (click)="ActivateUser(user.id,1)" class="p-2 my-flex-item btn btn-info titulo-grafico">
 					     	<img src="assets/images/checked--v2.png">Activar
 					     </button> 
-					     <button (click)="ActivateUser(user.id,0)" class="p-2 my-flex-item btn btn-info">
+					     	&nbsp;
+					     <button (click)="ActivateUser(user.id,0)" class="p-2 my-flex-item btn btn-info titulo-grafico">
 						     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 								width="48" height="48"
 								viewBox="0 0 172 172"

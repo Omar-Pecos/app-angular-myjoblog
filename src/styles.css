@@ -153,12 +153,12 @@ body{
 	animation: heroAnimation 2s forwards 0s ease;
 }
 .titulo-grafico{
-	animation: titulograficoAnimation 2s forwards 0.5s ease-in-out;
+	animation: titulograficoAnimation 2s forwards 0s ease-in-out;
 }
 @keyframes titulograficoAnimation{
     0%{
         transform: rotate(180deg) scale(0.3) translateY(-70%);
-        opacity: 0.2;
+        opacity: 0;
         }
     100%{
         transform: rotate(0) scale(1) translateY(0) skewX(10deg);
@@ -510,8 +510,21 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 	color: white;
 }
 
+.fc-left{
+	margin-left: 20px;
+}
+
 .fc-view-container .fc-content-skeleton td{
 	border: none !important;
+}
+
+.fc-toolbar,.fc-view-container{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.fc-today .fc-day-number{
+	color: red;
 }
  
 .flexcentercontainer{
@@ -615,6 +628,11 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		width: 100%;
 		height: 100%;
 	}*/
+
+	.fc-toolbar,.fc-view-container{
+	width: 95%;
+	margin: 0 auto;
+}
 
 
 	/* gifhome+sus btns + heroimage HOME, todos titulos, otrosElementos anim */

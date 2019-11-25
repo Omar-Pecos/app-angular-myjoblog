@@ -208,7 +208,8 @@ export class FirmaComponent implements OnInit,DoCheck{
 										    				this.infomsg = " ¡ Un pdf ha sido generado para ti ! Para visualizarlo o guardarlo, dirígete a la sección de archivos";
 										    				this.globals.infomsg = this.infomsg;
 
-										    				this.setTrigger(this.token,0,'0');
+										    				//En vez de set trigger hacer esto si es auto en el GenPDf - PHP
+										    				//this.setTrigger(this.token,0,'0');
 															this.pdfjourneys = [];
 															this.quantity = 0;
 										              },
@@ -258,7 +259,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 
 						);
 		  }
-			
+		
 
 
 

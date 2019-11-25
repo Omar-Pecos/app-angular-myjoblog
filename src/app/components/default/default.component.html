@@ -2,7 +2,7 @@
 <div class="contenido" *ngIf="identity">  
   <!-- Infomsg -->
       <div *ngIf="infomsg != ''" class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>¡Antención!</strong> {{infomsg}}<a [routerLink]="['/crear']"><b>Mis Pdf</b></a>
+        <strong>¡Antención!</strong> {{infomsg}} &nbsp;<a [routerLink]="['/archivos']"><b>Mis Pdf</b></a>
         <b *ngIf="identity.role =='admin'"> ó <a [routerLink]="['/exportar']"><b>Exportar</b></a></b>
         <button type="button" (click)="setinfomsg('')" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>

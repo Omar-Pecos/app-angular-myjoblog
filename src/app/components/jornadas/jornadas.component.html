@@ -23,16 +23,16 @@
 			</select>
 
 			<span *ngIf="searchselect == 'date'" id="spanbuscadorfecha">
-					<input id="diasinput" class="form-control" type="number" placeholder="DD">
+					<input id="diasinput" class="form-control" type="number" placeholder="Día">
 						<b>/</b>
-					<input id="mesinput" class="form-control" type="number" placeholder="MM">
+					<input id="mesinput" class="form-control" type="number" placeholder="Mes">
 						<b>/</b>
-					<input id="anioinput" class="form-control" type="number" placeholder="AAAA">
+					<input id="anioinput" class="form-control" type="number" placeholder="Año">
 			</span>
 			<span *ngIf="searchselect == 'time'" id="spanbuscadorhora">
-					<input id="horasinput" class="form-control" type="number" placeholder="HH">
+					<input id="horasinput" class="form-control" type="number" placeholder="Horas">
 							&nbsp;&nbsp;<b>:</b>&nbsp;&nbsp;
-					<input id="minutosinput" class="form-control" type="number" placeholder="MM">
+					<input id="minutosinput" class="form-control" type="number" placeholder="Min.">
 						
 			</span>
 						
@@ -139,7 +139,7 @@
 				
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 	        <button (click)="getJourneysofOne(theid)" type="button" class="btn btn-primary" data-dismiss="modal">
 	        	<img  width="30" src="assets/images/icons8-search-50.png">&nbsp;&nbsp;Búsqueda Normal
 	    	</button>
