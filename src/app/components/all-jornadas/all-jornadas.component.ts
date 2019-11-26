@@ -273,13 +273,21 @@ export class AllJornadasComponent implements DoCheck {
 
            let modalBody = $('#mapsModal .modal-body');
             modalBody.html('');
+
+            let numberstring = '';
+            let numberdeuser = this.user_data.number;
+            if (numberdeuser == null){
+              numberstring = '<h6>No disponible el número</h6>';
+            }else{
+              numberstring = '<h6><a href="tel:'+numberdeuser+'">'+numberdeuser+'</a></h6>';
+            }
             
             // show modal
             modalBody.append('<h5><b>Inicio Jornada Lat,Lon : '+(coordIni[0])+','+(coordIni[1])+'</b></h5>'+ini+
                   '<h5><b>Final Jornada Lat,Lon : '+(coordEnd[0])+','+(coordEnd[1])+'</b></h5>'+end+
                   '<h5><b>'+this.user_data.name+'&nbsp;'+this.user_data.surname+'</b></h5>'+
-                  '<h6 *ngIf="{{user_data.number}}"><a href="tel:{{user_data.number}}">'+this.user_data.number+'</a></h6>'+
-                  '<h6><a href="mailto:{{user_data.email}}">'+this.user_data.email+'</a></h6>');
+                   numberstring +
+                  '<h6><a href="mailto:'+this.user_data.email+'">'+this.user_data.email+'</a></h6>');
             
             $(function() {
                 $('#mapsModal').modal('show');
