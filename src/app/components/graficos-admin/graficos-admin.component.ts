@@ -93,7 +93,7 @@ export class GraficosAdminComponent implements OnInit {
 
         this.idselected = this.id;
         this.color = color;
-        console.log("COLOR DESDE EL PARENT ->"+this.color);
+        //console.log("COLOR DESDE EL PARENT ->"+this.color);
   }
 
 }

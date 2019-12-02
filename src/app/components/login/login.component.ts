@@ -25,18 +25,18 @@ export class LoginComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		//console.log('login.component cargado correctamente !!');
+		////console.log('login.component cargado correctamente !!');
 		this.user =  new User(1, 'user','','','',0,'');
 		this.logout();
 		/*let user = this._userService.getIdentity();
 		if (user!=null){
-				console.log(user.name+' '+ user.surname+' ->id = '+user.sub);
+				//console.log(user.name+' '+ user.surname+' ->id = '+user.sub);
 		}*/
 	}
 
 	onSubmit(form){
-					console.log("Al acceder el user ---->");
-					console.log(this.user);
+					//console.log("Al acceder el user ---->");
+					//console.log(this.user);
 
 		this._userService.signup(this.user).subscribe(
 				response =>{

@@ -54,7 +54,7 @@ export class JornadasComponent implements DoCheck {
     this._journeyService.getMyJourneys(id,this.token,this.getParams).subscribe(
               response =>{
                 if (response.status == 'success'){
-                  //console.log("MyJourneys response ->"+response);
+                  ////console.log("MyJourneys response ->"+response);
                   this.journeys = response.journeys.data;
 
                    let pageInfo = {'page':response.journeys.current_page,'lastpage':response.journeys.last_page,
@@ -79,7 +79,7 @@ export class JornadasComponent implements DoCheck {
               },
               error =>{
                 let code = error.error.code;
-            console.log("$$$ - Error - $$$ -> "+<any>code);
+                  console.log("$$$ - Error - $$$ -> "+<any>code);
 
           // Si el error es 403 (sin auto) o 401 (sin autenticar)
              if (code != 400){
@@ -90,7 +90,7 @@ export class JornadasComponent implements DoCheck {
   } 
 
   ngOnInit() {
-  		console.log("jornada component de user "+this.identity.name+" cargadas ok");
+  		//console.log("jornada component de user "+this.identity.name+" cargadas ok");
   }
 
    ngDoCheck(){
@@ -101,7 +101,7 @@ export class JornadasComponent implements DoCheck {
   // AÑADE LOS PARÁMETROS A LA URL CUANDO ES NECESARIO
   addgetParams(value, operacion){
         var result;
-          console.log("getParams -- lo recibido ->" + value);
+          //console.log("getParams -- lo recibido ->" + value);
 
                 //no se necesita cortar las url - lo que se pasa se añade a la url
                if (operacion == 'add'){
@@ -122,7 +122,7 @@ export class JornadasComponent implements DoCheck {
                       var mesinput = $("#mesinput").val();
                       var anioinput = $("#anioinput").val();
 
-                      console.log("diasinput"+diasinput+"mesinput"+mesinput+"anioinput"+anioinput);
+                      //console.log("diasinput"+diasinput+"mesinput"+mesinput+"anioinput"+anioinput);
                       var mystring;
 
                          // dia, mes y año
@@ -157,7 +157,7 @@ export class JornadasComponent implements DoCheck {
                         }
 
                            result = 'search='+mystring+'&field='+this.searchselect;
-                           console.log("result es --> "+result);
+                           //console.log("result es --> "+result);
 
                   }
 
@@ -171,7 +171,7 @@ export class JornadasComponent implements DoCheck {
                      
                       var mystring;
 
-                         console.log("horas es --> "+horasinput+" y los min son ->"+minutosinput);
+                         //console.log("horas es --> "+horasinput+" y los min son ->"+minutosinput);
 
                         // hora y minutos
                         if (horasinput != '0' && minutosinput != '0' ){
@@ -189,7 +189,7 @@ export class JornadasComponent implements DoCheck {
                         }
 
                            result = 'search='+mystring+'&field='+selectedtipohora;
-                           console.log("result es --> "+result);
+                           //console.log("result es --> "+result);
 
                   }
 
@@ -205,15 +205,15 @@ export class JornadasComponent implements DoCheck {
                    result = this.getParams+'&sort_by='+selectfield+'&order='+selectorder;
                 }
 
-          console.log(" getParams --lo transformado ->" + result);
+          //console.log(" getParams --lo transformado ->" + result);
 
             if (operacion == 'search'){
                  this.getParams = result;
-                 console.log("this.getParams _>"+this.getParams);
+                 //console.log("this.getParams _>"+this.getParams);
             }
             else{
               this.getParams = result;
-              console.log("this.getParams _>"+this.getParams);
+              //console.log("this.getParams _>"+this.getParams);
                
                  // si es la pag sig o anteroir que haga ElScrollTop
                     if (operacion == 'slice'){
@@ -221,7 +221,7 @@ export class JornadasComponent implements DoCheck {
                     }
 
                 //
-                console.log("THIS.THEID >>>>>>>>>>>> "+this.theid);
+                //console.log("THIS.THEID >>>>>>>>>>>> "+this.theid);
                this.getJourneysofOne(this.theid);     
             }
     }
@@ -230,7 +230,7 @@ export class JornadasComponent implements DoCheck {
   viewSearchSelect(){
 
       var value = $("#selectsearch").val();
-        //console.log("value -> "+value);
+        ////console.log("value -> "+value);
       this.searchselect = value;
   
   }
@@ -245,7 +245,7 @@ export class JornadasComponent implements DoCheck {
               return response;
           },
           error =>{
-           console.log(<any>error);
+           //console.log(<any>error);
           }
       );
   }*/

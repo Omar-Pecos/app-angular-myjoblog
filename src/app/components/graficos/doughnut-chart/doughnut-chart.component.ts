@@ -41,8 +41,8 @@ export class DoughnutChartComponent implements OnInit {
                       this.doughnutChartData = response.data_donut;
                        
                       this.loading = false;
-                      console.log(this.loading);
-                       console.log(this.doughnutChartData);
+                     // console.log(this.loading);
+                       //console.log(this.doughnutChartData);
               },
               error =>{
                    console.log(<any>error);

@@ -77,7 +77,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 			/*// call to get triggerpdf DATA					
 					*/
 					 $(document).ready(function(){  
-						console.log("document.ready");						 	
+						//console.log("document.ready");						 	
 					}); 
 					
 
@@ -130,13 +130,13 @@ export class FirmaComponent implements OnInit,DoCheck{
 											if (response.time_lost != 0){
 												var stops = response.stops;
 												var num = stops.length;
-												console.log(num + '--'+response.stops);
+												//console.log(num + '--'+response.stops);
 												var i,date,hours,minutes,seconds,cadena = '';
 
 												for (i=0;i<num;i++){
 													
 														 date = new Date(stops[i]*1000);
-														 console.log('num -> '+i+'---'+date);
+														 //console.log('num -> '+i+'---'+date);
 														 hours = date.getHours();
 														 minutes = "0" + date.getMinutes();
 														 seconds = "0" + date.getSeconds();
@@ -144,11 +144,11 @@ export class FirmaComponent implements OnInit,DoCheck{
 														 cadena +='<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;"><div class="alert alert-secondary"><h6><img src="assets/images/icons8-resume-button-50.png">&nbsp;'+(i+1)+'º Pausa</h6><p> Inicio : '+hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +'</p></div>';
 													
 															if (i == (num-1)){
-																cadena +='<hr><div class="alert alert-danger"><h6><img src="assets/images/icons8-stop-50.png"><b>Total tiempo no trabajado : </b>'+response.time_lost+' minutos </h6></div><hr>';
+																cadena +='<hr><div class="alert alert-danger"><h6><img src="assets/images/icons8-stop-50.png"><b>Total tiempo no trabajado : </b>'+(Math.round(response.time_lost * 100) / 100).toFixed(2)+' minutos </h6></div><hr>';
 															}
 												}
 												 $(document).ready(function(){  
-												 	console.log("se debe añadir esto"+cadena);
+												 	//console.log("se debe añadir esto"+cadena);
 													   		$("#giffirma").append(cadena);
 														});  
 											}
@@ -158,7 +158,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 												this.title = "Jornada Pausada";
 												$(document).ready(function(){  
 													  $("#giffirma").append('<hr style="height:3px;border:none;color:#3F79B2;background-color:#3F79B2;">'+
-													'<div class="alert alert-warning"><h6><img src="assets/images/icons8-pause-50.png">&nbsp;<b>Pausa</b></h6><p>Tiempo en parada : '+ response.paused +' min </p></div>');
+													'<div class="alert alert-warning"><h6><img src="assets/images/icons8-pause-50.png">&nbsp;<b>Pausa</b></h6><p>Tiempo en parada : '+(Math.round( response.paused * 100) / 100).toFixed(2) +' min </p></div>');
 													}); 
 												
 											}	
@@ -180,7 +180,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 		  	this._pdfService.get_trigger(token).subscribe(	
 
 						response =>{
-							console.log(response);
+							//console.log(response);
 							
 							this.quantity = response.trigger.quantity;
 							var data = response.trigger.id_journeys;
@@ -193,17 +193,17 @@ export class FirmaComponent implements OnInit,DoCheck{
 
 
 							/* EN END FIRMA !!! */
-							console.log("BEFORE firma -- this.pdfjourneys --> ",this.pdfjourneys);
-							console.log("BEFORE  firma -- this.quantity --> ",this.quantity);
+							//console.log("BEFORE firma -- this.pdfjourneys --> ",this.pdfjourneys);
+							//console.log("BEFORE  firma -- this.quantity --> ",this.quantity);
 
 
 							/* SI ES LA CANTIDAD ESPERADA DE DIAS HACE EL TRIGRERR DEL PDF  */	
 								if (this.quantity >= 2){
-										console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
+										//console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
 											/* TRIGGER EL PDF (token, ids jornadas , user_id,year) */ 
 												this._pdfService.generate_pdf(this.token,this.pdfjourneys,0,0).subscribe(
 										              response =>{ 
-										    			console.log(<any>response);
+										    			//console.log(<any>response);
 
 										    				this.infomsg = " ¡ Un pdf ha sido generado para ti ! Para visualizarlo o guardarlo, dirígete a la sección de archivos";
 										    				this.globals.infomsg = this.infomsg;
@@ -214,7 +214,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 															this.quantity = 0;
 										              },
 										              error =>{
-										                console.log(<any>error);
+										                //console.log(<any>error);
 										              }
 								            );	
 					}
@@ -233,15 +233,15 @@ export class FirmaComponent implements OnInit,DoCheck{
 		  }
 
 		/* callpdf(){
-		 	console.log("dsfhskdjfsdflakdsfhsdjkfhsdj");
+		 	//console.log("dsfhskdjfsdflakdsfhsdjkfhsdj");
 		 	
 				this._pdfService.generate_pdf(this.pdfjourneys).subscribe(
 	              response =>{
 	               
-	    			console.log(<any>response);
+	    			//console.log(<any>response);
 	              },
 	              error =>{
-	                console.log(<any>error);
+	                //console.log(<any>error);
 	              }
 	            );
 		 }*/
@@ -251,7 +251,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 				this._pdfService.set_trigger(token,quantity,id_journeys).subscribe(	
 
 							response =>{
-								console.log(response);
+								//console.log(response);
 							},
 							error =>{
 								console.log(<any>error);
@@ -309,7 +309,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 		                      if (navigator.geolocation) {
 		                     	navigator.geolocation.getCurrentPosition(putPosition);
 		                      } else {
-		                        console.log("La Geolocalización no está disponible en este navegador");
+		                        //console.log("La Geolocalización no está disponible en este navegador");
 		                         	$('#latini').val('nada');
 		                    		$('#lonini').val('nada');
 		                      }
@@ -351,7 +351,7 @@ export class FirmaComponent implements OnInit,DoCheck{
             	"lon":$("#lonini").val()};
           	//let data = localStorage.getItem("datajson");
           	 this.jsondata = this._journeyService.getData();
-          	console.log("jsondata =>> "+this.jsondata);*/
+          	//console.log("jsondata =>> "+this.jsondata);*/
 
           	this.journey.image = $('#imagenpng').val();
           	this.journey.lat = $('#latini').val();
@@ -360,7 +360,7 @@ export class FirmaComponent implements OnInit,DoCheck{
           	this._journeyService.init_journey(JSON.stringify(this.journey),this.token).subscribe
 				(	
 						response =>{
-							console.log(response);
+							//console.log(response);
 							// jornada == true
 							this.jornada_activa = true;
 							this.title = "Jornada Iniciada";
@@ -382,7 +382,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 		                      if (navigator.geolocation) {
 		                     	navigator.geolocation.getCurrentPosition(ponerPosition);
 		                      } else { 
-			                        console.log("La Geolocalización no está disponible en este navegador");
+			                        //console.log("La Geolocalización no está disponible en este navegador");
 			                         	 $('#latend').val('nada');
 			                    		 $('#lonend').val('nada');
 		                      }
@@ -394,7 +394,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 		            	"lon":position.coords.longitude};
 
 		            	localStorage.setItem("datajson",JSON.stringify(datajson));
-		            	console.log(datajson);*/
+		            	//console.log(datajson);*/
 
 		            	  $('#latend').val(position.coords.latitude);
 		                    $('#lonend').val(position.coords.longitude);
@@ -407,7 +407,7 @@ export class FirmaComponent implements OnInit,DoCheck{
           //	let datajson = localStorage.getItem("datajson");
 
           /* this.jsondata = this._journeyService.getData();
-          	console.log("jsondata =>> "+this.jsondata);
+          	//console.log("jsondata =>> "+this.jsondata);
 
           	let datajson = {"image":$("#imagenpng").val(), "lat": $("#latend").val(),
             	"lon":$("#lonend").val()};*/
@@ -419,7 +419,7 @@ export class FirmaComponent implements OnInit,DoCheck{
           	this._journeyService.end_journey(JSON.stringify(this.journey),this.token).subscribe
 				(	
 						response =>{
-							console.log(response);
+							//console.log(response);
 							// jornada == true
 							this.jornada_activa = false;
 							this.title = "Jornada sin Iniciar";
@@ -440,8 +440,8 @@ export class FirmaComponent implements OnInit,DoCheck{
 									this.quantity++;
 								}
 
-								console.log("AFTER firma -- this.pdfjourneys --> ",this.pdfjourneys);
-								console.log("AFTER firma -- this.quantity --> ",this.quantity);
+								//console.log("AFTER firma -- this.pdfjourneys --> ",this.pdfjourneys);
+								//console.log("AFTER firma -- this.quantity --> ",this.quantity);
 
 								this.setTrigger(this.token,this.quantity,this.pdfjourneys);
 
@@ -461,7 +461,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 		this._journeyService.pause_journey(this.token).subscribe
 				(	
 						response =>{
-							console.log(response);
+							//console.log(response);
 							// jornada == true
 							this.jornada_activa = true;
 							this.title = "Jornada Pausada";
@@ -470,7 +470,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 									// se actualiza la info
 									this.HasActiveJourney(this.token);
 
-									console.log("	thuis paused ----------->"+this.paused);
+									//console.log("	thuis paused ----------->"+this.paused);
 									//this.paused = 0.017;
 						},
 						error =>{
@@ -486,7 +486,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 		this._journeyService.continue_journey(this.token).subscribe
 				(	
 						response =>{
-							console.log(response);
+							//console.log(response);
 							// jornada == true
 							this.jornada_activa = true;
 							this.title = "Jornada Iniciada";

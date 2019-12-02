@@ -22,14 +22,14 @@ export class AdminDonutAnioComponent implements OnChanges{
  private _privColor : any;
 
   @Input() public set theId(value: string) {
-    //console.log(`This is pubProp value change detected in setter method: ${value}`);
+    ////console.log(`This is pubProp value change detected in setter method: ${value}`);
     this._privId = value;
   }
   /*public get pubProp() {
     return this._privId;
   }*/
   @Input() public set theColor(value: any) {
-    //console.log(`TheColor  value change detected in setter method: ${value}`);
+    ////console.log(`TheColor  value change detected in setter method: ${value}`);
     this._privColor = value;
   }
 
@@ -62,7 +62,7 @@ export class AdminDonutAnioComponent implements OnChanges{
 
                  this._graphService.data_donut_anio(this.token,this.oldusers[0]).subscribe(
                         response => {
-                                console.log(response.data_donut);
+                                //console.log(response.data_donut);
                                 this.donutChartData.unshift(response.data_donut);
                                 this.donutChartLabels.unshift(response.label);
                                  this.donutChartColors[0].backgroundColor.unshift( 'rgba(43, 218, 227, 1)');
@@ -80,11 +80,11 @@ export class AdminDonutAnioComponent implements OnChanges{
                                                          // display el grafico !
                                                            this.loading = false;
 
-                                                            console.log("idselected ->"+this.idselected);
-                                                            console.log(this.loading);
+                                                            //console.log("idselected ->"+this.idselected);
+                                                            //console.log(this.loading);
                                                   },
                                                   error =>{
-                                                       console.log(<any>error);
+                                                       //console.log(<any>error);
                                                   }
                                         );
       
@@ -132,9 +132,9 @@ export class AdminDonutAnioComponent implements OnChanges{
                          // display el grafico !
                            this.loading = false;
 
-                           /* console.log("idselected ->"+this.idselected);
-                            console.log("pieChartColors --->>> "+this.donutChartColors[0].backgroundColor)
-                            console.log(this.loading);*/
+                           /* //console.log("idselected ->"+this.idselected);
+                            //console.log("pieChartColors --->>> "+this.donutChartColors[0].backgroundColor)
+                            //console.log(this.loading);*/
                 },
                 error =>{
                      console.log(<any>error);

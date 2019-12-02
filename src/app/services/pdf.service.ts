@@ -55,7 +55,7 @@ export class PdfService {
 		//console.log("json => "+JSON.stringify(data));
 		let params = 'json='+data;
 
-		console.log("params => "+params);
+		//console.log("params => "+params);
 
 		let headers = new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded')
 									   .set('Authorization',token);

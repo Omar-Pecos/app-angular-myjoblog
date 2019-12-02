@@ -559,6 +559,9 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		padding-right: 0;
 	}
 	.heroimage{
+		position: relative;
+		left: 0;
+		padding: 0px;
 		flex-flow: row nowrap;
 	}
 	.heroimage img {
@@ -589,7 +592,7 @@ cuidado con en movil a ver como se ve sino hay que poner otra vez el max-widht d
 		padding-bottom: 100px;
 	}
 
-	.titulo , .heroimage , .buscadores{
+	.titulo , .buscadores{
 		padding: 20px 30px;
 	}
 	.buscador{

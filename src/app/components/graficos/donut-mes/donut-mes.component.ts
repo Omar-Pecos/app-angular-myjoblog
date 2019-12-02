@@ -40,8 +40,8 @@ export class DonutMesComponent implements OnInit {
                       this.donutChartColors[0].backgroundColor.unshift('rgba(43, 218, 227, 1)');
                        
                       this.loading = false;
-                      console.log(this.loading);
-                       console.log(this.donutChartData);
+                      //console.log(this.loading);
+                      // console.log(this.donutChartData);
               },
               error =>{
                    console.log(<any>error);

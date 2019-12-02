@@ -94,8 +94,8 @@
 								<img width="26" src="assets/images/icons8-cancel-50.png">&nbsp;Eliminar</button>
 						</span>
 						<span  *ngIf="user.active == 0"  class="operacionesUser">
-							<button  class="btn btn-danger" *ngIf="user.id != identity.sub" (click)="SetIdUser(user.id)" >
-									<img width="26" src="assets/images/icons8-cancel-50.png">&nbsp;Eliminar</button>
+							<button  class="btn btn-warning" *ngIf="user.id != identity.sub" [routerLink]="['/activar']" >
+									<img width="26" src="assets/images/icons8-confirm-50.png">&nbsp;Activar Usuarios</button>
 						</span>
 					</td>
 						

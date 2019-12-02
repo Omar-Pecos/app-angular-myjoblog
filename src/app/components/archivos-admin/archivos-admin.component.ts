@@ -95,11 +95,11 @@ public getParams:string = 'sort_by=datetime&order=desc';
   			identificador = 0;
   		}
 
-  		console.log("<<<<<<>>>>>>>>trigered el PDF <<<<<<<<>>>>>>>");
+  		console.log("<<<<<<>>>>>>>> trigered el PDF <<<<<<<<>>>>>>>");
 					/* TRIGGER EL PDF */ 
 						this._pdfService.generate_pdf(this.token,ids,identificador,this.year).subscribe(
 				              response =>{ 
-				    				console.log(<any>response);
+				    				//console.log(<any>response);
 
 				    				this.infomsg = "Se ha terminado de generar el Pdf que solicitaste ";
 				    				this.globals.infomsg = this.infomsg;
@@ -150,7 +150,7 @@ public getParams:string = 'sort_by=datetime&order=desc';
 
   			var url = this.url+'api/see_file?name='+name;
 			//1_66190088M_pdf_16_10_19__10_25.pdf
-  				console.log(url);
+  				//console.log(url);
 
   				window.open(url,'_blank');
   
@@ -160,7 +160,7 @@ public getParams:string = 'sort_by=datetime&order=desc';
 		var url = this.url+'api/down_file?name='+name;
 			//1_66190088M_pdf_16_10_19__10_25.pdf
 				
-				console.log(url);
+				//console.log(url);
 
   				window.open(url,'_self');
 
@@ -170,7 +170,7 @@ public getParams:string = 'sort_by=datetime&order=desc';
 		// call service delete 
 		this._pdfService.delete_pdf(this.token,name).subscribe(
 						              response =>{ 
-						    			//console.log(<any>response);
+						    			////console.log(<any>response);
 
 						    			this.deletedexport = response.deletedexport;
 
@@ -187,7 +187,7 @@ public getParams:string = 'sort_by=datetime&order=desc';
 
 	addgetParams(value, operacion){
 	    var result;
-	     		 console.log("getParams -- lo recibido ->" + value);
+	     		 //console.log("getParams -- lo recibido ->" + value);
 
 	            //no se necesita cortar las url - lo que se pasa se añade a la url
 	           if (operacion == 'add'){
@@ -199,10 +199,10 @@ public getParams:string = 'sort_by=datetime&order=desc';
 	                  result = value.slice(n+1,value.length); 
 	            }
 
-	     	 console.log(" getParams --lo transformado ->" + result);
+	     	 //console.log(" getParams --lo transformado ->" + result);
 
 	          this.getParams = result;
-	          console.log("this.getParams _>"+this.getParams);
+	          //console.log("this.getParams _>"+this.getParams);
 	           
 	             // si es la pag sig o anteroir que haga ElScrollTop
 	                if (operacion == 'slice'){

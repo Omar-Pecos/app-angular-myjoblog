@@ -39,8 +39,8 @@ export class UsersActivateComponent implements DoCheck {
                 }
               },
               error =>{
-               let code = error.error.code;
-                this._router.navigate(['error',code]);
+                 let code = error.error.code;
+                  this._router.navigate(['error',code]);
               }
             );
     }
@@ -58,7 +58,7 @@ export class UsersActivateComponent implements DoCheck {
                   this.getUsersAll();
               },
               error =>{
-                console.log(<any>error);
+                  console.log(<any>error);
               }
             );
   }

@@ -89,7 +89,7 @@ public getParams:string = 'sort_by=id&order=desc';
 
 	addgetParams(value, operacion){
 	    var result;
-	     		 console.log("getParams -- lo recibido ->" + value);
+	     		 //console.log("getParams -- lo recibido ->" + value);
 
 	            //no se necesita cortar las url - lo que se pasa se añade a la url
 	           if (operacion == 'add'){
@@ -101,10 +101,10 @@ public getParams:string = 'sort_by=id&order=desc';
 	                  result = value.slice(n+1,value.length); 
 	            }
 
-	     	 console.log(" getParams --lo transformado ->" + result);
+	     	 //console.log(" getParams --lo transformado ->" + result);
 
 	          this.getParams = result;
-	          console.log("this.getParams _>"+this.getParams);
+	          //console.log("this.getParams _>"+this.getParams);
 	           
 	             // si es la pag sig o anteroir que haga ElScrollTop
 	                if (operacion == 'slice'){

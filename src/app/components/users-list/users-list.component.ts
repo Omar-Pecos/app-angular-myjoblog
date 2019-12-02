@@ -14,7 +14,7 @@ declare var $: any
    providers: [UserService, JourneyService]
 })
 export class UsersListComponent implements DoCheck {
-	public url = 'http://webtime.com.devel';
+  //public url = 'http://webtime.com.devel';
 	public title: string = 'Usuarios';
 	public token;
 	public identity;
@@ -48,7 +48,7 @@ export class UsersListComponent implements DoCheck {
               response =>{
                 if (response.status == 'success'){
                   this.users = response.users.data;
-                  //console.log(JSON.stringify(this.users));
+                  ////console.log(JSON.stringify(this.users));
 
                    let pageInfo = {'page':response.users.current_page,'lastpage':response.users.last_page,
                   'previous':response.users.prev_page_url,'next':response.users.next_page_url,
@@ -87,7 +87,7 @@ export class UsersListComponent implements DoCheck {
   //
   addgetParams(value, operacion){
     var result;
-      console.log("getParams -- lo recibido ->" + value);
+      //console.log("getParams -- lo recibido ->" + value);
 
             //no se necesita cortar las url - lo que se pasa se añade a la url
            if (operacion == 'add'){
@@ -114,15 +114,15 @@ export class UsersListComponent implements DoCheck {
                result = this.getParams+'&sort_by='+selectfield+'&order='+selectorder;
             }
 
-      console.log(" getParams --lo transformado ->" + result);
+      //console.log(" getParams --lo transformado ->" + result);
 
         if (operacion == 'search'){
              this.getParams = result;
-             console.log("this.getParams _>"+this.getParams);
+             //console.log("this.getParams _>"+this.getParams);
         }
         else{
           this.getParams = result;
-          console.log("this.getParams _>"+this.getParams);
+          //console.log("this.getParams _>"+this.getParams);
            
              // si es la pag sig o anteroir que haga ElScrollTop
                 if (operacion == 'slice'){

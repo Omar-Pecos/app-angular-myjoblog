@@ -49,7 +49,7 @@ export class AppComponent implements OnInit{
             }
         })();
 
-        console.log("Se ha hecho el scrollTop");
+        //console.log("Se ha hecho el scrollTop");
     }
 
   ngOnInit()
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit{
 	        });
 	    });*/
 
-	    console.log("1º -> APPComponent cargado !");
+	    //console.log("1º -> APPComponent cargado !");
       AppComponent.myapp = this;
 	}
 

@@ -20,14 +20,14 @@ export class LineChartComponent implements OnChanges {
   private _privColor : any;
 
  @Input() public set theId(value: string) {
-   // console.log(`This is pubProp value change detected in setter method: ${value}`);
+   // //console.log(`This is pubProp value change detected in setter method: ${value}`);
     this._privId = value;
   }
   /*public get pubProp() {
     return this._privId;
   }*/
   @Input() public set theColor(value: any) {
-    //console.log(`TheColor  value change detected in setter method: ${value}`);
+    ////console.log(`TheColor  value change detected in setter method: ${value}`);
     this._privColor = value;
   }
 
@@ -119,9 +119,9 @@ export class LineChartComponent implements OnChanges {
                                                          // display el grafico !
                                                            this.loading = false;
 
-                                                           /* console.log("idselected ->"+this.idselected);
-                                                              console.log(this.loading);
-                                                              console.log(this.lineChartData[0].data);*/
+                                                           /* //console.log("idselected ->"+this.idselected);
+                                                              //console.log(this.loading);
+                                                              //console.log(this.lineChartData[0].data);*/
                                                   },
                                                   error =>{
                                                        console.log(<any>error);
@@ -136,8 +136,8 @@ export class LineChartComponent implements OnChanges {
                     );
               },
               error =>{
-
-              }
+                 console.log(<any>error);
+              } 
           );     
   }
 
@@ -180,8 +180,8 @@ export class LineChartComponent implements OnChanges {
 
                         // display el grafico !
                          this.loading = false;
-                          /*  console.log(this.loading);
-                            console.log(this.lineChartData[0].data);*/
+                          /*  //console.log(this.loading);
+                            //console.log(this.lineChartData[0].data);*/
                 },
                 error =>{
                      console.log(<any>error);

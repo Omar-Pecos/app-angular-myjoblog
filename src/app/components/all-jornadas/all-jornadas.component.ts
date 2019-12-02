@@ -80,7 +80,7 @@ export class AllJornadasComponent implements DoCheck {
     this._journeyService.getAllJourneys(this.token,this.getParams).subscribe(
               response =>{
                   if (response.status == 'success'){
-                    //console.log("MyJourneys response ->"+response);
+                    ////console.log("MyJourneys response ->"+response);
                     this.journeys = response.journeys.data;
 
                     let pageInfo = {'page':response.journeys.current_page,'lastpage':response.journeys.last_page,
@@ -107,7 +107,7 @@ export class AllJornadasComponent implements DoCheck {
   // AÑADE LOS PARÁMETROS A LA URL CUANDO ES NECESARIO
   addgetParams(value, operacion){
         var result;
-          console.log("getParams -- lo recibido ->" + value);
+          //console.log("getParams -- lo recibido ->" + value);
 
                 //no se necesita cortar las url - lo que se pasa se añade a la url
                if (operacion == 'add'){
@@ -161,7 +161,7 @@ export class AllJornadasComponent implements DoCheck {
                         }
 
                            result = 'search='+mystring+'&field='+this.searchselect;
-                           console.log("result es --> "+result);
+                           //console.log("result es --> "+result);
 
                   }
 
@@ -175,7 +175,7 @@ export class AllJornadasComponent implements DoCheck {
                      
                       var mystring;
 
-                         console.log("horas es --> "+horasinput+" y los min son ->"+minutosinput);
+                         //console.log("horas es --> "+horasinput+" y los min son ->"+minutosinput);
 
                         // hora y minutos
                         if (horasinput != '0' && minutosinput != '0' ){
@@ -193,7 +193,7 @@ export class AllJornadasComponent implements DoCheck {
                         }
 
                            result = 'search='+mystring+'&field='+selectedtipohora;
-                           console.log("result es --> "+result);
+                           //console.log("result es --> "+result);
 
                   }
 
@@ -214,15 +214,15 @@ export class AllJornadasComponent implements DoCheck {
                    result = this.getParams+'&sort_by='+selectfield+'&order='+selectorder;
                 }
 
-          console.log(" getParams --lo transformado ->" + result);
+          //console.log(" getParams --lo transformado ->" + result);
 
             if (operacion == 'search'){
                  this.getParams = result;
-                 console.log("this.getParams _>"+this.getParams);
+                 //console.log("this.getParams _>"+this.getParams);
             }
             else{
               this.getParams = result;
-              console.log("this.getParams _>"+this.getParams);
+              //console.log("this.getParams _>"+this.getParams);
                
                  // si es la pag sig o anteroir que haga ElScrollTop
                     if (operacion == 'slice'){
@@ -237,7 +237,7 @@ export class AllJornadasComponent implements DoCheck {
   viewSearchSelect(){
 
       var value = $("#selectsearch").val();
-        //console.log("value -> "+value);
+        ////console.log("value -> "+value);
       this.searchselect = value;
   
   }
@@ -267,7 +267,7 @@ export class AllJornadasComponent implements DoCheck {
           let end = '<img style="width:100%;height:300px;" src="https://maps.googleapis.com/maps/api/staticmap?center='+(coordEnd[0])+','+(coordEnd[1])+'&zoom=15&size=340x300&markers=color:green%7Clabel:X%7C'+(coordEnd[0])+','+(coordEnd[1])+'&key=AIzaSyAqLFf9RljEFf4lraNDWiIasbtAFRi7dYU"/>' 
           
           this.latitudesYlongitudes.push(ini,end);
-          console.log("LATITUDES Y LONGITUDES -->"+this.latitudesYlongitudes);
+            ////console.log("LATITUDES Y LONGITUDES -->"+this.latitudesYlongitudes);
           
           this.user_data = user_data;
 

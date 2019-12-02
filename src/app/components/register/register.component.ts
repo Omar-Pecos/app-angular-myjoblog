@@ -27,14 +27,14 @@ export class RegisterComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		console.log('register.component cargado correctamente !!');
+		//console.log('register.component cargado correctamente !!');
 		this.user =  new User(1, 'user','','','',0,'');
 		//this._userService = new UserService();
 	}
 
 	onSubmit(form){
-		//console.log(this.user);
-		//console.log(this._userService.pruebas());
+		////console.log(this.user);
+		////console.log(this._userService.pruebas());
 
 		this._userService.register(this.user).subscribe(
 				response => {

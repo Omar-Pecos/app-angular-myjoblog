@@ -21,14 +21,14 @@ export class PieChartComponent implements OnChanges{
  
 
  @Input() public set theId(value: string) {
-    //console.log(`This is pubProp value change detected in setter method: ${value}`);
+    ////console.log(`This is pubProp value change detected in setter method: ${value}`);
     this._privId = value;
   }
   /*public get pubProp() {
     return this._privId;
   }*/
   @Input() public set theColor(value: any) {
-    //console.log(`TheColor  value change detected in setter method: ${value}`);
+    ////console.log(`TheColor  value change detected in setter method: ${value}`);
     this._privColor = value;
   }
 
@@ -85,11 +85,11 @@ Call2DefaultData(){
               //     LA PRIMERA LLAMADA A LOS DATOS CON EL PRIMERO DE LOS OLDUSERS ---> SERÁ EL 1
                  this._graphService.data_donut_porcentaje(this.token,this.oldusers[0]).subscribe(
                         response => {
-                                console.log(response.data_donut);
+                                //console.log(response.data_donut);
                                 this.pieChartData = response.data_donut;
                                 this.pieChartLabels = response.label;
                       
-                                console.log("el pieChartData 1ººº --> "+this.pieChartData);
+                                //console.log("el pieChartData 1ººº --> "+this.pieChartData);
 
                                 //     LA SEGUNDA LLAMADA A LOS DATOS CON EL SEGUNDA DE LOS OLDUSERS ---> SERÁ EL 2
                                        this._graphService.data_donut_porcentaje(this.token,this.oldusers[1]).subscribe(
@@ -107,8 +107,8 @@ Call2DefaultData(){
                                                          // display el grafico !
                                                            this.loading = false;
 
-                                                            console.log("idselected ->"+this.idselected);
-                                                            console.log(this.loading);
+                                                            //console.log("idselected ->"+this.idselected);
+                                                            //console.log(this.loading);
                                                   },
                                                   error =>{
                                                        console.log(<any>error);
@@ -123,7 +123,7 @@ Call2DefaultData(){
 
            },
               error =>{
-
+                console.log(<any>error);
               }
           );
 }
@@ -149,9 +149,9 @@ Call2DefaultData(){
                          // display el grafico !
                            this.loading = false;
 
-                           /* console.log("idselected ->"+this.idselected);
-                            console.log("pieChartColors --->>> "+this.pieChartColors[0].backgroundColor)
-                            console.log(this.loading);*/
+                           /* //console.log("idselected ->"+this.idselected);
+                            //console.log("pieChartColors --->>> "+this.pieChartColors[0].backgroundColor)
+                            //console.log(this.loading);*/
                 },
                 error =>{
                      console.log(<any>error);

@@ -42,7 +42,7 @@ export class UserPerfilComponent implements OnInit {
             if (response.status = 'success'){
 
               this.user = response.user;
-              console.log(this.user);
+              //console.log(this.user);
             }
 
              if (response.status == 'error'){
@@ -54,7 +54,7 @@ export class UserPerfilComponent implements OnInit {
             // se puede comentar 
             console.log(<any>error);
             let code = error.error.code;
-            console.log("$$$ - Error - $$$ -> "+<any>code);
+            //console.log("$$$ - Error - $$$ -> "+<any>code);
 
           // Si el error es 403 (sin auto) o 401 (sin autenticar)
              if (code != 400){
@@ -66,7 +66,7 @@ export class UserPerfilComponent implements OnInit {
   }
 
   ngOnInit() {
-  	console.log("Perfil de usuario cargado correctamente !! ");
+  	//console.log("Perfil de usuario cargado correctamente !! ");
   }
   ngDoCheck(){
 	   this.identity = this._userService.getIdentity();
@@ -88,7 +88,7 @@ export class UserPerfilComponent implements OnInit {
               if (this.theid == this.identity.sub){
                  // en this.user esta la nueva info so create a new identity and set u¡in local storage and getIdentity();
                 let identidad = {'sub':this.user.id,'dni':this.user.dni,"email":this.user.email,'name':this.user.name,"surname":this.user.surname,"role":this.user.role,"iat":this.identity.iat,"exp":this.identity.exp};
-                console.log("NUEVA IDENTIDAD -->"+identidad.name);
+                //console.log("NUEVA IDENTIDAD -->"+identidad.name);
                   
                   this.identity = identidad;
                   localStorage.setItem('identity',JSON.stringify(this.identity));

@@ -50,8 +50,8 @@ export class BarChartComponent implements OnInit {
                       ];
 
                       this.loading = false;
-                      console.log(this.loading);
-                       console.log(this.barChartData[0].data);
+                      //console.log(this.loading);
+                       //console.log(this.barChartData[0].data);
               },
               error =>{
                    console.log(<any>error);

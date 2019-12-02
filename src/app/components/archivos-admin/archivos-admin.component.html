@@ -19,7 +19,7 @@
 
   <div id="buscadores" class="container  text-center">
       <div class="buscador">
-         <h3>Usuario x Año</h3>
+         <h3>Usuario por Año</h3>
         <h4>Usuarios</h4>
         <select class="form-control" [(ngModel)]="selecteduser">
             <option *ngFor="let user of ListUsers" value="{{user.id}}">{{user.name}}&nbsp;{{user.surname}}</option>
@@ -30,7 +30,7 @@
       </div> 
 
      <div class="buscador">
-        <h3>Todos x Año</h3>
+        <h3>Todos por Año</h3>
          <h4>Año</h4>
           <input class="form-control" type="number" [(ngModel)]="year" value="{{year}}">
         <button class="btn btn-success" (click)="GenPdf('all')">Generar</button>
