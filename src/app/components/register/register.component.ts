@@ -36,6 +36,8 @@ export class RegisterComponent implements OnInit{
 		////console.log(this.user);
 		////console.log(this._userService.pruebas());
 
+
+
 		this._userService.register(this.user).subscribe(
 				response => {
 					

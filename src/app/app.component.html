@@ -52,7 +52,7 @@
           <a style="margin-top: 6px;" class="nav-link" [routerLink]="['perfil',identity.sub]">{{identity.name}} {{identity.surname}}</a>
       </li>
       <li class="nav-item active" *ngIf="identity">  
-          <a style="margin-top: 3px;"  class="nav-link"[routerLink]="['logout',1]">
+          <a style="margin-top: 3px;"  class="nav-link" [routerLink]="['logout',1]">
                  <img width="30" src="assets/images/icons8-exit-sign-50.png">  
                   Salir
           </a>

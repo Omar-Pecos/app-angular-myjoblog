@@ -1,6 +1,6 @@
 export var GLOBAL = {
-	url: 'https://omarapi.elementfx.com/api/',
-	baseUrl : 'https://omarapi.elementfx.com/'
+	url: 'https://joblogapi.omarpecos.com/api/',
+	baseUrl : 'https://joblogapi.omarpecos.com/'
 };
 
 /*
@@ -18,5 +18,10 @@ export var GLOBAL = {
 
 		url: 'https://omarapi.elementfx.com/api/',
 		baseUrl : 'https://omarapi.elementfx.com/'
+
+	Api en nuevo server (nuevo Dominio omarpecos.com )
+
+	url: 'https://joblogapi.omarpecos.com/api/',
+	baseUrl : 'https://joblogapi.omarpecos.com/'
 
  */
