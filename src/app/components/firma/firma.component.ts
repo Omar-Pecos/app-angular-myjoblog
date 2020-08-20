@@ -39,7 +39,7 @@ export class FirmaComponent implements OnInit,DoCheck{
 
 	public infomsg;
 
-	@ViewChild('signpad', {static: false}) signaturePad : SignaturePad;
+	@ViewChild('signpad') signaturePad : SignaturePad;
 	//set el canvas width
 	canvaswidth = window.innerWidth > 700 ? 500 : 340;
 

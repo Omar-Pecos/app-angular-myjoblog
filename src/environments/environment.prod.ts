@@ -1,3 +1,6 @@
+import {mapsAPIKEY} from './omarpv.environment';
+
 export const environment = {
-  production: true
+  production: true,
+  mapsAPIKEY
 };
